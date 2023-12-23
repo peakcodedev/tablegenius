@@ -16,4 +16,6 @@ public interface IBaseRepository<T> : IDbSetBase<T> where T : Base
     T GetByIdAsNoTracking(Guid id);
     IQueryable<T> GetAllAsNoTracking();
     IQueryable<T> GetAllIncludingDeleted();
+    void Commit();
+    void Rollback();
 }

@@ -52,7 +52,7 @@ public class Startup
         {
             options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         });
-        services.AddDbContext<RepositoryContext>();
+        services.AddDatabase();
         services.Configure<MvcOptions>(options => { options.EnableEndpointRouting = false; });
         services.AddAuthZero();
     }
@@ -60,7 +60,7 @@ public class Startup
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        UpdateDatabase(app);
+        DataServiceCollectionExtensions.UpdateDatabase(app);
         if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
         app.AddSwaggerConfig();
@@ -79,22 +79,9 @@ public class Startup
     public void ConfigureContainer(ContainerBuilder builder)
     {
         ServicesInjector.RegisterModule(builder);
-        QueriesInjector.RegisterModule(builder);
         PresenterInjector.RegisterModule(builder);
         MapperInjector.RegisterModule(builder);
-        DatabaseRepositoryInjector.RegisterModule(builder);
         InfrastructureInjector.RegisterModule(builder);
         BlobRepositoryInjector.RegisterModule(builder);
-    }
-
-    private static void UpdateDatabase(IApplicationBuilder app)
-    {
-        using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-        {
-            using (var context = serviceScope.ServiceProvider.GetService<RepositoryContext>())
-            {
-                context.Database.Migrate();
-            }
-        }
     }
 }

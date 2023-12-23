@@ -6,6 +6,5 @@
 
     <ItemGroup>
         <Folder Include="Default\" />
-        <Folder Include="Admin\" />
     </ItemGroup>
 </Project>

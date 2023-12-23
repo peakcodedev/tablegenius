@@ -7,7 +7,5 @@ public interface IPresenter<T>
 {
     T GetById(Guid id);
     List<T> GetAll();
-    void UpdateBlank(T entity);
-    T GetBlank();
     bool DeleteById(Guid id, bool removeFromDb = false);
 }

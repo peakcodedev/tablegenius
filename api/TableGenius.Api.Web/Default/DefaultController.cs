@@ -13,7 +13,7 @@ namespace TableGenius.Api.Web.Default;
 [Authorize]
 public class DefaultController : Controller
 {
-    protected string GetMail()
+    /*protected string GetMail()
     {
         var mail = User.Claims.Where(c => c.Type == "http://TableGenius.ch/email")
             .Select(c => c.Value).SingleOrDefault();
@@ -33,5 +33,5 @@ public class DefaultController : Controller
             .Select(c => c.Value);
         if (permissions.Contains("admin")) return true;
         return false;
-    }
+    }*/
 }

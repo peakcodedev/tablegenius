@@ -6,7 +6,6 @@
 
     <ItemGroup>
         <Folder Include="Interfaces\" />
-        <Folder Include="Queries\Filters\" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />

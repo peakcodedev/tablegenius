@@ -21,18 +21,7 @@ public class RepositoryContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new ProjectConfiguration());
-        modelBuilder.ApplyConfiguration(new ProjectExpertConfiguration());
-        modelBuilder.ApplyConfiguration(new ProjectRatingConfiguration());
-        modelBuilder.ApplyConfiguration(new CompanyConfiguration());
-        modelBuilder.ApplyConfiguration(new UserConfiguration());
-        modelBuilder.ApplyConfiguration(new ProjectBoothConfiguration());
-        modelBuilder.ApplyConfiguration(new ProfessionConfiguration());
-        modelBuilder.ApplyConfiguration(new ProjectCollaborationConfiguration());
-        modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
-        modelBuilder.ApplyConfiguration(new ProjectImageConfiguration());
-        modelBuilder.ApplyConfiguration(new CourseConfiguration());
-        modelBuilder.ApplyConfiguration(new ProjectUserRatingConfiguration());
+        modelBuilder.ApplyConfiguration(new LocationConfiguration());
         base.OnModelCreating(modelBuilder);
     }
 

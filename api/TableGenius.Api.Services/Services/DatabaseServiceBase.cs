@@ -11,8 +11,7 @@ namespace TableGenius.Api.Services.Services;
 public abstract class DatabaseServiceBase<T> : IDatabaseService<T> where T : Base
 {
     private readonly IApplicationLogger _logger;
-    protected IDatabaseUnitOfWork DatabaseUnitOfWork;
-    protected IQueries<T> Querier;
+    protected IBaseRepository<T> _repository;
 
     protected DatabaseServiceBase(IApplicationLogger logger)
     {
@@ -23,10 +22,10 @@ public abstract class DatabaseServiceBase<T> : IDatabaseService<T> where T : Bas
     {
         try
         {
-            Querier.Add(entity);
+            _repository.Add(entity);
             if (saveToDb)
             {
-                DatabaseUnitOfWork.Save();
+                _repository.Commit();
                 _logger.LogInformation<T>("Added (DatabaseServiceBase)");
                 return entity;
             }
@@ -48,10 +47,10 @@ public abstract class DatabaseServiceBase<T> : IDatabaseService<T> where T : Bas
     {
         try
         {
-            Querier.Delete(entity, removeFromDb);
+            _repository.Delete(entity, removeFromDb);
             if (saveToDb)
             {
-                DatabaseUnitOfWork.Save();
+                _repository.Commit();
                 _logger.LogInformation<T>("Deleted (DatabaseServiceBase)");
             }
         }
@@ -70,16 +69,16 @@ public abstract class DatabaseServiceBase<T> : IDatabaseService<T> where T : Bas
     {
         try
         {
-            Querier.DeleteById(id, removeFromDb);
+            _repository.DeleteById(id, removeFromDb);
             if (saveToDb)
             {
-                DatabaseUnitOfWork.Save();
+                _repository.Commit();
                 _logger.LogInformation<T>("Deleted By Guid (DatabaseServiceBase)");
             }
         }
         catch (Exception e)
         {
-            DatabaseUnitOfWork.Rollback();
+            _repository.Rollback();
             _logger.LogError<T>(e, "Error on deleting by guid (DatabaseServiceBase)");
             return false;
         }
@@ -106,7 +105,7 @@ public abstract class DatabaseServiceBase<T> : IDatabaseService<T> where T : Bas
     {
         try
         {
-            return Querier.GetAllAsNoTracking();
+            return _repository.GetAllAsNoTracking();
         }
         catch (Exception e)
         {
@@ -119,7 +118,7 @@ public abstract class DatabaseServiceBase<T> : IDatabaseService<T> where T : Bas
     {
         try
         {
-            return Querier.GetById(id);
+            return _repository.GetById(id);
         }
         catch (Exception e)
         {
@@ -132,8 +131,8 @@ public abstract class DatabaseServiceBase<T> : IDatabaseService<T> where T : Bas
     {
         try
         {
-            Querier.Update(entity);
-            if (saveToDb) DatabaseUnitOfWork.Save();
+            _repository.Update(entity);
+            if (saveToDb) _repository.Commit();
             return entity;
         }
         catch (Exception e)
@@ -153,7 +152,7 @@ public abstract class DatabaseServiceBase<T> : IDatabaseService<T> where T : Bas
     {
         try
         {
-            return Querier.GetByIdAsNoTracking(id);
+            return _repository.GetByIdAsNoTracking(id);
         }
         catch (Exception e)
         {
@@ -166,7 +165,7 @@ public abstract class DatabaseServiceBase<T> : IDatabaseService<T> where T : Bas
     {
         try
         {
-            return Querier.GetAllIncludingDeleted();
+            return _repository.GetAllIncludingDeleted();
         }
         catch (Exception e)
         {

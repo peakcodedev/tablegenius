@@ -9,7 +9,217 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d1cdfb4-7a76-4211-9fa5-9cbfeec667f9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TableGenius.Api.Entities/Restaurant/Restaurant.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/RestaurantPresenter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Configurations/RestaurantConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/DataServiceCollectionExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Interfaces/IRestaurantRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Repositories/RestaurantRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/LocationsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TableGenius.Api/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TableGenius.Api/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/Admin/Role.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/Admin/User.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/Company/Company.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/Company/Employee.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/Course/Course.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/General/Gender.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/General/Profession.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/Project/Project.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/Project/ProjectBooth.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/Project/ProjectBoothType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/Project/ProjectCollaboration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/Project/ProjectExpert.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/Project/ProjectImage.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/Project/ProjectRating.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/Project/ProjectType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/Project/ProjectUserRating.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Entities/TableGenius.Api.Entities.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Entities/TableGenius.Api.Entities.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/ICompanyPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/ICoursePresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/IRestaurantPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/IEmployeePresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/IPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/IPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/IProfessionPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/IProjectBoothPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/IProjectCollaborationPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/IProjectExpertPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/IProjectImagePresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/IProjectPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/IProjectRatingPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/IProjectUserRatingPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/IStatsPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Interfaces/Presenter/IUserPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Mapper/Mappers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Presentation/Mapper/Mappers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/BasePresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/BasePresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/CompanyPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/CoursePresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/EmployeePresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/ProfessionPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/ProjectBoothPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/ProjectCollaborationPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/ProjectExpertPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/ProjectImagePresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/ProjectPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/ProjectRatingPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/ProjectUserRatingPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/StatsPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/Presenter/UserPresenter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/PresenterInjector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Presentation/PresenterInjector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/BaseRm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/BaseRm.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/CompanyPictureRM.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/CompanyRm.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/CourseRM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/CourseRM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/EmployeeModel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/EmployeeRm.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ExportCertificateRM.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ExportCourseRM.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ExportPriceRM.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ExportPrintProjectRM.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ExportPrintUserRM.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ExportProjectBoothRm.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ExportProjectUserRatingRM.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ExportUserRM.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ProfessionRm.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ProfilePictureRM.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ProjectBoothRm.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ProjectCollaborationModel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ProjectCollaborationRm.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ProjectExpertRm.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ProjectImageRm.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ProjectRatingRm.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ProjectRm.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/ProjectUserRatingRM.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/StatsRm.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/UserRM.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Presentation/ResourceModel/UserRelationsRm.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/BaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Repositories/BaseRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Configurations/CompanyConfiguration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Configurations/CourseConfiguration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Configurations/EmployeeConfiguration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Configurations/ProfessionConfiguration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Configurations/ProjecCollaborationConfiguration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Configurations/ProjectBoothConfiguration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Configurations/ProjectConfiguration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Configurations/ProjectExpertConfiguration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Configurations/ProjectImageConfiguration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Configurations/ProjectRatingConfiguration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Configurations/ProjectUserRatingConfiguration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Configurations/UserConfiguration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/DatabaseRepositoryInjector.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/DatabaseUnitOfWork.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/DatabaseUnitOfWorkFactory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Extensions/CustomExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Interfaces/IBaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Interfaces/IBaseRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Interfaces/IDatabaseUnitOfWork.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/Interfaces/IDatabaseUnitOfWorkFactory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/RepositoryContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/RepositoryContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/TableGenius.Api.Repo.Database.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Repo.Database/TableGenius.Api.Repo.Database.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Interfaces/Database/ICompanyService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Interfaces/Database/ICourseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Services/Interfaces/Database/IRestaurantService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Interfaces/Database/IEmployeeService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Interfaces/Database/IProfessionService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Interfaces/Database/IProjectBoothService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Interfaces/Database/IProjectCollaborationService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Interfaces/Database/IProjectExpertService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Interfaces/Database/IProjectImageService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Interfaces/Database/IProjectRatingService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Interfaces/Database/IProjectService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Interfaces/Database/IProjectUserRatingService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Interfaces/Database/IQueries.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Interfaces/Database/IUserService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Interfaces/IFileUploader.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Queries/CompanyQueries.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Queries/CourseQueries.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Queries/DatabaseBaseQueries.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Queries/EmployeeQueries.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Queries/Filters/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Queries/ProfessionQueries.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Queries/ProjectBoothQueries.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Queries/ProjectCollaborationQueries.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Queries/ProjectExpertQueries.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Queries/ProjectImageQueries.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Queries/ProjectQueries.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Queries/ProjectRatingQueries.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Queries/ProjectUserRatingQueries.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Queries/UserQueries.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/QueriesInjector.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Services/CompanyService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Services/CourseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Services/Services/CourseService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Services/DatabaseServiceBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Services/Services/DatabaseServiceBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Services/EmployeeService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Services/FileUploader.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Services/ProfessionService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Services/ProjectBoothService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Services/ProjectCollaborationService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Services/ProjectExpertService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Services/ProjectImageService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Services/ProjectRatingService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Services/ProjectService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Services/ProjectUserRatingService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/Services/UserService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/ServicesInjector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Services/ServicesInjector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Services/TableGenius.Api.Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Services/TableGenius.Api.Services.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/ApiController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/CompaniesController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/EmployeesController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/ExportsController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/ProfessionsController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/ProfileController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/ProjectBoothsController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/ProjectCollaboratorsController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/ProjectExpertsController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/ProjectImagesController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/ProjectRatingsController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/ProjectUserRatingsController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/ProjectsController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/StatsController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Controllers/UsersController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Default/DefaultController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Web/Default/DefaultController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230115110256_InitialEnities.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230115110256_InitialEnities.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230212102340_AddedProfessions.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230212102340_AddedProfessions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230212145033_RemovedUserStuff.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230212145033_RemovedUserStuff.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230319114035_AddedProfileImageToUser.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230319114035_AddedProfileImageToUser.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230319143030_AddedProjectCollaboration.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230319143030_AddedProjectCollaboration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230406163421_AddedCompanyPicture.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230406163421_AddedCompanyPicture.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230406174950_AddedEmployee.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230406174950_AddedEmployee.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230408153737_OneToManyForEmployees.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230408153737_OneToManyForEmployees.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230408160706_OneToManyForProjectCollaborators.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230408160706_OneToManyForProjectCollaborators.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230410061122_AddExternalIdToProfession.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230410061122_AddExternalIdToProfession.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230519144246_AddProjectSupervisor.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230519144246_AddProjectSupervisor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230520120326_AddSocialMediaStuffAndYearToProject.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230520120326_AddSocialMediaStuffAndYearToProject.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230801080110_AddedMorePropertiesToProjectBooth.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230801080110_AddedMorePropertiesToProjectBooth.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230801121200_AddedAdditionalFieldsToTheApplication.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230801121200_AddedAdditionalFieldsToTheApplication.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230805164301_AddedProjectImages.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230805164301_AddedProjectImages.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230806091757_AddedCourse.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20230806091757_AddedCourse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20231017165603_AddedInternalProjectNumber.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20231017165603_AddedInternalProjectNumber.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20231017170030_RemoveProfessionFromProjectExpert.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20231017170030_RemoveProfessionFromProjectExpert.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20231017172314_ChangeFieldOnProjectExpert.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20231017172314_ChangeFieldOnProjectExpert.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20231019174434_AddApprenticeShipYearToUser.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20231019174434_AddApprenticeShipYearToUser.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20231028102955_AddedJuryPriceForProject.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20231028102955_AddedJuryPriceForProject.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20231103151543_AddedProjectUserRating.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/20231103151543_AddedProjectUserRating.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Migrations/RepositoryContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableGenius.Api.Web/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TableGenius.Api.Web/Startup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +302,7 @@
       <option name="presentableId" value="Default" />
       <updated>1703333867469</updated>
       <workItem from="1703333869941" duration="377000" />
-      <workItem from="1703334459454" duration="758000" />
+      <workItem from="1703334459454" duration="3685000" />
     </task>
     <servers />
   </component>
