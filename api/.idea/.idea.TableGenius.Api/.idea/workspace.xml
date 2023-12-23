@@ -9,11 +9,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d1cdfb4-7a76-4211-9fa5-9cbfeec667f9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../app/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/app/app.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +92,7 @@
       <option name="presentableId" value="Default" />
       <updated>1703333867469</updated>
       <workItem from="1703333869941" duration="377000" />
-      <workItem from="1703334459454" duration="362000" />
+      <workItem from="1703334459454" duration="758000" />
     </task>
     <servers />
   </component>

@@ -21,7 +21,7 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_PASSWORD: ufo
-      POSTGRES_DB: TableGenius
+      POSTGRES_DB: tableGenius
       POSTGRES_USER: ufo
     volumes:
       - pgdata:/var/lib/postgresql/data  
