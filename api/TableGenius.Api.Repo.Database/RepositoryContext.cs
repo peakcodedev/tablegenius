@@ -1,8 +1,8 @@
 ﻿using System;
-using TableGenius.Api.Repo.Database.Configurations;
-using TableGenius.Api.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using TableGenius.Api.Repo.Database.Configurations;
+using TableGenius.Api.Settings;
 
 namespace TableGenius.Api.Repo.Database;
 
@@ -22,11 +22,15 @@ public class RepositoryContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new LocationConfiguration());
+        modelBuilder.ApplyConfiguration(new AreaConfiguration());
+        modelBuilder.ApplyConfiguration(new TableConfiguration());
+        modelBuilder.ApplyConfiguration(new ReservationConfiguration());
         base.OnModelCreating(modelBuilder);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(_databaseOptions.Value.Database, x => x.MigrationsAssembly("TableGenius.Api.Web"));
+        optionsBuilder.UseNpgsql(_databaseOptions.Value.Database,
+            x => x.MigrationsAssembly("TableGenius.Api.Repo.Database"));
     }
 }

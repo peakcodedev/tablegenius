@@ -10,7 +10,7 @@ namespace TableGenius.Api.Web.Default;
 [EnableCors("_myAllowSpecificOrigins")]
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+//[Authorize]
 public class DefaultController : Controller
 {
     /*protected string GetMail()

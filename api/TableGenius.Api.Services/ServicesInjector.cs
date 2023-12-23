@@ -12,5 +12,8 @@ public static class ServicesInjector
         container.RegisterType<LocationService>().As<ILocationService>();
         container.RegisterType<MailService>().As<IMailService>();
         container.RegisterType<ApplicationMailService>().As<IApplicationMailService>();
+        container.RegisterType<TableService>().As<ITableService>();
+        container.RegisterType<AreaService>().As<IAreaService>();
+        container.RegisterType<ReservationService>().As<IReservationService>();
     }
 }

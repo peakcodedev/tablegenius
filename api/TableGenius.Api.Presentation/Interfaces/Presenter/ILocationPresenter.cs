@@ -3,9 +3,9 @@ using TableGenius.Api.Presentation.ResourceModel;
 
 namespace TableGenius.Api.Presentation.Interfaces.Presenter;
 
-public interface ILocationPresenter : IPresenter<LocationRM>
+public interface ILocationPresenter : IPresenter<LocationRm>
 {
-    LocationRM Add(LocationRM entity);
-    IEnumerable<LocationRM> GetList();
-    LocationRM Update(LocationRM entity);
+    LocationRm Add(LocationRm entity);
+    IEnumerable<LocationRm> GetList();
+    LocationRm Update(LocationRm entity);
 }

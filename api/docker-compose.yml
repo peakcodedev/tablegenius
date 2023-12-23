@@ -7,13 +7,14 @@ services:
   tableGenius.api.web:
     image: tablegenius-web
     ports:
-      - "8080:80"
+      - "8181:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=development
       - DOTNET_ENVIRONMENT=development
     build:
       context: .
       dockerfile: Dockerfile
+  
   tableGenius.db:
     image: postgres
     restart: always

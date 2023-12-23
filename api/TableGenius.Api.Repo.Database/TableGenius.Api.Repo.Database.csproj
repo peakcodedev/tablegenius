@@ -22,4 +22,7 @@
         <ProjectReference Include="..\TableGenius.Api.Entities\TableGenius.Api.Entities.csproj" />
         <ProjectReference Include="..\TableGenius.Api.Settings\TableGenius.Api.Settings.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Migrations\" />
+    </ItemGroup>
 </Project>

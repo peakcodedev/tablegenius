@@ -9,5 +9,8 @@ public static class PresenterInjector
     public static void RegisterModule(ContainerBuilder container)
     {
         container.RegisterType<LocationPresenter>().As<ILocationPresenter>();
+        container.RegisterType<ReservationPresenter>().As<IReservationPresenter>();
+        container.RegisterType<TablePresenter>().As<ITablePresenter>();
+        container.RegisterType<AreaPresenter>().As<IAreaPresenter>();
     }
 }

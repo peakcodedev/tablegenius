@@ -8,7 +8,7 @@ public class Mappers : Profile
 {
     public Mappers()
     {
-        CreateMap<Location, LocationRM>();
-        CreateMap<LocationRM, Location>();
+        CreateMap<Location, LocationRm>();
+        CreateMap<LocationRm, Location>();
     }
 }

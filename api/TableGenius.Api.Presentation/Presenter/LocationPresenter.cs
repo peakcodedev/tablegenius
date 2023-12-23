@@ -8,7 +8,7 @@ using TableGenius.Api.Services.Interfaces.Database;
 
 namespace TableGenius.Api.Presentation.Presenter;
 
-public class LocationPresenter: BasePresenter<LocationRM, Location>, ILocationPresenter
+public class LocationPresenter : BasePresenter<LocationRm, Location>, ILocationPresenter
 {
     private readonly ILocationService _locationService;
     private readonly IMapper _mapper;
@@ -20,25 +20,24 @@ public class LocationPresenter: BasePresenter<LocationRM, Location>, ILocationPr
         _mapper = mapper;
     }
 
-    public LocationRM Add(LocationRM entity)
+    public LocationRm Add(LocationRm entity)
     {
         var model = _mapper.Map<Location>(entity);
         var result = _locationService.Add(model);
-        return _mapper.Map<LocationRM>(result);
-    }
-    
-    public IEnumerable<LocationRM> GetList()
-    {
-        var all = _locationService.GetAllAsNoTracking().ToList();
-        var returnMap = _mapper.Map<IEnumerable<Location>, List<LocationRM>>(all);
-        return returnMap;
-    }
-    
-    public LocationRM Update(LocationRM entity)
-    {
-        var db = _mapper.Map<LocationRM, Location>(entity);
-        var elem = _locationService.Update(db);
-        return _mapper.Map<Location, LocationRM>(elem);
+        return _mapper.Map<LocationRm>(result);
     }
 
+    public IEnumerable<LocationRm> GetList()
+    {
+        var all = _locationService.GetAllAsNoTracking().ToList();
+        var returnMap = _mapper.Map<IEnumerable<Location>, List<LocationRm>>(all);
+        return returnMap;
+    }
+
+    public LocationRm Update(LocationRm entity)
+    {
+        var db = _mapper.Map<LocationRm, Location>(entity);
+        var elem = _locationService.Update(db);
+        return _mapper.Map<Location, LocationRm>(elem);
+    }
 }

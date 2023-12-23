@@ -18,12 +18,12 @@ public static class SwaggerConfig
             {
                 Title = "TableGenius API",
                 Version = "v1",
-                TermsOfService = new Uri("https://TableGenius.ch/impressum"),
+                TermsOfService = new Uri("https://tablegenius.peakcode.dev/impressum"),
                 Contact = new OpenApiContact
                 {
-                    Email = "development@TableGenius.ch",
-                    Name = "lehrlingswettbewerb.ch",
-                    Url = new Uri("https://lehrlingswettbewerb.ch")
+                    Email = "tablegenius@peakcode.dev",
+                    Name = "peakcode.dev",
+                    Url = new Uri("https://tablegenius.peakcode.dev")
                 }
             });
 
