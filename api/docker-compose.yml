@@ -1,0 +1,27 @@
+version: '3.8'
+
+volumes:
+  pgdata: { }
+
+services:
+  tableGenius.api.web:
+    image: tablegenius-web
+    ports:
+      - "8080:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=development
+      - DOTNET_ENVIRONMENT=development
+    build:
+      context: .
+      dockerfile: Dockerfile
+  tableGenius.db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: ufo
+      POSTGRES_DB: TableGenius
+      POSTGRES_USER: ufo
+    volumes:
+      - pgdata:/var/lib/postgresql/data  

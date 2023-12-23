@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Folder Include="Interfaces\" />
+        <Folder Include="Queries\Filters\" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\TableGenius.Api.Entities\TableGenius.Api.Entities.csproj" />
+        <ProjectReference Include="..\TableGenius.Api.Repo.BlobStorage\TableGenius.Api.Repo.BlobStorage.csproj" />
+        <ProjectReference Include="..\TableGenius.Api.Repo.Database\TableGenius.Api.Repo.Database.csproj" />
+        <ProjectReference Include="..\TableGenius.Api.Infrastructure\TableGenius.Api.Infrastructure.csproj" />
+    </ItemGroup>
+</Project>

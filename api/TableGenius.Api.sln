@@ -1,0 +1,87 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableGenius.Api.Web", "TableGenius.Api.Web\TableGenius.Api.Web.csproj", "{1C112C61-E9B6-40B1-B04C-1FDEB767CCFC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global", "Global", "{F2CD22A4-C7A6-4882-A994-542F861ECABA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repo", "Repo", "{A075745A-31D0-41B7-A61C-FDC10992337E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableGenius.Api.Settings", "TableGenius.Api.Settings\TableGenius.Api.Settings.csproj", "{8C6607BB-5030-424A-96FD-DD2D76BED8A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableGenius.Api.Services", "TableGenius.Api.Services\TableGenius.Api.Services.csproj", "{11D0D2E4-C3F7-49A0-9364-A89F77A1E39A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableGenius.Api.Presentation", "TableGenius.Api.Presentation\TableGenius.Api.Presentation.csproj", "{04A37E7B-3FBE-4C93-A79C-C5E753CAC38B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableGenius.Api.Entities", "TableGenius.Api.Entities\TableGenius.Api.Entities.csproj", "{A6D03BF8-C551-402D-9B20-C226C44690FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableGenius.Api.Repo.Database", "TableGenius.Api.Repo.Database\TableGenius.Api.Repo.Database.csproj", "{7C7E4BBE-9588-4F3D-98B0-E5E9154406A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableGenius.Api.Infrastructure", "TableGenius.Api.Infrastructure\TableGenius.Api.Infrastructure.csproj", "{0F5A381A-8D67-4BDE-90D3-DA0BB76C04CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{6C8AD9F4-08C6-4A54-950B-9756CA96E45A}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{EC08798E-DC82-426B-84C0-FB79C750637B}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		docker_push = docker_push
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableGenius.Api.Repo.BlobStorage", "TableGenius.Api.Repo.BlobStorage\TableGenius.Api.Repo.BlobStorage.csproj", "{2FCF65D0-8F32-4DFB-B756-75F47C9D7B84}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalItems", "ExternalItems", "{F560161A-D605-42FB-B265-863907E39245}"
+	ProjectSection(SolutionItems) = preProject
+		docker_push = docker_push
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C112C61-E9B6-40B1-B04C-1FDEB767CCFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C112C61-E9B6-40B1-B04C-1FDEB767CCFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C112C61-E9B6-40B1-B04C-1FDEB767CCFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C112C61-E9B6-40B1-B04C-1FDEB767CCFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C6607BB-5030-424A-96FD-DD2D76BED8A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C6607BB-5030-424A-96FD-DD2D76BED8A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C6607BB-5030-424A-96FD-DD2D76BED8A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C6607BB-5030-424A-96FD-DD2D76BED8A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11D0D2E4-C3F7-49A0-9364-A89F77A1E39A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11D0D2E4-C3F7-49A0-9364-A89F77A1E39A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11D0D2E4-C3F7-49A0-9364-A89F77A1E39A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11D0D2E4-C3F7-49A0-9364-A89F77A1E39A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04A37E7B-3FBE-4C93-A79C-C5E753CAC38B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A37E7B-3FBE-4C93-A79C-C5E753CAC38B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A37E7B-3FBE-4C93-A79C-C5E753CAC38B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A37E7B-3FBE-4C93-A79C-C5E753CAC38B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6D03BF8-C551-402D-9B20-C226C44690FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6D03BF8-C551-402D-9B20-C226C44690FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6D03BF8-C551-402D-9B20-C226C44690FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6D03BF8-C551-402D-9B20-C226C44690FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C7E4BBE-9588-4F3D-98B0-E5E9154406A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C7E4BBE-9588-4F3D-98B0-E5E9154406A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C7E4BBE-9588-4F3D-98B0-E5E9154406A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C7E4BBE-9588-4F3D-98B0-E5E9154406A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F5A381A-8D67-4BDE-90D3-DA0BB76C04CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F5A381A-8D67-4BDE-90D3-DA0BB76C04CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F5A381A-8D67-4BDE-90D3-DA0BB76C04CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F5A381A-8D67-4BDE-90D3-DA0BB76C04CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FCF65D0-8F32-4DFB-B756-75F47C9D7B84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FCF65D0-8F32-4DFB-B756-75F47C9D7B84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FCF65D0-8F32-4DFB-B756-75F47C9D7B84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FCF65D0-8F32-4DFB-B756-75F47C9D7B84}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8C6607BB-5030-424A-96FD-DD2D76BED8A5} = {F2CD22A4-C7A6-4882-A994-542F861ECABA}
+		{A6D03BF8-C551-402D-9B20-C226C44690FE} = {F2CD22A4-C7A6-4882-A994-542F861ECABA}
+		{7C7E4BBE-9588-4F3D-98B0-E5E9154406A6} = {A075745A-31D0-41B7-A61C-FDC10992337E}
+		{0F5A381A-8D67-4BDE-90D3-DA0BB76C04CF} = {F2CD22A4-C7A6-4882-A994-542F861ECABA}
+		{2FCF65D0-8F32-4DFB-B756-75F47C9D7B84} = {A075745A-31D0-41B7-A61C-FDC10992337E}
+	EndGlobalSection
+EndGlobal
