@@ -72,7 +72,7 @@ export class NavigationComponent implements OnInit {
       },
       {
         label: 'Reservation',
-        routerLink: '/users',
+        routerLink: '/reservations',
         icon: 'pi pi-calendar',
         visible: !isSuperAdmin,
       },
