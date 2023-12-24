@@ -18,10 +18,11 @@ import * as Sentry from '@sentry/angular-ivy';
 import { Router } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import locale from '@angular/common/locales/de-CH';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DesignModule } from './design/design.module';
 import { NavigationModule } from './navigation/navigation.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TenantInterceptor } from './core/intercepters/tenant-intercepter';
 
 registerLocaleData(locale);
 
@@ -60,6 +61,7 @@ registerLocaleData(locale);
       multi: true,
     },
     { provide: LOCALE_ID, useValue: 'de-CH' },
+    { provide: HTTP_INTERCEPTORS, useClass: TenantInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

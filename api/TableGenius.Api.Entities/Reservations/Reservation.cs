@@ -3,7 +3,7 @@ using TableGenius.Api.Entities.Default;
 
 namespace TableGenius.Api.Entities.Reservations;
 
-public class Reservation : Base
+public class Reservation : TenantBase
 {
     public string Name { get; set; }
     public DateTime BookingDate { get; set; }

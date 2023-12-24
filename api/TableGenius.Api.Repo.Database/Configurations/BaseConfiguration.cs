@@ -1,11 +1,10 @@
-﻿using TableGenius.Api.Entities;
-using TableGenius.Api.Entities.Default;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TableGenius.Api.Entities.Default;
 
 namespace TableGenius.Api.Repo.Database.Configurations;
 
-public abstract class BaseConfiguration<T> : IEntityTypeConfiguration<T> where T: Base
+public abstract class BaseConfiguration<T> : IEntityTypeConfiguration<T> where T : Base
 {
     public void Configure(EntityTypeBuilder<T> builder)
     {

@@ -2,7 +2,7 @@
 
 namespace TableGenius.Api.Entities.Place;
 
-public class Area : Base
+public class Area : TenantBase
 {
     public string Name { get; set; }
     public string BlueprintUrl { get; set; }

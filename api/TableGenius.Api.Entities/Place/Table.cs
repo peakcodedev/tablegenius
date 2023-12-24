@@ -2,7 +2,7 @@
 
 namespace TableGenius.Api.Entities.Place;
 
-public class Table : Base
+public class Table : TenantBase
 {
     public int TableNumber { get; set; }
     public int Capacity { get; set; }

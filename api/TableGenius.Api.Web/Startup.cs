@@ -1,13 +1,5 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using TableGenius.Api.Infrastructure;
-using TableGenius.Api.Presentation;
-using TableGenius.Api.Presentation.Mapper;
-using TableGenius.Api.Repo.BlobStorage;
-using TableGenius.Api.Repo.Database;
-using TableGenius.Api.Services;
-using TableGenius.Api.Settings;
-using TableGenius.Api.Web.Config;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +9,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
+using TableGenius.Api.Infrastructure;
+using TableGenius.Api.Presentation;
+using TableGenius.Api.Presentation.Mapper;
+using TableGenius.Api.Repo.BlobStorage;
+using TableGenius.Api.Repo.Database;
+using TableGenius.Api.Services;
+using TableGenius.Api.Settings;
+using TableGenius.Api.Web.Config;
 
 namespace TableGenius.Api.Web;
 
@@ -51,7 +51,7 @@ public class Startup
         {
             options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         });
-        services.AddDatabase();
+        services.AddDatabase(Configuration.GetConnectionString("Database"));
         services.Configure<MvcOptions>(options => { options.EnableEndpointRouting = false; });
         //services.AddAuthZero();
     }

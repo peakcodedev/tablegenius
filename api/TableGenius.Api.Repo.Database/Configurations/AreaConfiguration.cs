@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TableGenius.Api.Entities.Place;
+using TableGenius.Api.Repo.Database.Providers;
 
 namespace TableGenius.Api.Repo.Database.Configurations;
 
-public class AreaConfiguration : BaseConfiguration<Area>,
+public class AreaConfiguration(TenantProvider tenantProvider) : TenantBaseConfiguration<Area>(tenantProvider),
     IEntityTypeConfiguration<Area>
 {
     public new void Configure(EntityTypeBuilder<Area> builder)
