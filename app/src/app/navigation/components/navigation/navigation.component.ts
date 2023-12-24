@@ -9,7 +9,7 @@ import { DOCUMENT } from '@angular/common';
 })
 export class NavigationComponent implements OnInit {
   constructor(@Inject(DOCUMENT) public document: Document) {}
-  items: MenuItem[] = this.getLoggedInItems(true, true);
+  items: MenuItem[] = this.getLoggedInItems(true, false);
   visible: boolean = true;
 
   ngOnInit() {
