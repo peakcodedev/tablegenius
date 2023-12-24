@@ -1,14 +1,10 @@
-﻿using System;
-using System.Linq;
-using TableGenius.Api.Presentation.Interfaces.Presenter;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TableGenius.Api.Web.Default;
 
 [EnableCors("_myAllowSpecificOrigins")]
-[Route("api/[controller]")]
+[Route("[controller]")]
 [ApiController]
 //[Authorize]
 public class DefaultController : Controller

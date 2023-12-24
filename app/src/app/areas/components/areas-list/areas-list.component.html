@@ -1,0 +1,7 @@
+<app-header [title]="'Restaurantbereiche'"></app-header>
+<app-datatable [loading]="areaFacade.loading | async" [filterFields]="['id','firstName', 'lastName', 'city']" [hasActions]="true" initialSortField="lastName" [cols]="cols" [data]="areaFacade.areasList | async" [actions]="tableActions">
+    <ng-container #actions>
+        <app-button label="Bereich hinzufügen" icon="plus" buttonStyle="outlined" (clicked)="navigateToAddForm()"></app-button>
+        <app-button label="Aktualisieren" icon="refresh" buttonStyle="outlined" (clicked)="areaFacade.loadAreas()"></app-button>
+    </ng-container>
+</app-datatable>

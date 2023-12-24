@@ -15,5 +15,6 @@ public class ReservationConfiguration : BaseConfiguration<Reservation>,
         builder.Property(b => b.Count).IsRequired();
         builder.Property(b => b.PhoneNumber).IsRequired(false);
         builder.Property(b => b.Comments).HasMaxLength(1024).IsRequired(false);
+        builder.ToTable("Reservations");
     }
 }

@@ -1,0 +1,14 @@
+.table-header {
+  display: grid;
+  grid-template-areas: "actions search";
+  column-gap: 1rem;
+}
+
+.actions {
+  grid-area: actions;
+}
+
+.search {
+  grid-area: search;
+}
+

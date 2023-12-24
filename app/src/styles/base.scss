@@ -1,0 +1,121 @@
+@import "colors";
+$main-font: "OpenSans Light";
+$title-font: "Roboto Bold";
+$text-size-normal: 14px;
+
+* {
+}
+
+.clearboth {
+  clear: both;
+}
+
+body {
+  font-family: $main-font;
+  font-size: $text-size-normal;
+  color: $textColor;
+  background-color: $white;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: $title-font;
+}
+
+p {
+  line-height: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.actions__margin-top {
+  margin-top: 1rem;
+}
+
+.actions {
+  app-button {
+    margin-right: 1rem;
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.field {
+  margin-bottom: 1.5rem;
+}
+
+.p-inputtext {
+  width: 30rem;
+}
+
+.p-datatable .p-datatable-tbody > tr > td, .p-datatable .p-datatable-thead > tr > th {
+  padding: 0.5rem 0.5rem !important;
+}
+
+.p-datatable .p-datatable-header {
+  background-color: white !important;
+  border: none !important;
+  margin-bottom: 1rem;
+  padding-left: 0 !important;
+}
+
+.p-card .p-card-content {
+  padding: 0 !important;
+}
+
+.checkbox-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.left-right-grid {
+  display: grid;
+  grid-template-areas: "left-grid right-grid";
+  grid-template-columns: 50% 50%;
+}
+
+.left-right-grid-1-3 {
+  display: grid;
+  grid-template-areas: "left-grid right-grid";
+  grid-template-columns: 66% 33%;
+}
+
+.left-grid {
+  grid-area: left-grid;
+}
+
+.right-grid {
+  grid-area: right-grid;
+}
+
+.p-menubar {
+  background-color: #9EC8B9;
+  color: #092635;
+}
+
+.p-menubar .p-menuitem > .p-menuitem-content .p-menuitem-link {
+  color: #092635;
+}
+
+.p-button.p-button-outlined {
+  color: #5C8374;
+}
+
+.p-button.p-button-text {
+  color: #1B4242;
+}

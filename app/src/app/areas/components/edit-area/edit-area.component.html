@@ -1,0 +1,19 @@
+<app-header [title]="'Bereich bearbeiten'"></app-header>
+<form *ngIf="form" [formGroup]="form" ngxsForm="areas.editAreaForm" (ngSubmit)="areaFacade.updateArea(this.areaId)" [ngxsFormClearOnDestroy]="true">
+    <div class="field">
+        <label for="tableNumber" class="block">Tischnummer*</label>
+        <input id="tableNumber" required type="number" pInputText formControlName="tableNumber" placeholder="123" />
+    </div>
+    <div class="field">
+        <label for="capacity" class="block">Anzahl Personen am Tisch*</label>
+        <input id="capacity" required type="number" pInputText formControlName="capacity" placeholder="4" />
+    </div>
+  <div class="field">
+    <label for="description" class="block">Kommentare</label>
+    <textarea rows="20" id="description" pInputTextarea formControlName="description" placeholder="Ich bin eine Kommentar"></textarea>
+  </div>
+</form>
+<div class="actions actions__margin-top">
+    <app-button label="Abbrechen" icon="plus" buttonStyle="outlined" (clicked)="navigateToList()"></app-button>
+    <app-button label="Bereich speichern" icon="plus" buttonStyle="outlined" (clicked)="areaFacade.updateArea(this.areaId)"></app-button>
+</div>

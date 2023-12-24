@@ -1,0 +1,3 @@
+<ng-container *ngIf="(authService.isAuthenticated$ | async)">
+  <div>Du bist eingeloggt als: <b>{{(authService.user$ | async)?.name}}</b></div>
+</ng-container>

@@ -54,7 +54,7 @@ namespace TableGenius.Api.Repo.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Area");
+                    b.ToTable("Areas", (string)null);
                 });
 
             modelBuilder.Entity("TableGenius.Api.Entities.Place.Location", b =>
@@ -97,7 +97,7 @@ namespace TableGenius.Api.Repo.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Location");
+                    b.ToTable("Locations", (string)null);
                 });
 
             modelBuilder.Entity("TableGenius.Api.Entities.Place.Table", b =>
@@ -133,7 +133,7 @@ namespace TableGenius.Api.Repo.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Table");
+                    b.ToTable("Tables", (string)null);
                 });
 
             modelBuilder.Entity("TableGenius.Api.Entities.Reservations.Reservation", b =>
@@ -176,7 +176,7 @@ namespace TableGenius.Api.Repo.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Reservation");
+                    b.ToTable("Reservations", (string)null);
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,11 @@
+@use "../../../../styles/colors";
+
+.main-header {
+  background-color: colors.$accent__color;
+  color: colors.$white !important;
+  padding: 10px !important;
+  border-radius: 7px;
+  text-transform: uppercase !important;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

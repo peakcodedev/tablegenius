@@ -12,5 +12,6 @@ public class AreaConfiguration : BaseConfiguration<Area>,
         base.Configure(builder);
         builder.Property(b => b.Name).HasMaxLength(128).IsRequired();
         builder.Property(b => b.BlueprintUrl).HasMaxLength(1024).IsRequired(false);
+        builder.ToTable("Areas");
     }
 }

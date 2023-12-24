@@ -1,0 +1,23 @@
+<app-header [title]="'Restaurant bearbeiten'"></app-header>
+<form *ngIf="form" [formGroup]="form" ngxsForm="locations.editLocationForm" (ngSubmit)="locationFacade.updateLocation(this.locationId)" [ngxsFormClearOnDestroy]="true">
+  <div class="field">
+    <label for="name" class="block">Name*</label>
+    <input id="name" required type="text" pInputText formControlName="name" placeholder="Krone" />
+  </div>
+  <div class="field">
+    <label for="address" class="block">Adresse*</label>
+    <input id="address" required type="text" pInputText formControlName="address" placeholder="Musterstrasse 20, 8620 Wetzikon" />
+  </div>
+  <div class="field">
+    <label for="logoUrl" class="block">Logourl</label>
+    <input id="logoUrl" required type="text" pInputText formControlName="logoUrl" placeholder="http://google.com" />
+  </div>
+  <div class="field">
+    <label for="description" class="block">Beschreibung</label>
+    <textarea rows="20" id="description" pInputTextarea formControlName="description" placeholder="Ich bin eine Kommentar"></textarea>
+  </div>
+</form>
+<div class="actions actions__margin-top">
+    <app-button label="Abbrechen" icon="plus" buttonStyle="outlined" (clicked)="navigateToList()"></app-button>
+    <app-button label="Restaurant speichern" icon="plus" buttonStyle="outlined" (clicked)="locationFacade.updateLocation(this.locationId)"></app-button>
+</div>

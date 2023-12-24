@@ -1,0 +1,69 @@
+form, .actions {
+    padding: 1.5rem;
+}
+
+input {
+    display: none;
+}
+
+.loading-overlay {
+    background-color: black;
+    bottom: 0;
+    left: 0;
+    opacity: .2;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.spinning-circle {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.spinning-circle:after {
+    content: " ";
+    display: block;
+    width: 46px;
+    height: 46px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.btn-bwm {
+    background-color: white;
+    color: #9b9b9b;
+    border: 1px solid #9b9b9b;
+    border-radius: 3px;
+    padding: 15px 15px;
+    font-size: 14px;
+    width: 50%;
+
+    &:hover, &:focus, &:active {
+        border-color: #9b9b9b !important;
+        background-color: white !important;
+    }
+}
+
+.uploaded-file {
+    display: block;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}

@@ -1,0 +1,22 @@
+<h3>{{title}}</h3>
+<i *ngIf="description">{{description}}</i><br/><br/>
+<i *ngIf="showUploadedFile">Achtung: Bestehende Datei wird überschrieben.</i><br/>
+<a target="_blank" *ngIf="actualFile && showUploadedFile" [href]="actualFile" class="uploaded-file">{{name}}.{{extension}}</a>
+<br *ngIf="!actualFile && showUploadedFile"/>
+<label class="image-upload-container btn btn-bwm">
+    <span>Datei auswählen</span>
+    <input #imageInput
+           type="file"
+           [accept]="accept"
+           (change)="processFile(imageInput)">
+</label>
+
+
+<div *ngIf="selectedFile" class="img-preview-container">
+    <div *ngIf="selectedFile.pending" class="loading-overlay">
+        <div class="spinning-circle"></div>
+    </div>
+
+    <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success"> Datei wurde erfolgreich hochgeladen.</div>
+    <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Fehler beim Hochladen der Datei. Bitte erneut versuchen.</div>
+</div>

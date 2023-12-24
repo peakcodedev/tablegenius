@@ -13,5 +13,6 @@ public class TableConfiguration : BaseConfiguration<Table>,
         builder.Property(b => b.TableNumber).IsRequired();
         builder.Property(b => b.Capacity).IsRequired();
         builder.Property(b => b.Description).HasMaxLength(1024).IsRequired(false);
+        builder.ToTable("Tables");
     }
 }
