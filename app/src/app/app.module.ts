@@ -23,6 +23,7 @@ import { DesignModule } from './design/design.module';
 import { NavigationModule } from './navigation/navigation.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TenantInterceptor } from './core/intercepters/tenant-intercepter';
+import { CoreModule } from './core/core.module';
 
 registerLocaleData(locale);
 
@@ -42,6 +43,7 @@ registerLocaleData(locale);
     NgxsRouterPluginModule.forRoot(),
     DesignModule,
     NavigationModule,
+    CoreModule,
   ],
   providers: [
     {
