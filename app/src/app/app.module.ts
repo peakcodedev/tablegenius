@@ -24,6 +24,7 @@ import { NavigationModule } from './navigation/navigation.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TenantInterceptor } from './core/intercepters/tenant-intercepter';
 import { CoreModule } from './core/core.module';
+import { ToastrModule } from 'ngx-toastr';
 
 registerLocaleData(locale);
 
@@ -33,6 +34,15 @@ registerLocaleData(locale);
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      enableHtml: true,
+      progressBar: true,
+      tapToDismiss: true,
+      newestOnTop: true,
+      timeOut: 5000,
+      positionClass: 'toast-bottom-left',
+    }),
     HttpClientModule,
     NgxsModule.forRoot([], {
       developmentMode: !environment.production,

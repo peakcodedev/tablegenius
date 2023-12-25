@@ -19,6 +19,7 @@ import {
 } from '@ngxs/store/operators';
 import { Navigate } from '@ngxs/router-plugin';
 import { IReservation } from '../../domain/reservation';
+import { ToastrService } from 'ngx-toastr';
 
 const defaults: ReservationStateModel = {
   data: [],
@@ -66,7 +67,10 @@ export class ReservationState {
     return (id: string) => state.data.find(e => e.id === id);
   }
 
-  constructor(private readonly reservationService: ReservationService) {}
+  constructor(
+    private readonly reservationService: ReservationService,
+    private readonly toastrService: ToastrService
+  ) {}
 
   @Action(ResetErrorMessage)
   resetErrorMessage(
@@ -114,6 +118,9 @@ export class ReservationState {
           new ResetForm({ path: 'reservations.addReservationForm' }),
           new Navigate(['/reservations']),
         ]);
+        this.toastrService.success(
+          'Die Reservation wurde erfolgreich hinzugefügt.'
+        );
       }),
       catchError(error => {
         context.patchState({ errorMessage: error, loading: false });
@@ -148,6 +155,9 @@ export class ReservationState {
             new ResetForm({ path: 'reservations.editReservationForm' }),
             new Navigate(['/reservations']),
           ]);
+          this.toastrService.success(
+            'Die Reservation wurde erfolgreich aktualisiert.'
+          );
         }),
         catchError(error => {
           context.patchState({ errorMessage: error, loading: false });
@@ -173,6 +183,9 @@ export class ReservationState {
               location => location.id === action.reservationId
             ),
           })
+        );
+        this.toastrService.success(
+          'Die Reservation wurde erfolgreich gelöscht.'
         );
       }),
       catchError(error => {

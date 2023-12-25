@@ -29,7 +29,7 @@ public class ReservationPresenter : BasePresenter<ReservationRm, Reservation>, I
 
     public IEnumerable<ReservationRm> GetList()
     {
-        var all = _reservationService.GetAllAsNoTracking().ToList();
+        var all = _reservationService.GetAllUpcomingReservationsAsNoTracking().ToList();
         var returnMap = _mapper.Map<IEnumerable<Reservation>, List<ReservationRm>>(all);
         return returnMap;
     }

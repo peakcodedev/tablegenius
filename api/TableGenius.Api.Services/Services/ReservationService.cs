@@ -1,4 +1,5 @@
-﻿using TableGenius.Api.Entities.Reservations;
+﻿using System.Linq;
+using TableGenius.Api.Entities.Reservations;
 using TableGenius.Api.Infrastructure.Interfaces;
 using TableGenius.Api.Repo.Database.Interfaces;
 using TableGenius.Api.Services.Interfaces.Database;
@@ -11,5 +12,10 @@ public class ReservationService : DatabaseServiceTenantBase<Reservation>, IReser
         base(logger)
     {
         _repository = reservationRepository;
+    }
+
+    public IQueryable<Reservation> GetAllUpcomingReservationsAsNoTracking()
+    {
+        return (_repository as IReservationRepository)?.GetAllUpcomingReservationsAsNoTracking();
     }
 }
