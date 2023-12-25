@@ -2,6 +2,6 @@
 
 namespace TableGenius.Api.Repo.Database.Interfaces;
 
-public interface IAreaRepository : IBaseRepository<Area>
+public interface IAreaRepository : ITenantBaseRepository<Area>
 {
 }

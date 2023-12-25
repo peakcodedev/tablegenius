@@ -5,7 +5,7 @@ using TableGenius.Api.Services.Interfaces.Database;
 
 namespace TableGenius.Api.Services.Services;
 
-public class TableService : DatabaseServiceBase<Table>, ITableService
+public class TableService : DatabaseServiceTenantBase<Table>, ITableService
 {
     public TableService(ITableRepository tableRepository, IApplicationLogger logger) :
         base(logger)

@@ -2,19 +2,23 @@
 <form *ngIf="form" [formGroup]="form" ngxsForm="reservations.addReservationForm" (ngSubmit)="reservationFacade.addReservation()" [ngxsFormClearOnDestroy]="true">
     <div class="field">
       <label for="name" class="block">Name*</label>
-      <input id="name" required type="text" pInputText formControlName="name" placeholder="Krone" />
+      <input id="name" required type="text" pInputText formControlName="name" placeholder="Familie Meier" />
     </div>
     <div class="field">
-      <label for="address" class="block">Adresse*</label>
-      <input id="address" required type="text" pInputText formControlName="address" placeholder="Musterstrasse 20, 8620 Wetzikon" />
+      <label for="count" class="block">Anzahl Personen*</label>
+      <input id="count" required type="number" pInputText formControlName="count" placeholder="M1" />
     </div>
     <div class="field">
-      <label for="logoUrl" class="block">Logourl</label>
-      <input id="logoUrl" required type="text" pInputText formControlName="logoUrl" placeholder="http://google.com" />
+      <label for="bookingDate" class="block">Zeitpunkt*</label>
+      <input id="bookingDate" required type="datetime-local" pInputText formControlName="bookingDate" />
     </div>
+  <div class="field">
+    <label for="phoneNumber" class="block">Telefonnummer*</label>
+    <input id="phoneNumber" required type="tel" pInputText formControlName="phoneNumber" placeholder="0793235662" />
+  </div>
     <div class="field">
-      <label for="description" class="block">Beschreibung</label>
-      <textarea rows="20" id="description" pInputTextarea formControlName="description" placeholder="Ich bin eine Kommentar"></textarea>
+      <label for="comments" class="block">Kommentare</label>
+      <textarea rows="20" id="comments" pInputTextarea formControlName="comments" placeholder="z.B. Welches Menü?"></textarea>
     </div>
 </form>
 <div class="actions actions__margin-top">

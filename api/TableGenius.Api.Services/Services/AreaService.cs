@@ -5,7 +5,7 @@ using TableGenius.Api.Services.Interfaces.Database;
 
 namespace TableGenius.Api.Services.Services;
 
-public class AreaService : DatabaseServiceBase<Area>, IAreaService
+public class AreaService : DatabaseServiceTenantBase<Area>, IAreaService
 {
     public AreaService(IAreaRepository areaRepository, IApplicationLogger logger) :
         base(logger)

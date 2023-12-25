@@ -1,6 +1,7 @@
 export interface IReservationModel {
   name: string;
-  logoUrl: string;
-  description: string;
-  address: string;
+  bookingDate: Date;
+  comments: string;
+  count: number;
+  phoneNumber: string;
 }

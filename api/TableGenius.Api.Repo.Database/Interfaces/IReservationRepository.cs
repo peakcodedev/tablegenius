@@ -2,6 +2,6 @@
 
 namespace TableGenius.Api.Repo.Database.Interfaces;
 
-public interface IReservationRepository : IBaseRepository<Reservation>
+public interface IReservationRepository : ITenantBaseRepository<Reservation>
 {
 }

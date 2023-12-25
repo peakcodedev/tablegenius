@@ -2,7 +2,6 @@
 
 namespace TableGenius.Api.Repo.Database.Interfaces;
 
-public interface ILocationRepository : IBaseRepository<Location>
+public interface ILocationRepository : IIndependentBaseRepository<Location>
 {
-    
 }

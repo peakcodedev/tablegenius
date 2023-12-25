@@ -34,9 +34,13 @@ export class EditReservationComponent implements OnInit {
         tap(location => {
           this.form = new FormGroup({
             name: new FormControl(location.name, Validators.required),
-            logoUrl: new FormControl(location.logoUrl, []),
-            description: new FormControl(location.description, []),
-            address: new FormControl(location.address, Validators.required),
+            bookingDate: new FormControl(location.bookingDate, []),
+            comments: new FormControl(location.comments, []),
+            count: new FormControl(location.count, Validators.required),
+            phoneNumber: new FormControl(
+              location.phoneNumber,
+              Validators.required
+            ),
           });
         })
       )

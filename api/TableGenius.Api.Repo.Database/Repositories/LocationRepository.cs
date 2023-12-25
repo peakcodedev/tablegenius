@@ -1,9 +1,9 @@
-﻿using TableGenius.Api.Repo.Database.Interfaces;
-using TableGenius.Api.Entities.Place;
+﻿using TableGenius.Api.Entities.Place;
+using TableGenius.Api.Repo.Database.Interfaces;
 
 namespace TableGenius.Api.Repo.Database.Repositories;
 
-public class LocationRepository(RepositoryContext dataContext) : BaseRepository<Location>(dataContext), ILocationRepository
+public class LocationRepository(RepositoryContext dataContext)
+    : IndependentBaseRepository<Location>(dataContext), ILocationRepository
 {
-    
 }

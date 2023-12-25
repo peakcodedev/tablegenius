@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using TableGenius.Api.Entities.Default;
 using TableGenius.Api.Repo.Database.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace TableGenius.Api.Repo.Database.Repositories;
 
-public class BaseRepository<T>(RepositoryContext dataContext) : DbSetBase<T>(dataContext), IBaseRepository<T>
+public abstract class BaseRepository<T>(RepositoryContext dataContext) : DbSetBase<T>(dataContext), IBaseRepository<T>
     where T : Base
 {
-    public void Add(T entity)
-    {
-        entity.CreateDate = DateTime.Now;
-        entity.ModDate = DateTime.Now;
-        DbSet.Add(entity);
-    }
+    public abstract void Add(T entity);
 
     public void Delete(T entity)
     {
@@ -102,6 +97,5 @@ public class BaseRepository<T>(RepositoryContext dataContext) : DbSetBase<T>(dat
         if (asNoTracking) query = query.AsNoTracking();
         var entity = query.FirstOrDefault(predicate);
         return !entity.Deleted ? entity : null;
-
     }
 }

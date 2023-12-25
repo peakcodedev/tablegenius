@@ -8,12 +8,12 @@ using TableGenius.Api.Services.Interfaces.Database;
 
 namespace TableGenius.Api.Services.Services;
 
-public abstract class DatabaseServiceBase<T> : IDatabaseService<T> where T : Base
+public abstract class DatabaseServiceTenantBase<T> : IDatabaseService<T> where T : TenantBase
 {
     private readonly IApplicationLogger _logger;
-    protected IIndependentBaseRepository<T> _repository;
+    protected ITenantBaseRepository<T> _repository;
 
-    protected DatabaseServiceBase(IApplicationLogger logger)
+    protected DatabaseServiceTenantBase(IApplicationLogger logger)
     {
         _logger = logger;
     }

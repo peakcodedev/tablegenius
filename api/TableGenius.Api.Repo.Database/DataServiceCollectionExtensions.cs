@@ -16,7 +16,11 @@ public static class DataServiceCollectionExtensions
             opt => opt.UseNpgsql(connectionString,
                 x => x.MigrationsAssembly("TableGenius.Api.Repo.Database")), ServiceLifetime.Scoped);
         services.Scan(scan => scan.FromApplicationDependencies()
-            .AddClasses(classes => classes.AssignableTo(typeof(IBaseRepository<>))).AsImplementedInterfaces()
+            .AddClasses(classes => classes.AssignableTo(typeof(ITenantBaseRepository<>))).AsImplementedInterfaces()
+            .WithScopedLifetime()
+        );
+        services.Scan(scan => scan.FromApplicationDependencies()
+            .AddClasses(classes => classes.AssignableTo(typeof(IIndependentBaseRepository<>))).AsImplementedInterfaces()
             .WithScopedLifetime()
         );
     }

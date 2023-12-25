@@ -25,9 +25,10 @@ export class AddReservationComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl('', Validators.required),
-      logoUrl: new FormControl('', []),
-      description: new FormControl('', []),
-      address: new FormControl('', Validators.required),
+      bookingDate: new FormControl(new Date(), []),
+      comments: new FormControl('', []),
+      count: new FormControl('', Validators.required),
+      phoneNumber: new FormControl('', Validators.required),
     });
   }
 

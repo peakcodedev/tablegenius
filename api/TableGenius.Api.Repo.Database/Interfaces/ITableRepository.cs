@@ -2,6 +2,6 @@
 
 namespace TableGenius.Api.Repo.Database.Interfaces;
 
-public interface ITableRepository : IBaseRepository<Table>
+public interface ITableRepository : ITenantBaseRepository<Table>
 {
 }
