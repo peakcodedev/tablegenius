@@ -12,6 +12,8 @@ import { EditTableComponent } from './components/edit-table/edit-table.component
 import { CoreModule } from '../core/core.module';
 import { TablesCoreModule } from '../tables-core/tables-core.module';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { AreasCoreModule } from '../areas-core/areas-core.module';
 
 @NgModule({
   declarations: [TablesListComponent, AddTableComponent, EditTableComponent],
@@ -24,7 +26,9 @@ import { DropdownModule } from 'primeng/dropdown';
     NgxsFormPluginModule,
     CoreModule,
     TablesCoreModule,
+    AreasCoreModule,
     DropdownModule,
+    InputTextareaModule,
   ],
   providers: [],
 })

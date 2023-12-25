@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocationFacade } from '../../../locations-core/state/location.facade';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'locations-list',
   templateUrl: './locations-list.component.html',
   styleUrls: ['./locations-list.component.scss'],
+  providers: [ConfirmationService],
 })
 export class LocationsListComponent implements OnInit {
   cols = [
@@ -24,13 +26,14 @@ export class LocationsListComponent implements OnInit {
       label: 'Löschen',
       icon: 'trash',
       style: 'text',
-      onClick: (id: string) => this.locationFacade.deleteLocation(id),
+      onClick: (id: string) => this.displayDeleteConfirmDialog(id),
     },
   ];
 
   constructor(
     readonly locationFacade: LocationFacade,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
@@ -43,5 +46,20 @@ export class LocationsListComponent implements OnInit {
 
   navigateToEditForm(id: string) {
     this.router.navigate(['locations/' + id + '/edit']);
+  }
+
+  private displayDeleteConfirmDialog(id: string) {
+    this.confirmationService.confirm({
+      message:
+        'Bist du dir sicher, dass du dieses Restaurant löschen möchtest?',
+      header: 'Restaurant löschen',
+      acceptLabel: 'Ja',
+      rejectLabel: 'Nein',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.locationFacade.deleteLocation(id);
+      },
+      reject: () => {},
+    });
   }
 }

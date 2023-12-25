@@ -24,9 +24,8 @@ export class AddAreaComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      tableNumber: new FormControl('', Validators.required),
-      capacity: new FormControl('', Validators.required),
-      description: new FormControl('', []),
+      name: new FormControl('', Validators.required),
+      blueprintUrl: new FormControl('', []),
     });
   }
 

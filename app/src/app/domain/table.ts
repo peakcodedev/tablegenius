@@ -3,4 +3,5 @@ export interface ITable {
   tableNumber: number;
   capacity: number;
   description: string;
+  areaId: string;
 }

@@ -13,6 +13,8 @@ public class AreaConfiguration(TenantProvider tenantProvider) : TenantBaseConfig
         base.Configure(builder);
         builder.Property(b => b.Name).HasMaxLength(128).IsRequired();
         builder.Property(b => b.BlueprintUrl).HasMaxLength(1024).IsRequired(false);
+        builder.HasMany(e => e.Tables).WithOne(c => c.Area).HasForeignKey(p => p.AreaId)
+            .IsRequired();
         builder.ToTable("Areas");
     }
 }

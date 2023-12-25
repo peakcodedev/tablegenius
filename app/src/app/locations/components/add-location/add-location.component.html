@@ -19,5 +19,5 @@
 </form>
 <div class="actions actions__margin-top">
     <app-button label="Abbrechen" icon="plus" buttonStyle="outlined" (clicked)="navigateToList()"></app-button>
-    <app-button label="Neues Restaurant speichern" icon="plus" buttonStyle="outlined" (clicked)="locationFacade.addLocation()"></app-button>
+    <app-button label="Neues Restaurant speichern" [disabled]="form.invalid" icon="plus" buttonStyle="outlined" (clicked)="locationFacade.addLocation()"></app-button>
 </div>

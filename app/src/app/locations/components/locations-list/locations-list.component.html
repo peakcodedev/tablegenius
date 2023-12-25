@@ -1,5 +1,5 @@
 <app-header [title]="'Restaurants'"></app-header>
-<app-datatable [loading]="locationFacade.loading | async" [filterFields]="['id','name', 'address']" [hasActions]="true" initialSortField="name" [cols]="cols" [data]="locationFacade.locationsList | async" [actions]="tableActions">
+<app-datatable [loading]="locationFacade.loading | async" [filterFields]="['id','name', 'address']" [hasConfirmDialogs]="true" [hasActions]="true" initialSortField="name" [cols]="cols" [data]="locationFacade.locationsList | async" [actions]="tableActions">
     <ng-container #actions>
         <app-button label="Restaurant hinzufügen" icon="plus" buttonStyle="outlined" (clicked)="navigateToAddForm()"></app-button>
         <app-button label="Aktualisieren" icon="refresh" buttonStyle="outlined" (clicked)="locationFacade.loadLocations()"></app-button>

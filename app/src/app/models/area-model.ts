@@ -1,5 +1,4 @@
 export interface IAreaModel {
-  tableNumber: number;
-  capacity: number;
-  description: string;
+  name: string;
+  blueprintUrl: string;
 }

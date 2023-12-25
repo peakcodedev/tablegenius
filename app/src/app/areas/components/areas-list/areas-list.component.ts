@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AreaFacade } from '../../../areas-core/state/area.facade';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'areas-list',
   templateUrl: './areas-list.component.html',
   styleUrls: ['./areas-list.component.scss'],
+  providers: [ConfirmationService],
 })
 export class AreasListComponent implements OnInit {
   cols = [{ title: 'Name', field: 'name' }];
@@ -20,13 +22,14 @@ export class AreasListComponent implements OnInit {
       label: 'Löschen',
       icon: 'trash',
       style: 'text',
-      onClick: (id: string) => this.areaFacade.deleteArea(id),
+      onClick: (id: string) => this.displayDeleteConfirmDialog(id),
     },
   ];
 
   constructor(
     readonly areaFacade: AreaFacade,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
@@ -39,5 +42,19 @@ export class AreasListComponent implements OnInit {
 
   navigateToEditForm(id: string) {
     this.router.navigate(['areas/' + id + '/edit']);
+  }
+
+  private displayDeleteConfirmDialog(id: string) {
+    this.confirmationService.confirm({
+      message: 'Bist du dir sicher, dass du diesen Bereich löschen möchtest?',
+      header: 'Bereich löschen',
+      acceptLabel: 'Ja',
+      rejectLabel: 'Nein',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.areaFacade.deleteArea(id);
+      },
+      reject: () => {},
+    });
   }
 }

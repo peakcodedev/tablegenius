@@ -14,6 +14,8 @@ public class TableConfiguration(TenantProvider tenantProvider) : TenantBaseConfi
         builder.Property(b => b.TableNumber).IsRequired();
         builder.Property(b => b.Capacity).IsRequired();
         builder.Property(b => b.Description).HasMaxLength(1024).IsRequired(false);
+        builder.HasOne(e => e.Area).WithMany(c => c.Tables).HasForeignKey(p => p.AreaId)
+            .IsRequired();
         builder.ToTable("Tables");
     }
 }

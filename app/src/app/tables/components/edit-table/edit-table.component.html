@@ -15,5 +15,5 @@
 </form>
 <div class="actions actions__margin-top">
     <app-button label="Abbrechen" icon="plus" buttonStyle="outlined" (clicked)="navigateToList()"></app-button>
-    <app-button label="Tisch speichern" icon="plus" buttonStyle="outlined" (clicked)="tableFacade.updateTable(this.tableId)"></app-button>
+    <app-button label="Tisch speichern" [disabled]="form.invalid" icon="plus" buttonStyle="outlined" (clicked)="tableFacade.updateTable(this.tableId)"></app-button>
 </div>

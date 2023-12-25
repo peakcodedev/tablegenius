@@ -1,19 +1,15 @@
 <app-header [title]="'Neuer Bereich hinzufügen'"></app-header>
 <form *ngIf="form" [formGroup]="form" ngxsForm="areas.addAreaForm" (ngSubmit)="areaFacade.addArea()" [ngxsFormClearOnDestroy]="true">
     <div class="field">
-      <label for="tableNumber" class="block">Tischnummer*</label>
-      <input id="tableNumber" required type="number" pInputText formControlName="tableNumber" placeholder="123" />
+      <label for="name" class="block">Name des Bereichs*</label>
+      <input id="name" required type="text" pInputText formControlName="name" placeholder="Vor dem Haus" />
     </div>
     <div class="field">
-      <label for="capacity" class="block">Anzahl Personen am Tisch*</label>
-      <input id="capacity" required type="number" pInputText formControlName="capacity" placeholder="4" />
-    </div>
-    <div class="field">
-      <label for="description" class="block">Kommentare</label>
-      <textarea rows="20" id="description" pInputTextarea formControlName="description" placeholder="Ich bin eine Kommentar"></textarea>
+      <label for="blueprintUrl" class="block">Link zum Plan</label>
+      <input id="blueprintUrl" type="text" pInputText formControlName="blueprintUrl" placeholder="Link" />
     </div>
 </form>
 <div class="actions actions__margin-top">
     <app-button label="Abbrechen" icon="plus" buttonStyle="outlined" (clicked)="navigateToList()"></app-button>
-    <app-button label="Neuer Bereich speichern" icon="plus" buttonStyle="outlined" (clicked)="areaFacade.addArea()"></app-button>
+    <app-button label="Neuer Bereich speichern" [disabled]="form.invalid" icon="plus" buttonStyle="outlined" (clicked)="areaFacade.addArea()"></app-button>
 </div>

@@ -7,6 +7,7 @@ import { AreaState } from './state/area.state';
 import { AreaFacade } from './state/area.facade';
 import { AreaService } from './services/area.service';
 import { CanActivateAreas } from './guards/can-activate-areas.service';
+import { AreasHelper } from './helpers/areas.helper';
 
 @NgModule({
   declarations: [],
@@ -16,7 +17,7 @@ import { CanActivateAreas } from './guards/can-activate-areas.service';
     NgxsFormPluginModule,
     CoreModule,
   ],
-  providers: [AreaFacade, AreaService, CanActivateAreas],
+  providers: [AreaFacade, AreaService, CanActivateAreas, AreasHelper],
   exports: [],
 })
 export class AreasCoreModule {}

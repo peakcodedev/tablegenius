@@ -33,9 +33,8 @@ export class EditAreaComponent implements OnInit {
         take(1),
         tap(area => {
           this.form = new FormGroup({
-            tableNumber: new FormControl(area.tableNumber, Validators.required),
-            capacity: new FormControl(area.capacity, Validators.required),
-            description: new FormControl(area.description, []),
+            name: new FormControl(area.name, Validators.required),
+            blueprintUrl: new FormControl(area.blueprintUrl, []),
           });
         })
       )
