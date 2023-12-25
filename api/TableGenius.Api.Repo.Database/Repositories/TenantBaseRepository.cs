@@ -5,7 +5,7 @@ using TableGenius.Api.Repo.Database.Interfaces;
 namespace TableGenius.Api.Repo.Database.Repositories;
 
 public class TenantBaseRepository<T>(RepositoryContext dataContext)
-    : BaseRepository<T>(dataContext), IBaseRepository<T>
+    : BaseRepository<T>(dataContext), ITenantBaseRepository<T>
     where T : TenantBase
 {
     public override void Add(T entity)

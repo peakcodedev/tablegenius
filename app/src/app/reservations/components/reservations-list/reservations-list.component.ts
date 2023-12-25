@@ -9,9 +9,9 @@ import { ReservationFacade } from '../../../reservations-core/state/reservation.
 })
 export class ReservationsListComponent implements OnInit {
   cols = [
-    { title: 'ID', field: 'id' },
+    { title: 'Zeitpunkt', field: 'bookingDate' },
     { title: 'Name', field: 'name' },
-    { title: 'Adresse', field: 'address' },
+    { title: 'Anzahl', field: 'count' },
   ];
   tableActions = [
     {
