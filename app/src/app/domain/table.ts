@@ -6,3 +6,7 @@ export interface ITable {
   areaId: string;
   areaName?: string;
 }
+
+export interface ITableWithStatus extends ITable {
+  taken: boolean;
+}

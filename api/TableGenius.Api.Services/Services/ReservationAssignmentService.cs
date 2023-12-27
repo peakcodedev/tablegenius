@@ -1,4 +1,5 @@
-﻿using TableGenius.Api.Entities.Reservations;
+﻿using System;
+using TableGenius.Api.Entities.Reservations;
 using TableGenius.Api.Infrastructure.Interfaces;
 using TableGenius.Api.Repo.Database.Interfaces;
 using TableGenius.Api.Repo.Database.Providers;
@@ -24,5 +25,11 @@ public class ReservationAssignmentService : DatabaseServiceTenantBase<Reservatio
         foreach (var tableReservationAssignment in entity.TableReservationAssignments)
             tableReservationAssignment.TenantId = _tenantProvider.GetTenantId();
         return base.Add(entity);
+    }
+
+    public Guid[] GetAllAssignedTableIdsByAreaSlotAndCurrentDateAsNoTracking(Guid areaSlotId, DateTime dateTime)
+    {
+        return (Repository as IReservationAssignmentRepository)
+            ?.GetAllAssignedTableIdsByAreaSlotAndCurrentDateAsNoTracking(areaSlotId, dateTime);
     }
 }

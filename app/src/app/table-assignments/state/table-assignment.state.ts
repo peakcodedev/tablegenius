@@ -16,6 +16,7 @@ import { TableService } from '../../tables-core/services/table.service';
 import { ReservationStateModel } from '../../reservations-core/state/reservation-state-model';
 import { ReservationAssignmentService } from '../services/reservation-assignment.service';
 import { ToastrService } from 'ngx-toastr';
+import { AreaSlotService } from '../../area-slots-core/services/area-slot.service';
 
 const defaults: TableAssignmentStateModel = {
   assignments: [],
@@ -56,7 +57,8 @@ export class TableAssignmentState {
     private readonly reservationService: ReservationService,
     private readonly tableService: TableService,
     private readonly reservationAssignmentService: ReservationAssignmentService,
-    private readonly toastrService: ToastrService
+    private readonly toastrService: ToastrService,
+    private readonly areaSlotService: AreaSlotService
   ) {}
 
   @Action(SetSelectedDate)
@@ -111,9 +113,9 @@ export class TableAssignmentState {
   @Action(LoadTables)
   loadTables(
     { patchState, dispatch }: StateContext<TableAssignmentStateModel>,
-    {}: LoadTables
+    action: LoadTables
   ) {
-    return this.tableService.getTables().pipe(
+    return this.areaSlotService.getTablesWithStatus(action.areaSlotId).pipe(
       tap(response => {
         patchState({ tables: response.data });
         dispatch(new ResetErrorMessage());
@@ -134,6 +136,7 @@ export class TableAssignmentState {
       .pipe(
         tap(res => {
           context.dispatch(new LoadReservations());
+          context.dispatch(new LoadTables(action.model.areaSlotId));
           this.toastrService.success(
             'Die Zuweisung wurde erfolgreich hinzugefügt.'
           );

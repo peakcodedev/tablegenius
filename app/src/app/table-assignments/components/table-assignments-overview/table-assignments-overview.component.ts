@@ -38,7 +38,6 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.facade.loadReservations();
-    this.facade.loadTables();
     this.areas = this.areasHelper.availableAreas();
     this.areaSlots = this.areaSlotsHelper.availableAreaSlots(undefined);
     this.facade.selectedArea
@@ -54,7 +53,14 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
       .pipe(tap(value => (this.selectedDate = value)))
       .subscribe();
     this.facade.selectedAreaSlot
-      .pipe(tap(value => (this.selectedAreaSlot = value)))
+      .pipe(
+        tap((value: string) => {
+          this.selectedAreaSlot = value;
+          if (value) {
+            this.facade.loadTables(value);
+          }
+        })
+      )
       .subscribe();
     this.reservations$ = this.facade.selectedDate.pipe(
       combineLatestWith(this.facade.reservations),

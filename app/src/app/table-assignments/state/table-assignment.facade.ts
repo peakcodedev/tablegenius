@@ -34,7 +34,7 @@ export class TableAssignmentFacade {
   @Dispatch()
   loadReservations = () => new LoadReservations();
   @Dispatch()
-  loadTables = () => new LoadTables();
+  loadTables = (areaSlotId: string) => new LoadTables(areaSlotId);
   loadReservations$ = () => this.appState.dispatch(new LoadReservations());
   @Dispatch()
   setSelectedDate = (date: Date) => new SetSelectedDate(date);

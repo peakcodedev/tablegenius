@@ -5,6 +5,7 @@ import { EndpointBuilder } from '../../core/endpoints/endpoint-builder';
 import { IApiResponse } from '../../domain/api-response';
 import { IAreaSlot } from '../../domain/area-slot';
 import { IAreaSlotModel } from '../../models/area-slot-model';
+import { ITableWithStatus } from '../../domain/table';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,14 @@ export class AreaSlotService {
   getAreaSlots(): Observable<IApiResponse<IAreaSlot[]>> {
     return this.httpClient.get<IApiResponse<IAreaSlot[]>>(
       AreaSlotService.endpoint
+    );
+  }
+
+  getTablesWithStatus(
+    areaSlotId: string
+  ): Observable<IApiResponse<ITableWithStatus[]>> {
+    return this.httpClient.get<IApiResponse<ITableWithStatus[]>>(
+      AreaSlotService.singleEndpoint(areaSlotId) + '/assignedTables'
     );
   }
 

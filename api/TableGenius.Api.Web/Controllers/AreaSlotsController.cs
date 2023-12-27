@@ -9,10 +9,12 @@ namespace TableGenius.Api.Web.Controllers;
 public class AreaSlotsController : DefaultController
 {
     private readonly IAreaSlotPresenter _areaSlotPresenter;
+    private readonly ITablePresenter _tablePresenter;
 
-    public AreaSlotsController(IAreaSlotPresenter areaSlotPresenter)
+    public AreaSlotsController(IAreaSlotPresenter areaSlotPresenter, ITablePresenter tablePresenter)
     {
         _areaSlotPresenter = areaSlotPresenter;
+        _tablePresenter = tablePresenter;
     }
 
     [HttpGet]
@@ -20,6 +22,13 @@ public class AreaSlotsController : DefaultController
     {
         var res = _areaSlotPresenter.GetList();
         return Json(new DataJsonResult<AreaSlotRm>(200, "area slots successfully returned", res));
+    }
+
+    [HttpGet("{id}/assignedTables")]
+    public JsonResult GetAllAssigendTablesByAreaSlotAndCurrentDate([FromQuery] DateTime dateTime, [FromRoute] Guid id)
+    {
+        var res = _tablePresenter.GetAllAssignedTablesByAreaSlotAndCurrentDate(id, dateTime);
+        return Json(new DataJsonResult<TableWithStatusRm>(200, "area slots successfully returned", res));
     }
 
 

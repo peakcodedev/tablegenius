@@ -16,6 +16,7 @@ public class Mappers : Profile
         CreateMap<AreaRm, Area>();
 
         CreateMap<Table, TableRm>();
+        CreateMap<Table, TableWithStatusRm>();
         CreateMap<TableRm, Table>();
 
         CreateMap<Reservation, ReservationRm>();

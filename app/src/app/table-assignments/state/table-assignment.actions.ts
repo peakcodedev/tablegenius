@@ -7,7 +7,7 @@ export class LoadReservations {
 
 export class LoadTables {
   static readonly type = '[Table Assignment] Load tables';
-  constructor() {}
+  constructor(public areaSlotId: string) {}
 }
 
 export class ResetErrorMessage {

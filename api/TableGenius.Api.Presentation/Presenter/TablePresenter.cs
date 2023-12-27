@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using TableGenius.Api.Entities.Place;
@@ -39,5 +40,23 @@ public class TablePresenter : BasePresenter<TableRm, Table>, ITablePresenter
         var db = _mapper.Map<TableRm, Table>(entity);
         var elem = _tableService.Update(db);
         return _mapper.Map<Table, TableRm>(elem);
+    }
+
+
+    public IEnumerable<TableWithStatusRm> GetAllAssignedTablesByAreaSlotAndCurrentDate(Guid areaSlotId,
+        DateTime dateTime)
+    {
+        var allTakenTables = _tableService
+            .GetAllAssignedTablesByAreaSlotAndCurrentDateAsNoTracking(areaSlotId, dateTime).ToList();
+        var allTables = _tableService.GetAllAsNoTracking();
+        var returnList = new List<TableWithStatusRm>();
+        foreach (var table in allTables)
+        {
+            var tableRm = _mapper.Map<Table, TableWithStatusRm>(table);
+            tableRm.Taken = allTakenTables.Any(x => x.Id == table.Id);
+            returnList.Add(tableRm);
+        }
+
+        return returnList;
     }
 }
