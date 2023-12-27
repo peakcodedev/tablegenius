@@ -6,6 +6,7 @@ import { IApiResponse } from '../../domain/api-response';
 import { IAreaSlot } from '../../domain/area-slot';
 import { IAreaSlotModel } from '../../models/area-slot-model';
 import { ITableWithStatus } from '../../domain/table';
+import { IDateFilterModel } from '../../models/date-filter-model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,10 +22,12 @@ export class AreaSlotService {
   }
 
   getTablesWithStatus(
-    areaSlotId: string
+    areaSlotId: string,
+    model: IDateFilterModel
   ): Observable<IApiResponse<ITableWithStatus[]>> {
-    return this.httpClient.get<IApiResponse<ITableWithStatus[]>>(
-      AreaSlotService.singleEndpoint(areaSlotId) + '/assignedTables'
+    return this.httpClient.post<IApiResponse<ITableWithStatus[]>>(
+      AreaSlotService.singleEndpoint(areaSlotId) + '/assignedTables',
+      model
     );
   }
 

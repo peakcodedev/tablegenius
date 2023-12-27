@@ -2,9 +2,9 @@
 <p>Wähle ein Datum aus, um Zuweisungen vornehmen zu können.</p>
 <div class="filters">
   <p-calendar [(ngModel)]="selectedDate" [showClear]="true" [defaultDate]="facade.selectedDate | async" [minDate]="minDate" dateFormat="dd.mm.yy" (onSelect)="onDateSelect($event)" (onClear)="onDateSelect(null)" [placeholder]="'Datum auswählen'"></p-calendar>
-  <p-dropdown (onChange)="onAreaSelect($event)" (onClear)="facade.setSelectedArea(undefined)" [options]="areas | async"  [(ngModel)]="selectedArea"  optionLabel="name" optionValue="value" [showClear]="true" placeholder="Bereich auswählen"></p-dropdown>
+  <p-dropdown *ngIf="facade.selectedDate | async" (onChange)="onAreaSelect($event)" (onClear)="facade.setSelectedArea(undefined)" [options]="areas | async"  [(ngModel)]="selectedArea"  optionLabel="name" optionValue="value" [showClear]="true" placeholder="Bereich auswählen"></p-dropdown>
   <ng-container *ngIf="(areaFacade.byId$(selectedArea) | async) && areaSlots.length > 0">
-    <p-dropdown (onChange)="onAreaSlotSelect($event)" (onClear)="facade.setSelectedAreaSlot(undefined)" [options]="areaSlots"  [(ngModel)]="selectedAreaSlot"  optionLabel="name" optionValue="value" [showClear]="true" placeholder="Zeitbereich auswählen"></p-dropdown>
+    <p-dropdown *ngIf="facade.selectedArea | async" (onChange)="onAreaSlotSelect($event)" (onClear)="facade.setSelectedAreaSlot(undefined)" [options]="areaSlots"  [(ngModel)]="selectedAreaSlot"  optionLabel="name" optionValue="value" [showClear]="true" placeholder="Zeitbereich auswählen"></p-dropdown>
   </ng-container>
 </div>
 <div class="assigment-grid" *ngIf="(facade.selectedDate | async) && (facade.selectedArea | async) && (facade.selectedAreaSlot | async)">

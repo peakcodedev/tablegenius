@@ -4,7 +4,7 @@ import { AreasHelper } from '../../../areas-core/helpers/areas.helper';
 import { TableAssignmentFacade } from '../../state/table-assignment.facade';
 import { DropdownChangeEvent } from 'primeng/dropdown';
 import { IReservation } from '../../../domain/reservation';
-import { ITable } from '../../../domain/table';
+import { ITableWithStatus } from '../../../domain/table';
 import { AreaFacade } from '../../../areas-core/state/area.facade';
 import { AreaSlotsHelper } from '../../../area-slots-core/helpers/area-slots.helper';
 import { IReservationAssignmentModel } from '../../../models/reservation-assignment-model';
@@ -23,10 +23,10 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
   selectedAreaSlot = '';
   selectedDate: Date = null;
   reservations$: Observable<IReservation[]>;
-  tables$: Observable<ITable[]>;
-  selectedTables: ITable[] = [];
+  tables$: Observable<ITableWithStatus[]>;
+  selectedTables: ITableWithStatus[] = [];
   selectedReservation: IReservation;
-  draggedTable: ITable;
+  draggedTable: ITableWithStatus;
   draggedReservation: IReservation;
 
   constructor(
@@ -92,6 +92,7 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
   onAreaSelect(event: DropdownChangeEvent): void {
     this.facade.setSelectedArea(event.value);
     this.onDiscard();
+    this.facade.setSelectedAreaSlot(undefined);
   }
 
   onAreaSlotSelect(event: DropdownChangeEvent): void {
@@ -161,7 +162,8 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
     this.facade.setSelectedArea(undefined);
   }
 
-  tableIsSelected(table: ITable): boolean {
+  tableIsSelected(table: ITableWithStatus): boolean {
+    if (table.taken) return true;
     return (
       this.selectedTables && this.selectedTables.some(st => st.id === table.id)
     );

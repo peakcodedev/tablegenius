@@ -13,7 +13,7 @@ import {
 } from './table-assignment.actions';
 import { AppState } from '../../core/app-state';
 import { IReservation } from '../../domain/reservation';
-import { ITable } from '../../domain/table';
+import { ITableWithStatus } from '../../domain/table';
 import { IReservationAssignmentModel } from '../../models/reservation-assignment-model';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class TableAssignmentFacade {
   @Select(TableAssignmentState.reservations)
   reservations: Observable<IReservation[]>;
   @Select(TableAssignmentState.tables)
-  tables: Observable<ITable[]>;
+  tables: Observable<ITableWithStatus[]>;
   @Select(TableAssignmentState.selectedDate)
   selectedDate: Observable<Date>;
   @Select(TableAssignmentState.selectedArea)

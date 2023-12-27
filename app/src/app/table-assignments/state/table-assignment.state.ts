@@ -17,6 +17,7 @@ import { ReservationStateModel } from '../../reservations-core/state/reservation
 import { ReservationAssignmentService } from '../services/reservation-assignment.service';
 import { ToastrService } from 'ngx-toastr';
 import { AreaSlotService } from '../../area-slots-core/services/area-slot.service';
+import { IDateFilterModel } from '../../models/date-filter-model';
 
 const defaults: TableAssignmentStateModel = {
   assignments: [],
@@ -112,18 +113,23 @@ export class TableAssignmentState {
 
   @Action(LoadTables)
   loadTables(
-    { patchState, dispatch }: StateContext<TableAssignmentStateModel>,
+    { patchState, dispatch, getState }: StateContext<TableAssignmentStateModel>,
     action: LoadTables
   ) {
-    return this.areaSlotService.getTablesWithStatus(action.areaSlotId).pipe(
-      tap(response => {
-        patchState({ tables: response.data });
-        dispatch(new ResetErrorMessage());
-      }),
-      catchError(error => {
-        return of([]);
-      })
-    );
+    const model: IDateFilterModel = {
+      dateTime: getState().selectedDate,
+    };
+    return this.areaSlotService
+      .getTablesWithStatus(action.areaSlotId, model)
+      .pipe(
+        tap(response => {
+          patchState({ tables: response.data });
+          dispatch(new ResetErrorMessage());
+        }),
+        catchError(error => {
+          return of([]);
+        })
+      );
   }
 
   @Action(AddReservationAssignment)

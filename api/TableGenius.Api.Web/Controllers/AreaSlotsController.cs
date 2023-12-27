@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using TableGenius.Api.Presentation.Interfaces.Presenter;
+using TableGenius.Api.Presentation.Models;
 using TableGenius.Api.Presentation.ResourceModel;
 using TableGenius.Api.Web.Default;
 
@@ -24,10 +25,11 @@ public class AreaSlotsController : DefaultController
         return Json(new DataJsonResult<AreaSlotRm>(200, "area slots successfully returned", res));
     }
 
-    [HttpGet("{id}/assignedTables")]
-    public JsonResult GetAllAssigendTablesByAreaSlotAndCurrentDate([FromQuery] DateTime dateTime, [FromRoute] Guid id)
+    [HttpPost("{id}/assignedTables")]
+    public JsonResult GetAllAssigendTablesByAreaSlotAndCurrentDate([FromBody] DateFilterModel model,
+        [FromRoute] Guid id)
     {
-        var res = _tablePresenter.GetAllAssignedTablesByAreaSlotAndCurrentDate(id, dateTime);
+        var res = _tablePresenter.GetAllAssignedTablesByAreaSlotAndCurrentDate(id, model.DateTime.AddDays(1));
         return Json(new DataJsonResult<TableWithStatusRm>(200, "area slots successfully returned", res));
     }
 
