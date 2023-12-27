@@ -86,13 +86,15 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
 
   onDateSelect(date: Date): void {
     this.facade.setSelectedDate(date);
+    this.facade.setSelectedArea(undefined);
+    this.facade.setSelectedAreaSlot(undefined);
     this.onDiscard();
   }
 
   onAreaSelect(event: DropdownChangeEvent): void {
     this.facade.setSelectedArea(event.value);
-    this.onDiscard();
     this.facade.setSelectedAreaSlot(undefined);
+    this.onDiscard();
   }
 
   onAreaSlotSelect(event: DropdownChangeEvent): void {
@@ -160,6 +162,7 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.facade.setSelectedDate(undefined);
     this.facade.setSelectedArea(undefined);
+    this.facade.setSelectedAreaSlot(undefined);
   }
 
   tableIsSelected(table: ITableWithStatus): boolean {
