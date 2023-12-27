@@ -11,11 +11,11 @@ public class ReservationService : DatabaseServiceTenantBase<Reservation>, IReser
     public ReservationService(IReservationRepository reservationRepository, IApplicationLogger logger) :
         base(logger)
     {
-        _repository = reservationRepository;
+        Repository = reservationRepository;
     }
 
     public IQueryable<Reservation> GetAllUpcomingReservationsAsNoTracking()
     {
-        return (_repository as IReservationRepository)?.GetAllUpcomingReservationsAsNoTracking();
+        return (Repository as IReservationRepository)?.GetAllUpcomingReservationsAsNoTracking();
     }
 }

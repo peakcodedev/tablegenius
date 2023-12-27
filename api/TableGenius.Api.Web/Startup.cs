@@ -36,6 +36,7 @@ public class Startup
         services.Configure<GeneralSettings>(Configuration.GetSection("GeneralSettings"));
         services.Configure<BlobStorageSettings>(Configuration.GetSection("BlobStorageSettings"));
         services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+        services.Configure<Auth0Options>(Configuration.GetSection("Auth0Options"));
         services.Configure<DatabaseOptions>(option =>
         {
             option.Database = Configuration.GetConnectionString("Database");
@@ -44,7 +45,7 @@ public class Startup
         services.AddSingleton(Configuration);
         services.AddOptions();
         services.AddCorsConfigServices();
-        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
         services.AddAutofac();
         services.AddMemoryCache();
         services.AddControllers().AddNewtonsoftJson(options =>
@@ -53,7 +54,9 @@ public class Startup
         });
         services.AddDatabase(Configuration.GetConnectionString("Database"));
         services.Configure<MvcOptions>(options => { options.EnableEndpointRouting = false; });
-        //services.AddAuthZero();
+        services.AddAuthZero(Configuration.GetSection("Auth0Options").Get<Auth0Options>());
+        services.AddPresenters();
+        services.AddServices();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,8 +80,6 @@ public class Startup
 
     public void ConfigureContainer(ContainerBuilder builder)
     {
-        ServicesInjector.RegisterModule(builder);
-        PresenterInjector.RegisterModule(builder);
         MapperInjector.RegisterModule(builder);
         InfrastructureInjector.RegisterModule(builder);
         BlobRepositoryInjector.RegisterModule(builder);

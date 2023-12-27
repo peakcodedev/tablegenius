@@ -40,4 +40,11 @@ public class LocationPresenter : BasePresenter<LocationRm, Location>, ILocationP
         var elem = _locationService.Update(db);
         return _mapper.Map<Location, LocationRm>(elem);
     }
+
+    public IEnumerable<LocationRm> GetAllMyLocations(string mail)
+    {
+        var all = _locationService.GetAllLocationsByMailAsNoTracking(mail).ToList();
+        var returnMap = _mapper.Map<IEnumerable<Location>, List<LocationRm>>(all);
+        return returnMap;
+    }
 }

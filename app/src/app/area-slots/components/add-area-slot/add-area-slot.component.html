@@ -1,0 +1,23 @@
+<app-header [title]="'Neuer Zeitbereich hinzufügen'"></app-header>
+<form *ngIf="form" [formGroup]="form" ngxsForm="areaSlots.addAreaSlotForm" (ngSubmit)="areaSlotFacade.addAreaSlot()" [ngxsFormClearOnDestroy]="true">
+    <div class="field">
+      <label for="type" class="block">Typ*</label>
+      <input id="type" required type="number" pInputText formControlName="type" placeholder="1" />
+    </div>
+    <div class="field">
+      <label for="name" class="block">Name*</label>
+      <input id="name" required type="text" pInputText formControlName="name" placeholder="XYZ" />
+    </div>
+    <div class="field">
+      <label for="length" class="block">Länge in Stunden</label>
+      <input id="length" type="number" pInputText formControlName="length" placeholder="1" />
+    </div>
+    <div class="field">
+      <label for="areaId" class="block">Zugehöriger Bereich*</label>
+      <p-dropdown formControlName="areaId" [options]="areas | async" optionLabel="name" optionValue="value" [showClear]="true" placeholder="Bereich auswählen"></p-dropdown>
+    </div>
+</form>
+<div class="actions actions__margin-top">
+    <app-button label="Abbrechen" icon="plus" buttonStyle="outlined" (clicked)="navigateToList()"></app-button>
+    <app-button label="Neuer Zeitbereich speichern" [disabled]="form.invalid" icon="plus" buttonStyle="outlined" (clicked)="areaSlotFacade.addAreaSlot()"></app-button>
+</div>

@@ -4,7 +4,7 @@ import { SetTenantId } from './core.actions';
 import { CoreStateModel } from './core-state-model';
 
 const defaults: CoreStateModel = {
-  tenantId: '722e574c-8295-4f71-89d5-87ac75bd5bd0',
+  tenantId: '',
 };
 
 @State<CoreStateModel>({

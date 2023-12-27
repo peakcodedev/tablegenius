@@ -10,6 +10,6 @@ public class TableService : DatabaseServiceTenantBase<Table>, ITableService
     public TableService(ITableRepository tableRepository, IApplicationLogger logger) :
         base(logger)
     {
-        _repository = tableRepository;
+        Repository = tableRepository;
     }
 }

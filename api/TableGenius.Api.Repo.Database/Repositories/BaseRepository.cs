@@ -4,10 +4,12 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using TableGenius.Api.Entities.Default;
 using TableGenius.Api.Repo.Database.Interfaces;
+using TableGenius.Api.Repo.Database.Providers;
 
 namespace TableGenius.Api.Repo.Database.Repositories;
 
-public abstract class BaseRepository<T>(RepositoryContext dataContext) : DbSetBase<T>(dataContext), IBaseRepository<T>
+public abstract class BaseRepository<T>(RepositoryContext dataContext, TenantProvider tenantProvider)
+    : DbSetBase<T>(dataContext, tenantProvider), IBaseRepository<T>
     where T : Base
 {
     public abstract void Add(T entity);
@@ -70,14 +72,7 @@ public abstract class BaseRepository<T>(RepositoryContext dataContext) : DbSetBa
         return GetById(id, false);
     }
 
-    public void Update(T entity)
-    {
-        entity.ModDate = DateTime.Now;
-        DbSet.Attach(entity);
-        DataContext.Entry(entity).State = EntityState.Modified;
-        DataContext.Entry(entity).Property(x => x.Deleted).IsModified = false;
-        DataContext.Entry(entity).Property(x => x.CreateDate).IsModified = false;
-    }
+    public abstract void Update(T entity);
 
     public T GetByIdAsNoTracking(Guid id)
     {

@@ -25,6 +25,7 @@
     "@ngxs/form-plugin": "^3.8.2",
     "@ngxs/logger-plugin": "^3.8.2",
     "@ngxs/router-plugin": "^3.8.2",
+    "@ngxs/storage-plugin": "^3.8.2",
     "@ngxs/store": "^3.8.2",
     "@sentry/angular-ivy": "^7.91.0",
     "@sentry/integrations": "^7.91.0",

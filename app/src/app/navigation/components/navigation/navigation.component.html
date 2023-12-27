@@ -1,4 +1,4 @@
-<p-menubar [model]="items" class="navigation" *ngIf="visible">
+<p-menubar [model]="items" class="navigation" *ngIf="coreFacade.tenantId | async">
   <ng-template pTemplate="start">
     <img src="../../../../assets/logo.png" height="30" class="mr-2 navigation-logo" />
   </ng-template>

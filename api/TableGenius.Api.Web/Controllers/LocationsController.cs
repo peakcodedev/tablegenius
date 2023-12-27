@@ -23,6 +23,13 @@ public class LocationsController : DefaultController
         return Json(new DataJsonResult<LocationRm>(200, "locations successfully returned", res));
     }
 
+    [HttpGet("me")]
+    public JsonResult GetAllMyLocations()
+    {
+        var res = _locationPresenter.GetAllMyLocations(GetUser());
+        return Json(new DataJsonResult<LocationRm>(200, "locations successfully returned", res));
+    }
+
 
     [HttpPost]
     public JsonResult Add(LocationRm location)

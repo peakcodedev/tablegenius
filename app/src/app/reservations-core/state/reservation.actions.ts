@@ -8,6 +8,11 @@ export class ResetErrorMessage {
   constructor() {}
 }
 
+export class SetSelectedDate {
+  static readonly type = '[Reservation] Set selected date';
+  constructor(public selectedDate: Date) {}
+}
+
 export class AddReservation {
   static readonly type = '[Reservation] Add reservation';
   constructor() {}

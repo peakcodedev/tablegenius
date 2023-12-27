@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { reservationsRouting } from './reservations-routing.module';
 import { ReservationsListComponent } from './components/reservations-list/reservations-list.component';
@@ -13,6 +13,7 @@ import { CoreModule } from '../core/core.module';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ReservationCoreModule } from '../reservations-core/reservation-core.module';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ReservationCoreModule } from '../reservations-core/reservation-core.mod
     ReservationCoreModule,
     DropdownModule,
     InputTextareaModule,
+    CalendarModule,
   ],
-  providers: [],
+  providers: [DatePipe],
 })
 export class ReservationsModule {}

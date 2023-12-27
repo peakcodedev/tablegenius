@@ -1,26 +1,25 @@
 ﻿using System.Security.Claims;
-using TableGenius.Api.Web.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using TableGenius.Api.Settings;
+using TableGenius.Api.Web.Auth;
 
 namespace TableGenius.Api.Web.Config;
 
 public static class AuthConfig
 {
-    public static IServiceCollection AddAuthZero(this IServiceCollection services)
+    public static IServiceCollection AddAuthZero(this IServiceCollection services, Auth0Options auth0Options)
     {
-        var domain = "TableGenius.eu.auth0.com";
-        var audience = "https://backend.TableGenius.ch";
         services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         }).AddJwtBearer(options =>
         {
-            options.Authority = $"https://{domain}/";
-            options.Audience = audience;
+            options.Authority = $"https://{auth0Options.Domain}/";
+            options.Audience = auth0Options.Audience;
             options.RequireHttpsMetadata = false;
             options.SaveToken = true;
             options.IncludeErrorDetails = true;
@@ -33,10 +32,8 @@ public static class AuthConfig
         {
             options.AddPolicy("admin",
                 policy => policy.Requirements.Add(new HasScopeRequirement("admin")));
-            options.AddPolicy("projectcollaborator",
-                policy => policy.Requirements.Add(new HasScopeRequirement("projectcollaborator")));
-            options.AddPolicy("noaccess",
-                policy => policy.Requirements.Add(new HasScopeRequirement("noaccess")));
+            options.AddPolicy("superadmin",
+                policy => policy.Requirements.Add(new HasScopeRequirement("superadmin")));
         });
         services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
         return services;

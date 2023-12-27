@@ -60,6 +60,56 @@ namespace TableGenius.Api.Repo.Database.Migrations
                     b.ToTable("Areas", (string)null);
                 });
 
+            modelBuilder.Entity("TableGenius.Api.Entities.Place.AreaSlot", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AreaId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreateDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<DateTime?>("End")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int?>("Length")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("ModDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Start")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AreaId");
+
+                    b.ToTable("AreaSlots", (string)null);
+                });
+
             modelBuilder.Entity("TableGenius.Api.Entities.Place.Location", b =>
                 {
                     b.Property<Guid>("Id")
@@ -101,6 +151,45 @@ namespace TableGenius.Api.Repo.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Locations", (string)null);
+                });
+
+            modelBuilder.Entity("TableGenius.Api.Entities.Place.LocationAssignment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreateDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("LocationId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Mail")
+                        .IsRequired()
+                        .HasMaxLength(1024)
+                        .HasColumnType("character varying(1024)");
+
+                    b.Property<DateTime>("ModDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocationId");
+
+                    b.ToTable("LocationAssignments", (string)null);
                 });
 
             modelBuilder.Entity("TableGenius.Api.Entities.Place.Table", b =>
@@ -193,6 +282,28 @@ namespace TableGenius.Api.Repo.Database.Migrations
                     b.ToTable("Reservations", (string)null);
                 });
 
+            modelBuilder.Entity("TableGenius.Api.Entities.Place.AreaSlot", b =>
+                {
+                    b.HasOne("TableGenius.Api.Entities.Place.Area", "Area")
+                        .WithMany("AreaSlots")
+                        .HasForeignKey("AreaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Area");
+                });
+
+            modelBuilder.Entity("TableGenius.Api.Entities.Place.LocationAssignment", b =>
+                {
+                    b.HasOne("TableGenius.Api.Entities.Place.Location", "Location")
+                        .WithMany("LocationAssignments")
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Location");
+                });
+
             modelBuilder.Entity("TableGenius.Api.Entities.Place.Table", b =>
                 {
                     b.HasOne("TableGenius.Api.Entities.Place.Area", "Area")
@@ -206,7 +317,14 @@ namespace TableGenius.Api.Repo.Database.Migrations
 
             modelBuilder.Entity("TableGenius.Api.Entities.Place.Area", b =>
                 {
+                    b.Navigation("AreaSlots");
+
                     b.Navigation("Tables");
+                });
+
+            modelBuilder.Entity("TableGenius.Api.Entities.Place.Location", b =>
+                {
+                    b.Navigation("LocationAssignments");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,7 +1,10 @@
 <app-header [title]="'Reservationen'"></app-header>
-<app-datatable [loading]="reservationFacade.loading | async" [filterFields]="['id','name', 'address']" [hasConfirmDialogs]="true" [hasActions]="true" initialSortField="name" [cols]="cols" [data]="reservationFacade.reservationsList | async" [actions]="tableActions">
-    <ng-container #actions>
-        <app-button label="Reservation hinzufügen" icon="plus" buttonStyle="outlined" (clicked)="navigateToAddForm()"></app-button>
-        <app-button label="Aktualisieren" icon="refresh" buttonStyle="outlined" (clicked)="reservationFacade.loadReservations()"></app-button>
-    </ng-container>
+<app-datatable [loading]="reservationFacade.loading | async" [filterFields]="['id','name', 'address']" [hasConfirmDialogs]="true" [hasActions]="true" initialSortField="name" [cols]="cols" [data]="data$ | async" [actions]="tableActions">
+  <ng-container actions>
+    <app-button label="Reservation hinzufügen" icon="plus" buttonStyle="outlined" (clicked)="navigateToAddForm()"></app-button>
+    <app-button label="Aktualisieren" icon="refresh" buttonStyle="outlined" (clicked)="reservationFacade.loadReservations()"></app-button>
+  </ng-container>
+  <ng-container filters>
+    <p-calendar [showClear]="true" [defaultDate]="reservationFacade.selectedDate | async" [minDate]="minDate" dateFormat="dd.mm.yy" (onSelect)="onDateSelect($event)" (onClear)="onDateSelect(null)"></p-calendar>
+  </ng-container>
 </app-datatable>

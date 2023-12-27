@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TableGenius.Api.Entities.Place;
-using TableGenius.Api.Repo.Database.Providers;
 
 namespace TableGenius.Api.Repo.Database.Configurations;
 
-public class TableConfiguration(TenantProvider tenantProvider) : TenantBaseConfiguration<Table>(tenantProvider),
-    IEntityTypeConfiguration<Table>
+public class TableConfiguration(RepositoryContext repositoryContext)
+    : TenantBaseConfiguration<Table>(repositoryContext),
+        IEntityTypeConfiguration<Table>
 {
     public new void Configure(EntityTypeBuilder<Table> builder)
     {

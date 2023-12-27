@@ -1,8 +1,13 @@
 .main-content {
-  min-height: 30rem;
+  min-height: 80vh;
   height: auto;
+  max-height: calc(100vh - 10rem);
+  display: block;
+  overflow-y: overlay;
 }
 
 .main-app {
   padding: 1rem;
+  height: auto;
+  display: grid;
 }

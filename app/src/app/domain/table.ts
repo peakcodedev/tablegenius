@@ -4,4 +4,5 @@ export interface ITable {
   capacity: number;
   description: string;
   areaId: string;
+  areaName?: string;
 }

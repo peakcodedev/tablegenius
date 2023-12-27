@@ -20,5 +20,8 @@ public class Mappers : Profile
 
         CreateMap<Reservation, ReservationRm>();
         CreateMap<ReservationRm, Reservation>();
+
+        CreateMap<AreaSlot, AreaSlotRm>();
+        CreateMap<AreaSlotRm, AreaSlot>();
     }
 }

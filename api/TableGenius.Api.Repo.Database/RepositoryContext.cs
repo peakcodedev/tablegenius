@@ -10,25 +10,26 @@ namespace TableGenius.Api.Repo.Database;
 public class RepositoryContext : DbContext
 {
     private readonly IOptions<DatabaseOptions> _databaseOptions;
+    public TenantProvider TenantProvider;
 
     public RepositoryContext(IOptions<DatabaseOptions> options, TenantProvider tenantProvider)
     {
         ContextId = Guid.NewGuid();
-        TenantProvider = tenantProvider;
         _databaseOptions = options;
+        TenantProvider = tenantProvider;
         AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
     }
 
     public Guid ContextId { get; }
 
-    public TenantProvider TenantProvider { get; }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new LocationConfiguration());
-        modelBuilder.ApplyConfiguration(new AreaConfiguration(TenantProvider));
-        modelBuilder.ApplyConfiguration(new TableConfiguration(TenantProvider));
-        modelBuilder.ApplyConfiguration(new ReservationConfiguration(TenantProvider));
+        modelBuilder.ApplyConfiguration(new LocationAssignmentConfiguration());
+        modelBuilder.ApplyConfiguration(new AreaConfiguration(this));
+        modelBuilder.ApplyConfiguration(new TableConfiguration(this));
+        modelBuilder.ApplyConfiguration(new ReservationConfiguration(this));
+        modelBuilder.ApplyConfiguration(new AreaSlotConfiguration(this));
         base.OnModelCreating(modelBuilder);
     }
 

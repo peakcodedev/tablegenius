@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TableGenius.Api.Web.Default;
@@ -6,28 +8,28 @@ namespace TableGenius.Api.Web.Default;
 [EnableCors("_myAllowSpecificOrigins")]
 [Route("[controller]")]
 [ApiController]
-//[Authorize]
+[Authorize]
 public class DefaultController : Controller
 {
-    /*protected string GetMail()
+    /// <summary>
+    /// </summary>
+    /// <returns></returns>
+    protected string GetUser()
     {
-        var mail = User.Claims.Where(c => c.Type == "http://TableGenius.ch/email")
+        var mail = User.Claims.Where(c =>
+                c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
             .Select(c => c.Value).SingleOrDefault();
         return mail;
     }
 
-    protected Guid GetUserId(IUserPresenter userPresenter)
-    {
-        var mail = GetMail();
-        var user = userPresenter.GetByMail(mail);
-        return user?.Id ?? Guid.Empty;
-    }
-
-    protected bool isAdmin()
+    /// <summary>
+    /// </summary>
+    /// <returns></returns>
+    protected bool IsAdmin()
     {
         var permissions = User.Claims.Where(c => c.Type == "permissions")
             .Select(c => c.Value);
         if (permissions.Contains("admin")) return true;
         return false;
-    }*/
+    }
 }

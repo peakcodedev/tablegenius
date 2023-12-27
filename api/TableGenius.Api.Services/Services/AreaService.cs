@@ -10,6 +10,6 @@ public class AreaService : DatabaseServiceTenantBase<Area>, IAreaService
     public AreaService(IAreaRepository areaRepository, IApplicationLogger logger) :
         base(logger)
     {
-        _repository = areaRepository;
+        Repository = areaRepository;
     }
 }

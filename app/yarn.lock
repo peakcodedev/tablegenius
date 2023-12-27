@@ -1708,6 +1708,13 @@
   dependencies:
     tslib "^2.2.0"
 
+"@ngxs/storage-plugin@^3.8.2":
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/@ngxs/storage-plugin/-/storage-plugin-3.8.2.tgz#0662aa57911bd359e3891ff784fcc0b5c86d60af"
+  integrity sha512-GCDyGBJtfB3sjj+JIH5Z35TxKsiwJsP+LhHr9Wnf57LBGYNZKR1HXN1CmwHYBpmQzxKkSqCbD03HIk+cTvioLw==
+  dependencies:
+    tslib "^2.2.0"
+
 "@ngxs/store@^3.8.2":
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/@ngxs/store/-/store-3.8.2.tgz#f6c8553e03db95baea7684f0f227c0e9a8095983"

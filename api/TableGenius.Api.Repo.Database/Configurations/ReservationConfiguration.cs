@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TableGenius.Api.Entities.Reservations;
-using TableGenius.Api.Repo.Database.Providers;
 
 namespace TableGenius.Api.Repo.Database.Configurations;
 
-public class ReservationConfiguration(TenantProvider tenantProvider)
-    : TenantBaseConfiguration<Reservation>(tenantProvider),
+public class ReservationConfiguration(RepositoryContext repositoryContext)
+    : TenantBaseConfiguration<Reservation>(repositoryContext),
         IEntityTypeConfiguration<Reservation>
 {
     public new void Configure(EntityTypeBuilder<Reservation> builder)

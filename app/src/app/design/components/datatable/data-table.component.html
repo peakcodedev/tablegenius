@@ -1,9 +1,12 @@
 <empty-list-alert [summary]="'Keine Daten'" [text]="'Es gibt noch keine Daten. Fügen sie welche hinzu.'" *ngIf="!data?.length"></empty-list-alert>
-<p-table #dt dataKey="id" [filterDelay]="0" (sortFunction)="customSort($event)" [customSort]="true" [globalFilterFields]="filterFields" [rowHover]="true" [loading]="loading" [tableStyle]="{'min-width': '50rem'}" [value]="data" [paginator]="true" [rows]="100" sortMode="single" [sortField]="initialSortField" [sortOrder]=1>
+<p-table #dt dataKey="id" [filterDelay]="0" (sortFunction)="customSort($event)" [customSort]="true" [globalFilterFields]="filterFields" [rowHover]="true" [loading]="loading" [tableStyle]="{'min-width': '50rem'}" [value]="data" [paginator]="true" [rows]="10" sortMode="single" [sortField]="initialSortField" [sortOrder]=1>
   <ng-template pTemplate="caption">
     <div class="table-header">
             <div class="actions">
-              <ng-content #actions></ng-content>
+              <ng-content select="[actions]"></ng-content>
+            </div>
+            <div class="filters">
+              <ng-content select="[filters]"></ng-content>
             </div>
             <div class="search">
               <span class="p-input-icon-left">

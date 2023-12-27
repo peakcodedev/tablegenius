@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 
 import { tablesRouting } from './tables-routing.module';
 import { TablesListComponent } from './components/tables-list/tables-list.component';
@@ -30,6 +30,6 @@ import { AreasCoreModule } from '../areas-core/areas-core.module';
     DropdownModule,
     InputTextareaModule,
   ],
-  providers: [],
+  providers: [AsyncPipe],
 })
 export class TablesModule {}

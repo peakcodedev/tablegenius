@@ -10,11 +10,11 @@ public static class DataServiceCollectionExtensions
 {
     public static void AddDatabase(this IServiceCollection services, string connectionString)
     {
-        services.AddScoped<TenantProvider>();
+        services.AddTransient<TenantProvider>();
         services.AddDbContext<RepositoryContext>();
         services.AddDbContextFactory<RepositoryContext>(
             opt => opt.UseNpgsql(connectionString,
-                x => x.MigrationsAssembly("TableGenius.Api.Repo.Database")), ServiceLifetime.Scoped);
+                x => x.MigrationsAssembly("TableGenius.Api.Repo.Database")), ServiceLifetime.Transient);
         services.Scan(scan => scan.FromApplicationDependencies()
             .AddClasses(classes => classes.AssignableTo(typeof(ITenantBaseRepository<>))).AsImplementedInterfaces()
             .WithScopedLifetime()

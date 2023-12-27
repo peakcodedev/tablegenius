@@ -11,7 +11,7 @@ namespace TableGenius.Api.Services.Services;
 public abstract class DatabaseServiceTenantBase<T> : IDatabaseService<T> where T : TenantBase
 {
     private readonly IApplicationLogger _logger;
-    protected ITenantBaseRepository<T> _repository;
+    protected ITenantBaseRepository<T> Repository;
 
     protected DatabaseServiceTenantBase(IApplicationLogger logger)
     {
@@ -22,10 +22,10 @@ public abstract class DatabaseServiceTenantBase<T> : IDatabaseService<T> where T
     {
         try
         {
-            _repository.Add(entity);
+            Repository.Add(entity);
             if (saveToDb)
             {
-                _repository.Commit();
+                Repository.Commit();
                 _logger.LogInformation<T>("Added (DatabaseServiceBase)");
                 return entity;
             }
@@ -47,10 +47,10 @@ public abstract class DatabaseServiceTenantBase<T> : IDatabaseService<T> where T
     {
         try
         {
-            _repository.Delete(entity, removeFromDb);
+            Repository.Delete(entity, removeFromDb);
             if (saveToDb)
             {
-                _repository.Commit();
+                Repository.Commit();
                 _logger.LogInformation<T>("Deleted (DatabaseServiceBase)");
             }
         }
@@ -69,16 +69,16 @@ public abstract class DatabaseServiceTenantBase<T> : IDatabaseService<T> where T
     {
         try
         {
-            _repository.DeleteById(id, removeFromDb);
+            Repository.DeleteById(id, removeFromDb);
             if (saveToDb)
             {
-                _repository.Commit();
+                Repository.Commit();
                 _logger.LogInformation<T>("Deleted By Guid (DatabaseServiceBase)");
             }
         }
         catch (Exception e)
         {
-            _repository.Rollback();
+            Repository.Rollback();
             _logger.LogError<T>(e, "Error on deleting by guid (DatabaseServiceBase)");
             return false;
         }
@@ -105,7 +105,7 @@ public abstract class DatabaseServiceTenantBase<T> : IDatabaseService<T> where T
     {
         try
         {
-            return _repository.GetAllAsNoTracking();
+            return Repository.GetAllAsNoTracking();
         }
         catch (Exception e)
         {
@@ -118,7 +118,7 @@ public abstract class DatabaseServiceTenantBase<T> : IDatabaseService<T> where T
     {
         try
         {
-            return _repository.GetById(id);
+            return Repository.GetById(id);
         }
         catch (Exception e)
         {
@@ -131,8 +131,8 @@ public abstract class DatabaseServiceTenantBase<T> : IDatabaseService<T> where T
     {
         try
         {
-            _repository.Update(entity);
-            if (saveToDb) _repository.Commit();
+            Repository.Update(entity);
+            if (saveToDb) Repository.Commit();
             return entity;
         }
         catch (Exception e)
@@ -152,7 +152,7 @@ public abstract class DatabaseServiceTenantBase<T> : IDatabaseService<T> where T
     {
         try
         {
-            return _repository.GetByIdAsNoTracking(id);
+            return Repository.GetByIdAsNoTracking(id);
         }
         catch (Exception e)
         {
@@ -165,7 +165,7 @@ public abstract class DatabaseServiceTenantBase<T> : IDatabaseService<T> where T
     {
         try
         {
-            return _repository.GetAllIncludingDeleted();
+            return Repository.GetAllIncludingDeleted();
         }
         catch (Exception e)
         {

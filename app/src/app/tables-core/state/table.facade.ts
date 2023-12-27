@@ -15,9 +15,9 @@ import { AppState } from '../../core/app-state';
 @Injectable()
 export class TableFacade {
   @Select(TableState.tables)
-  experts: Observable<ITable[]>;
+  tables: Observable<ITable[]>;
   @Select(TableState.tablesList)
-  expertsList: Observable<ITable[]>;
+  tablesList: Observable<ITable[]>;
   @Select(TableState.loading)
   loading: Observable<boolean>;
   @Select(TableState.errorMessage)

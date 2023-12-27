@@ -5,6 +5,7 @@ import {
   DeleteReservation,
   LoadReservations,
   ResetErrorMessage,
+  SetSelectedDate,
   UpdateReservation,
 } from './reservation.actions';
 import { ReservationService } from '../services/reservation.service';
@@ -24,6 +25,7 @@ import { ToastrService } from 'ngx-toastr';
 const defaults: ReservationStateModel = {
   data: [],
   errorMessage: '',
+  selectedDate: null,
   loading: false,
   editReservationForm: {
     model: undefined,
@@ -47,6 +49,10 @@ const defaults: ReservationStateModel = {
 export class ReservationState {
   @Selector() static errorMessage(state: ReservationStateModel) {
     return state.errorMessage;
+  }
+
+  @Selector() static selectedDate(state: ReservationStateModel) {
+    return state.selectedDate;
   }
 
   @Selector() static loading(state: ReservationStateModel) {
@@ -79,6 +85,16 @@ export class ReservationState {
   ) {
     patchState({
       errorMessage: '',
+    });
+  }
+
+  @Action(SetSelectedDate)
+  setSelectedDate(
+    { patchState }: StateContext<ReservationStateModel>,
+    action: SetSelectedDate
+  ) {
+    patchState({
+      selectedDate: action.selectedDate,
     });
   }
 

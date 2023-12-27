@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { TableFacade } from '../../../tables-core/state/table.facade';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
+import { map, Observable } from 'rxjs';
+import { ITable } from '../../../domain/table';
+import { AreaFacade } from '../../../areas-core/state/area.facade';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'tables-list',
@@ -13,7 +17,7 @@ export class TablesListComponent implements OnInit {
   cols = [
     { title: 'Tischnummer', field: 'tableNumber' },
     { title: 'Grösse', field: 'capacity' },
-    { title: 'Bereich', field: '' },
+    { title: 'Bereich', field: 'areaName' },
   ];
   tableActions = [
     {
@@ -29,15 +33,28 @@ export class TablesListComponent implements OnInit {
       onClick: (id: string) => this.displayDeleteConfirmDialog(id),
     },
   ];
+  data$: Observable<ITable[]>;
 
   constructor(
     readonly tableFacade: TableFacade,
     private readonly router: Router,
-    private readonly confirmationService: ConfirmationService
+    private readonly confirmationService: ConfirmationService,
+    private readonly areaFacade: AreaFacade,
+    private readonly asyncPipe: AsyncPipe
   ) {}
 
   ngOnInit(): void {
     this.tableFacade.loadTables();
+    this.data$ = this.tableFacade.tablesList.pipe(
+      map(tables =>
+        tables.map(table => ({
+          ...table,
+          areaName: this.asyncPipe.transform(
+            this.areaFacade.byId$(table.areaId)
+          )?.name,
+        }))
+      )
+    );
   }
 
   navigateToAddForm() {

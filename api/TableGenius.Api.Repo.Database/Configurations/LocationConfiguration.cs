@@ -14,6 +14,8 @@ public class LocationConfiguration : BaseConfiguration<Location>,
         builder.Property(b => b.Name).HasMaxLength(128).IsRequired();
         builder.Property(b => b.Address).HasMaxLength(512).IsRequired(false);
         builder.Property(b => b.LogoUrl).HasMaxLength(1024).IsRequired(false);
+        builder.HasMany(e => e.LocationAssignments).WithOne(c => c.Location).HasForeignKey(p => p.LocationId)
+            .IsRequired();
         builder.ToTable("Locations");
     }
 }

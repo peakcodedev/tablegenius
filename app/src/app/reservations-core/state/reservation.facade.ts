@@ -7,6 +7,7 @@ import {
   AddReservation,
   DeleteReservation,
   LoadReservations,
+  SetSelectedDate,
   UpdateReservation,
 } from './reservation.actions';
 import { AppState } from '../../core/app-state';
@@ -22,6 +23,8 @@ export class ReservationFacade {
   loading: Observable<boolean>;
   @Select(ReservationState.errorMessage)
   errorMessage: Observable<string>;
+  @Select(ReservationState.selectedDate)
+  selectedDate: Observable<Date>;
 
   constructor(private readonly appState: AppState) {}
 
@@ -45,4 +48,7 @@ export class ReservationFacade {
   @Dispatch()
   updateReservation = (reservationId: string) =>
     new UpdateReservation(reservationId);
+
+  @Dispatch()
+  setSelectedDate = (date: Date) => new SetSelectedDate(date);
 }

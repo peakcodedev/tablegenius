@@ -1,6 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { DOCUMENT } from '@angular/common';
+import { CoreFacade } from '../../../core/state/core.facade';
+import { catchError, filter, of, tap } from 'rxjs';
+import {
+  AppState,
+  AuthService,
+  RedirectLoginOptions,
+} from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-navigation',
@@ -8,12 +15,33 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-  constructor(@Inject(DOCUMENT) public document: Document) {}
-  items: MenuItem[] = this.getLoggedInItems(true, false);
+  constructor(
+    @Inject(DOCUMENT) public document: Document,
+    readonly coreFacade: CoreFacade,
+    private readonly authService: AuthService
+  ) {}
+  items: MenuItem[] = this.getLoggedOutItems();
   visible: boolean = true;
 
   ngOnInit() {
-    // TODO
+    this.authService.isAuthenticated$
+      .pipe(
+        filter(isAuthenticated => Boolean(isAuthenticated)),
+        tap(isAuthenticated => {
+          if (isAuthenticated) {
+            this.items = this.getLoggedInItems(true, false);
+          } else {
+            this.items = this.getLoggedOutItems();
+          }
+        }),
+        catchError(_ => {
+          this.items = this.getLoggedOutItems();
+          return of(null);
+        })
+      )
+      .subscribe(_ => {
+        this.updateVisibility();
+      });
   }
 
   private updateVisibility(): void {
@@ -25,18 +53,16 @@ export class NavigationComponent implements OnInit {
     return [
       {
         label: 'Startseite',
-        routerLink: '/register',
+        routerLink: '/info',
         icon: 'pi pi-home',
       },
       {
         label: 'Login',
         icon: 'pi pi-sign-in',
         routerLink: '/login',
-      },
-      {
-        label: 'Impressum',
-        routerLink: '/about',
-        icon: 'pi pi-info',
+        command: () => {
+          this.authService.loginWithRedirect(this.getLoginOptions());
+        },
       },
     ];
   }
@@ -47,10 +73,8 @@ export class NavigationComponent implements OnInit {
   ): MenuItem[] {
     return [
       {
-        label: 'Startseite',
         routerLink: '/home',
         icon: 'pi pi-home',
-        visible: !isAdmin,
       },
       {
         label: 'Restaurants',
@@ -71,6 +95,12 @@ export class NavigationComponent implements OnInit {
         visible: isAdmin,
       },
       {
+        label: 'Zeitbereiche',
+        routerLink: '/areaSlots',
+        icon: 'pi pi-shopping-cart',
+        visible: isAdmin,
+      },
+      {
         label: 'Reservation',
         routerLink: '/reservations',
         icon: 'pi pi-calendar',
@@ -80,9 +110,20 @@ export class NavigationComponent implements OnInit {
         label: 'Logout',
         icon: 'pi pi-chevron-circle-right',
         command: () => {
-          // TODO
+          this.authService.logout({
+            logoutParams: { returnTo: document.location.origin + '/logout' },
+          });
+          this.items = this.getLoggedOutItems();
+          this.updateVisibility();
+          this.coreFacade.setTenantId('');
         },
       },
     ];
+  }
+
+  getLoginOptions(): RedirectLoginOptions<AppState> {
+    return {
+      appState: { target: '/intro' },
+    };
   }
 }

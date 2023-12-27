@@ -1,0 +1,7 @@
+<app-header [title]="'Zeitbereiche'"></app-header>
+<app-datatable [loading]="areaSlotFacade.loading | async" [filterFields]="['name', 'typeString', 'areaName']" [hasConfirmDialogs]="true" [hasActions]="true" initialSortField="name" [cols]="cols" [data]="data$ | async" [actions]="tableActions">
+    <ng-container actions>
+        <app-button label="Zeitbereich hinzufügen" icon="plus" buttonStyle="outlined" (clicked)="navigateToAddForm()"></app-button>
+        <app-button label="Aktualisieren" icon="refresh" buttonStyle="outlined" (clicked)="areaSlotFacade.loadAreaSlots()"></app-button>
+    </ng-container>
+</app-datatable>
