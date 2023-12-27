@@ -101,6 +101,12 @@ export class NavigationComponent implements OnInit {
         visible: isAdmin,
       },
       {
+        label: 'Zuweisungen',
+        routerLink: '/tableAssignments',
+        icon: 'pi pi-shopping-cart',
+        visible: isAdmin,
+      },
+      {
         label: 'Reservation',
         routerLink: '/reservations',
         icon: 'pi pi-calendar',

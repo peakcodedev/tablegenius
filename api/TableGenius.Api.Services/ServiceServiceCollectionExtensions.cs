@@ -17,5 +17,6 @@ public static class ServiceServiceCollectionExtensions
         services.AddScoped<IReservationService, ReservationService>();
         services.AddScoped<ILocationAssignmentService, LocationAssignmentService>();
         services.AddScoped<IAreaSlotService, AreaSlotService>();
+        services.AddScoped<IReservationAssignmentService, ReservationAssignmentService>();
     }
 }

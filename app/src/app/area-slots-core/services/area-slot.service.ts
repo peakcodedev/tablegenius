@@ -30,6 +30,7 @@ export class AreaSlotService {
     areaSlotId: string,
     model: IAreaSlotModel
   ): Observable<IApiResponse<IAreaSlot>> {
+    console.error(model);
     return this.httpClient.patch<IApiResponse<IAreaSlot>>(
       AreaSlotService.singleEndpoint(areaSlotId),
       model

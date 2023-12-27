@@ -2,7 +2,7 @@
 <form *ngIf="form" [formGroup]="form" ngxsForm="areaSlots.addAreaSlotForm" (ngSubmit)="areaSlotFacade.addAreaSlot()" [ngxsFormClearOnDestroy]="true">
     <div class="field">
       <label for="type" class="block">Typ*</label>
-      <input id="type" required type="number" pInputText formControlName="type" placeholder="1" />
+      <p-dropdown formControlName="type" [required]="true" [options]="types" optionLabel="name" optionValue="value"></p-dropdown>
     </div>
     <div class="field">
       <label for="name" class="block">Name*</label>
@@ -15,6 +15,14 @@
     <div class="field">
       <label for="areaId" class="block">Zugehöriger Bereich*</label>
       <p-dropdown formControlName="areaId" [options]="areas | async" optionLabel="name" optionValue="value" [showClear]="true" placeholder="Bereich auswählen"></p-dropdown>
+    </div>
+    <div class="field">
+      <label for="start" class="block">Start</label>
+      <input id="start" type="datetime-local" pInputText formControlName="start"  />
+    </div>
+    <div class="field">
+      <label for="end" class="block">Ende</label>
+      <input id="end" type="datetime-local" pInputText formControlName="end"  />
     </div>
 </form>
 <div class="actions actions__margin-top">

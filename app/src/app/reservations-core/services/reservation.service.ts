@@ -19,6 +19,12 @@ export class ReservationService {
     );
   }
 
+  getUnassignedReservations(): Observable<IApiResponse<IReservation[]>> {
+    return this.httpClient.get<IApiResponse<IReservation[]>>(
+      ReservationService.endpoint + '/unassigned'
+    );
+  }
+
   createReservation(
     model: IReservationModel
   ): Observable<IApiResponse<IReservation>> {

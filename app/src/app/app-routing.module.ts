@@ -49,6 +49,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('./area-slots/area-slots.module').then(m => m.AreaSlotsModule),
   },
+  {
+    path: 'tableAssignments',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./table-assignments/table-assignments.module').then(
+        m => m.TableAssignmentsModule
+      ),
+  },
 ];
 
 @NgModule({

@@ -23,6 +23,13 @@ public class ReservationsController : DefaultController
         return Json(new DataJsonResult<ReservationRm>(200, "reservations successfully returned", res));
     }
 
+    [HttpGet("unassigned")]
+    public JsonResult GetAllUnassigned()
+    {
+        var res = _reservationPresenter.GetAllUnassignedList();
+        return Json(new DataJsonResult<ReservationRm>(200, "reservations successfully returned", res));
+    }
+
 
     [HttpPost]
     public JsonResult Add(ReservationRm reservation)

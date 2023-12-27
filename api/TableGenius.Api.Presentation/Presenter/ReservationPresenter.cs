@@ -34,6 +34,13 @@ public class ReservationPresenter : BasePresenter<ReservationRm, Reservation>, I
         return returnMap;
     }
 
+    public IEnumerable<ReservationRm> GetAllUnassignedList()
+    {
+        var all = _reservationService.GetAllUpcomingAndUnassignedReservationsAsNoTracking().ToList();
+        var returnMap = _mapper.Map<IEnumerable<Reservation>, List<ReservationRm>>(all);
+        return returnMap;
+    }
+
     public ReservationRm Update(ReservationRm entity)
     {
         var db = _mapper.Map<ReservationRm, Reservation>(entity);

@@ -10,4 +10,5 @@ public class Reservation : TenantBase
     public string Comments { set; get; }
     public int Count { get; set; }
     public string PhoneNumber { get; set; }
+    public virtual ReservationAssignment ReservationAssignment { get; set; }
 }

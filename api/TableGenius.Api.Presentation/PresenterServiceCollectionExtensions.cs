@@ -14,5 +14,6 @@ public static class PresenterServiceCollectionExtensions
         services.AddScoped<IAreaPresenter, AreaPresenter>();
         services.AddScoped<ILocationAssignmentPresenter, LocationAssignmentPresenter>();
         services.AddScoped<IAreaSlotPresenter, AreaSlotPresenter>();
+        services.AddScoped<IReservationAssignmentPresenter, ReservationAssignmentPresenter>();
     }
 }

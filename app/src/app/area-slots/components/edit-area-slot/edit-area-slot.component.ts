@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, take, tap } from 'rxjs';
 import { AreaSlotFacade } from '../../../area-slots-core/state/area-slot.facade';
 import { AreasHelper } from '../../../areas-core/helpers/areas.helper';
+import { AreaSlotTypesHelper } from '../../../area-slots-core/helpers/area-slot-types.helper';
 
 @Component({
   selector: 'edit-area-slot',
@@ -19,18 +20,21 @@ export class EditAreaSlotComponent implements OnInit {
   form: FormGroup;
   areaSlotId: string;
   areas: Observable<any[]>;
+  types: any[];
 
   constructor(
     readonly areaSlotFacade: AreaSlotFacade,
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
-    private readonly areasHelper: AreasHelper
+    private readonly areasHelper: AreasHelper,
+    private readonly typesHelper: AreaSlotTypesHelper
   ) {}
 
   ngOnInit(): void {
     this.areaSlotId = this.route.snapshot.paramMap.get('areaSlotId');
     this.areas = this.areasHelper.availableAreas();
+    this.types = this.typesHelper.types();
     this.areaSlotFacade
       .byId$(this.areaSlotId)
       .pipe(

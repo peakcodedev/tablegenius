@@ -8,10 +8,14 @@
         <label for="capacity" class="block">Anzahl Personen am Tisch*</label>
         <input id="capacity" required type="number" pInputText formControlName="capacity" placeholder="4" />
     </div>
-  <div class="field">
-    <label for="description" class="block">Kommentare</label>
-    <textarea rows="10" id="description" pInputTextarea formControlName="description" placeholder="Ich bin eine Kommentar"></textarea>
-  </div>
+    <div class="field">
+      <label for="areaId" class="block">Zugehöriger Bereich*</label>
+      <p-dropdown formControlName="areaId" [options]="areas | async" optionLabel="name" optionValue="value" [showClear]="true" placeholder="Bereich auswählen"></p-dropdown>
+    </div>
+    <div class="field">
+      <label for="description" class="block">Kommentare</label>
+      <textarea rows="10" id="description" pInputTextarea formControlName="description" placeholder="Ich bin eine Kommentar"></textarea>
+    </div>
 </form>
 <div class="actions actions__margin-top">
     <app-button label="Abbrechen" icon="plus" buttonStyle="outlined" (clicked)="navigateToList()"></app-button>

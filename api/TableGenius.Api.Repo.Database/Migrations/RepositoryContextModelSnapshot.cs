@@ -282,6 +282,67 @@ namespace TableGenius.Api.Repo.Database.Migrations
                     b.ToTable("Reservations", (string)null);
                 });
 
+            modelBuilder.Entity("TableGenius.Api.Entities.Reservations.ReservationAssignment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AreaSlotId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("BookingDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("CreateDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<DateTime>("ModDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<Guid>("ReservationId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AreaSlotId");
+
+                    b.HasIndex("ReservationId")
+                        .IsUnique();
+
+                    b.ToTable("ReservationAssignments", (string)null);
+                });
+
+            modelBuilder.Entity("TableGenius.Api.Entities.Reservations.TableReservationAssignment", b =>
+                {
+                    b.Property<Guid>("TableId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ReservationAssignmentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("TableId", "ReservationAssignmentId", "TenantId");
+
+                    b.HasIndex("ReservationAssignmentId");
+
+                    b.ToTable("TableReservationAssignments", (string)null);
+                });
+
             modelBuilder.Entity("TableGenius.Api.Entities.Place.AreaSlot", b =>
                 {
                     b.HasOne("TableGenius.Api.Entities.Place.Area", "Area")
@@ -315,6 +376,42 @@ namespace TableGenius.Api.Repo.Database.Migrations
                     b.Navigation("Area");
                 });
 
+            modelBuilder.Entity("TableGenius.Api.Entities.Reservations.ReservationAssignment", b =>
+                {
+                    b.HasOne("TableGenius.Api.Entities.Place.AreaSlot", "AreaSlot")
+                        .WithMany("ReservationAssignments")
+                        .HasForeignKey("AreaSlotId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TableGenius.Api.Entities.Reservations.Reservation", "Reservation")
+                        .WithOne("ReservationAssignment")
+                        .HasForeignKey("TableGenius.Api.Entities.Reservations.ReservationAssignment", "ReservationId");
+
+                    b.Navigation("AreaSlot");
+
+                    b.Navigation("Reservation");
+                });
+
+            modelBuilder.Entity("TableGenius.Api.Entities.Reservations.TableReservationAssignment", b =>
+                {
+                    b.HasOne("TableGenius.Api.Entities.Reservations.ReservationAssignment", "ReservationAssignment")
+                        .WithMany("TableReservationAssignments")
+                        .HasForeignKey("ReservationAssignmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TableGenius.Api.Entities.Place.Table", "Table")
+                        .WithMany("TableReservationAssignments")
+                        .HasForeignKey("TableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ReservationAssignment");
+
+                    b.Navigation("Table");
+                });
+
             modelBuilder.Entity("TableGenius.Api.Entities.Place.Area", b =>
                 {
                     b.Navigation("AreaSlots");
@@ -322,9 +419,29 @@ namespace TableGenius.Api.Repo.Database.Migrations
                     b.Navigation("Tables");
                 });
 
+            modelBuilder.Entity("TableGenius.Api.Entities.Place.AreaSlot", b =>
+                {
+                    b.Navigation("ReservationAssignments");
+                });
+
             modelBuilder.Entity("TableGenius.Api.Entities.Place.Location", b =>
                 {
                     b.Navigation("LocationAssignments");
+                });
+
+            modelBuilder.Entity("TableGenius.Api.Entities.Place.Table", b =>
+                {
+                    b.Navigation("TableReservationAssignments");
+                });
+
+            modelBuilder.Entity("TableGenius.Api.Entities.Reservations.Reservation", b =>
+                {
+                    b.Navigation("ReservationAssignment");
+                });
+
+            modelBuilder.Entity("TableGenius.Api.Entities.Reservations.ReservationAssignment", b =>
+                {
+                    b.Navigation("TableReservationAssignments");
                 });
 #pragma warning restore 612, 618
         }

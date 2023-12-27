@@ -16,6 +16,8 @@ public class ReservationConfiguration(RepositoryContext repositoryContext)
         builder.Property(b => b.Count).IsRequired();
         builder.Property(b => b.PhoneNumber).IsRequired(false);
         builder.Property(b => b.Comments).HasMaxLength(1024).IsRequired(false);
+        builder.HasOne(e => e.ReservationAssignment).WithOne(c => c.Reservation)
+            .HasForeignKey<ReservationAssignment>(b => b.ReservationId).IsRequired(false);
         builder.ToTable("Reservations");
     }
 }

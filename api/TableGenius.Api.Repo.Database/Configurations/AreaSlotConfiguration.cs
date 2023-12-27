@@ -18,6 +18,8 @@ public class AreaSlotConfiguration(RepositoryContext repositoryContext)
         builder.Property(b => b.End).IsRequired(false);
         builder.HasOne(e => e.Area).WithMany(c => c.AreaSlots).HasForeignKey(p => p.AreaId)
             .IsRequired();
+        builder.HasMany(e => e.ReservationAssignments).WithOne(c => c.AreaSlot).HasForeignKey(p => p.AreaSlotId)
+            .IsRequired();
         builder.ToTable("AreaSlots");
     }
 }

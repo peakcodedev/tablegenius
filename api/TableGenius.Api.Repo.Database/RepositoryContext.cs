@@ -30,6 +30,8 @@ public class RepositoryContext : DbContext
         modelBuilder.ApplyConfiguration(new TableConfiguration(this));
         modelBuilder.ApplyConfiguration(new ReservationConfiguration(this));
         modelBuilder.ApplyConfiguration(new AreaSlotConfiguration(this));
+        modelBuilder.ApplyConfiguration(new ReservationAssignmentConfiguration(this));
+        modelBuilder.ApplyConfiguration(new TableReservationAssignmentConfiguration(this));
         base.OnModelCreating(modelBuilder);
     }
 

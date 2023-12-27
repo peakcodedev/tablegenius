@@ -18,4 +18,9 @@ public class ReservationService : DatabaseServiceTenantBase<Reservation>, IReser
     {
         return (Repository as IReservationRepository)?.GetAllUpcomingReservationsAsNoTracking();
     }
+
+    public IQueryable<Reservation> GetAllUpcomingAndUnassignedReservationsAsNoTracking()
+    {
+        return (Repository as IReservationRepository)?.GetAllUpcomingAndUnassignedReservationsAsNoTracking();
+    }
 }

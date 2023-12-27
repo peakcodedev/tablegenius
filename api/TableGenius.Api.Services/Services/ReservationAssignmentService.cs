@@ -1,0 +1,28 @@
+﻿using TableGenius.Api.Entities.Reservations;
+using TableGenius.Api.Infrastructure.Interfaces;
+using TableGenius.Api.Repo.Database.Interfaces;
+using TableGenius.Api.Repo.Database.Providers;
+using TableGenius.Api.Services.Interfaces.Database;
+
+namespace TableGenius.Api.Services.Services;
+
+public class ReservationAssignmentService : DatabaseServiceTenantBase<ReservationAssignment>,
+    IReservationAssignmentService
+{
+    private readonly TenantProvider _tenantProvider;
+
+    public ReservationAssignmentService(IReservationAssignmentRepository reservationAssignmentRepository,
+        IApplicationLogger logger, TenantProvider tenantProvider) :
+        base(logger)
+    {
+        Repository = reservationAssignmentRepository;
+        _tenantProvider = tenantProvider;
+    }
+
+    public new ReservationAssignment Add(ReservationAssignment entity)
+    {
+        foreach (var tableReservationAssignment in entity.TableReservationAssignments)
+            tableReservationAssignment.TenantId = _tenantProvider.GetTenantId();
+        return base.Add(entity);
+    }
+}

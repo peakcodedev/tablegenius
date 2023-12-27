@@ -7,6 +7,8 @@ import { AreaSlotState } from './state/area-slot.state';
 import { AreaSlotFacade } from './state/area-slot.facade';
 import { AreaSlotService } from './services/area-slot.service';
 import { CanActivateAreaSlots } from './guards/can-activate-area-slots.service';
+import { AreaSlotTypesHelper } from './helpers/area-slot-types.helper';
+import { AreaSlotsHelper } from './helpers/area-slots.helper';
 
 @NgModule({
   declarations: [],
@@ -16,7 +18,13 @@ import { CanActivateAreaSlots } from './guards/can-activate-area-slots.service';
     NgxsFormPluginModule,
     CoreModule,
   ],
-  providers: [AreaSlotFacade, AreaSlotService, CanActivateAreaSlots],
+  providers: [
+    AreaSlotFacade,
+    AreaSlotService,
+    CanActivateAreaSlots,
+    AreaSlotTypesHelper,
+    AreaSlotsHelper,
+  ],
   exports: [],
 })
 export class AreaSlotsCoreModule {}

@@ -41,7 +41,7 @@ public class AreaSlotsController : DefaultController
             : new InfoJsonResult(500, "Error on deleting area slot"));
     }
 
-    [HttpPatch("{Id}")]
+    [HttpPatch("{id}")]
     public JsonResult Update([FromRoute] Guid id, [FromBody] AreaSlotRm areaSlotRm)
     {
         areaSlotRm.Id = id;

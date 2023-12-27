@@ -7,7 +7,8 @@ import {
 } from '@angular/forms';
 import { TableFacade } from '../../../tables-core/state/table.facade';
 import { ActivatedRoute, Router } from '@angular/router';
-import { take, tap } from 'rxjs';
+import { Observable, take, tap } from 'rxjs';
+import { AreasHelper } from '../../../areas-core/helpers/areas.helper';
 
 @Component({
   selector: 'edit-table',
@@ -17,12 +18,14 @@ import { take, tap } from 'rxjs';
 export class EditTableComponent implements OnInit {
   form: FormGroup;
   tableId: string;
+  areas: Observable<any[]>;
 
   constructor(
     readonly tableFacade: TableFacade,
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly areasHelper: AreasHelper
   ) {}
 
   ngOnInit(): void {
@@ -38,11 +41,13 @@ export class EditTableComponent implements OnInit {
               Validators.required
             ),
             capacity: new FormControl(table.capacity, Validators.required),
+            areaId: new FormControl(table.areaId, Validators.required),
             description: new FormControl(table.description, []),
           });
         })
       )
       .subscribe();
+    this.areas = this.areasHelper.availableAreas();
   }
 
   navigateToList() {

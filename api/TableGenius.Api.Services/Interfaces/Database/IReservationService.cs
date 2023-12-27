@@ -6,4 +6,5 @@ namespace TableGenius.Api.Services.Interfaces.Database;
 public interface IReservationService : IDatabaseService<Reservation>
 {
     IQueryable<Reservation> GetAllUpcomingReservationsAsNoTracking();
+    IQueryable<Reservation> GetAllUpcomingAndUnassignedReservationsAsNoTracking();
 }
