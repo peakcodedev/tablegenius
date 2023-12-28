@@ -91,7 +91,9 @@ export class ReservationsListComponent implements OnInit, OnDestroy {
       accept: () => {
         this.reservationFacade.deleteReservation(id);
       },
-      reject: () => {},
+      reject: () => {
+        this.confirmationService.close();
+      },
     });
   }
 

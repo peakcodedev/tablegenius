@@ -57,6 +57,14 @@ const routes: Routes = [
         m => m.TableAssignmentsModule
       ),
   },
+  {
+    path: 'reservationAssignments',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./reservation-assignments/reservation-assignments.module').then(
+        m => m.ReservationAssignmentsModule
+      ),
+  },
 ];
 
 @NgModule({

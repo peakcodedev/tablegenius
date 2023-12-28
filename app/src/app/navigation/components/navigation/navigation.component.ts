@@ -29,7 +29,7 @@ export class NavigationComponent implements OnInit {
         filter(isAuthenticated => Boolean(isAuthenticated)),
         tap(isAuthenticated => {
           if (isAuthenticated) {
-            this.items = this.getLoggedInItems(true, false);
+            this.items = this.getLoggedInItems(true, true);
           } else {
             this.items = this.getLoggedOutItems();
           }
@@ -79,38 +79,41 @@ export class NavigationComponent implements OnInit {
       {
         label: 'Restaurants',
         routerLink: '/locations',
-        icon: 'pi pi-chevron-circle-right',
+        icon: 'pi pi-building',
         visible: isSuperAdmin,
       },
       {
         label: 'Bereiche',
         routerLink: '/areas',
-        icon: 'pi pi-users',
+        icon: 'pi pi-th-large',
         visible: isAdmin,
       },
       {
         label: 'Tische',
         routerLink: '/tables',
-        icon: 'pi pi-shopping-cart',
+        icon: 'pi pi-clone',
         visible: isAdmin,
       },
       {
         label: 'Zeitbereiche',
         routerLink: '/areaSlots',
-        icon: 'pi pi-shopping-cart',
+        icon: 'pi pi-server',
         visible: isAdmin,
       },
       {
         label: 'Zuweisungen',
         routerLink: '/tableAssignments',
-        icon: 'pi pi-shopping-cart',
-        visible: isAdmin,
+        icon: 'pi pi-arrow-right-arrow-left',
       },
       {
-        label: 'Reservation',
+        label: 'Reservationen',
         routerLink: '/reservations',
+        icon: 'pi pi-id-card',
+      },
+      {
+        label: 'Übersicht',
+        routerLink: '/reservationAssignments/overview',
         icon: 'pi pi-calendar',
-        visible: !isSuperAdmin,
       },
       {
         label: 'Logout',

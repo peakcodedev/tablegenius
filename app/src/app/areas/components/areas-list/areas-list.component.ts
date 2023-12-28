@@ -54,7 +54,9 @@ export class AreasListComponent implements OnInit {
       accept: () => {
         this.areaFacade.deleteArea(id);
       },
-      reject: () => {},
+      reject: () => {
+        this.confirmationService.close();
+      },
     });
   }
 }

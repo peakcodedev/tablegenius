@@ -18,14 +18,12 @@ export class LocationSelectorComponent implements OnInit {
 
   onClick(event: Event, locationId: string): void {
     event.stopImmediatePropagation();
-    console.error(locationId);
     this.facade.setLocation(locationId);
   }
 
   ngOnInit(): void {
     this.facade.loadLocationsOfUser();
     this.coreFacade.tenantId.pipe(filter(Boolean)).subscribe(value => {
-      console.error(value);
       this.router.navigate(['home']);
     });
   }

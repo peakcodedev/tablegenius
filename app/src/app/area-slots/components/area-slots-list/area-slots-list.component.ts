@@ -76,7 +76,9 @@ export class AreaSlotsListComponent implements OnInit {
       accept: () => {
         this.areaSlotFacade.deleteAreaSlot(id);
       },
-      reject: () => {},
+      reject: () => {
+        this.confirmationService.close();
+      },
     });
   }
 }

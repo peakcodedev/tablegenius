@@ -44,7 +44,6 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
       .pipe(
         tap(value => {
           this.selectedArea = value;
-          console.error(this.areaSlotsHelper.availableAreaSlots(value));
           this.areaSlots = this.areaSlotsHelper.availableAreaSlots(value);
         })
       )
@@ -79,8 +78,7 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
       map(([selectedArea, tables]) =>
         tables.filter(table => table.areaId === selectedArea)
       ),
-      map(tables => tables.sort((a, b) => a.tableNumber - b.tableNumber)),
-      tap(values => console.error(values))
+      map(tables => tables.sort((a, b) => a.tableNumber - b.tableNumber))
     );
   }
 
@@ -129,7 +127,7 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
         this.draggedTable = object;
         break;
       default:
-        console.error('error');
+        console.error('No type supplied');
     }
   }
 
@@ -142,7 +140,7 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
         this.draggedTable = null;
         break;
       default:
-        console.error('error');
+        console.error('No type supplied');
     }
   }
 
@@ -155,7 +153,7 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
         this.selectedTables.push(this.draggedTable);
         break;
       default:
-        console.error('error');
+        console.error('No type supplied');
     }
   }
 

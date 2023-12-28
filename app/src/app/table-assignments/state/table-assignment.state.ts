@@ -67,7 +67,6 @@ export class TableAssignmentState {
     { patchState }: StateContext<TableAssignmentStateModel>,
     action: SetSelectedDate
   ) {
-    console.error(action);
     patchState({
       selectedDate: action.selectedDate,
     });
@@ -78,7 +77,6 @@ export class TableAssignmentState {
     { patchState }: StateContext<TableAssignmentStateModel>,
     action: SetSelectedArea
   ) {
-    console.error(action);
     patchState({
       selectedArea: action.areaId,
     });
@@ -89,7 +87,6 @@ export class TableAssignmentState {
     { patchState }: StateContext<TableAssignmentStateModel>,
     action: SetSelectedAreaSlot
   ) {
-    console.error(action);
     patchState({
       selectedAreaSlot: action.areaSlotId,
     });

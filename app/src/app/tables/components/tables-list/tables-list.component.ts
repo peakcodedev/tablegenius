@@ -75,7 +75,9 @@ export class TablesListComponent implements OnInit {
       accept: () => {
         this.tableFacade.deleteTable(id);
       },
-      reject: () => {},
+      reject: () => {
+        this.confirmationService.close();
+      },
     });
   }
 }

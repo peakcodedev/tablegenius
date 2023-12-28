@@ -49,6 +49,7 @@ export class LocationsListComponent implements OnInit {
   }
 
   private displayDeleteConfirmDialog(id: string) {
+    console.error(id);
     this.confirmationService.confirm({
       message:
         'Bist du dir sicher, dass du dieses Restaurant löschen möchtest?',
@@ -59,7 +60,9 @@ export class LocationsListComponent implements OnInit {
       accept: () => {
         this.locationFacade.deleteLocation(id);
       },
-      reject: () => {},
+      reject: () => {
+        this.confirmationService.close();
+      },
     });
   }
 }
