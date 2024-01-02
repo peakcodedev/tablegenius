@@ -3,6 +3,11 @@ export class LoadAssignments {
   constructor() {}
 }
 
+export class LoadFreeTables {
+  static readonly type = '[Reservation Assignment] Load free tables';
+  constructor() {}
+}
+
 export class ResetErrorMessage {
   static readonly type = '[Reservation Assignment] Reset error message';
   constructor() {}
@@ -21,4 +26,15 @@ export class SetSelectedArea {
 export class SetSelectedAreaSlot {
   static readonly type = '[Reservation Assignment] Set selected area slot';
   constructor(public areaSlotId: string) {}
+}
+
+export class ClearState {
+  static readonly type = '[Reservation Assignment] Clear state';
+  constructor() {}
+}
+
+export class DeleteReservationAssignment {
+  static readonly type =
+    '[Reservation Assignment] Delete reservation Assignment';
+  constructor(public id: string) {}
 }

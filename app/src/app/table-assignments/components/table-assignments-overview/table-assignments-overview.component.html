@@ -27,7 +27,7 @@
     <div *ngIf="!selectedReservation" class="droparea-reservations" pDroppable (onDrop)="onDrop('reservation')">Reservation hierhin ziehen</div>
     <div class="reservation-list-item droparea-item" *ngIf="selectedReservation">
       <h4>{{ selectedReservation.name }}</h4>
-      <span>Anzahl: {{ selectedReservation.count }} | Zeitpunkt: | {{ selectedReservation.phoneNumber }}</span>
+      <span>Anzahl: {{ selectedReservation.count }} | Zeitpunkt: {{selectedReservation.bookingDate | date: "short":"UTC"}} | {{ selectedReservation.phoneNumber }}</span>
     </div>
     <div class="buttons">
       <app-button label="Zuweisung speichern" [disabled]="!isAssigmentValid()" icon="plus" buttonStyle="outlined" (clicked)="onSave()"></app-button>

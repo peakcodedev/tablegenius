@@ -61,7 +61,7 @@ label {
 }
 
 .p-inputtext, .p-dropdown {
-  width: 30rem;
+  width: 25rem;
 }
 
 .p-datatable .p-datatable-tbody > tr > td, .p-datatable .p-datatable-thead > tr > th {
@@ -83,26 +83,6 @@ label {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-}
-
-.left-right-grid {
-  display: grid;
-  grid-template-areas: "left-grid right-grid";
-  grid-template-columns: 50% 50%;
-}
-
-.left-right-grid-1-3 {
-  display: grid;
-  grid-template-areas: "left-grid right-grid";
-  grid-template-columns: 66% 33%;
-}
-
-.left-grid {
-  grid-area: left-grid;
-}
-
-.right-grid {
-  grid-area: right-grid;
 }
 
 .p-menubar {

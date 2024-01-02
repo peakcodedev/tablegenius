@@ -11,13 +11,15 @@ namespace TableGenius.Api.Presentation.Presenter;
 
 public class TablePresenter : BasePresenter<TableRm, Table>, ITablePresenter
 {
+    private readonly IAreaSlotService _areaSlotService;
     private readonly IMapper _mapper;
     private readonly ITableService _tableService;
 
-    public TablePresenter(IMapper mapper, ITableService tableService) : base(
+    public TablePresenter(IMapper mapper, ITableService tableService, IAreaSlotService areaSlotService) : base(
         tableService, mapper)
     {
         _tableService = tableService;
+        _areaSlotService = areaSlotService;
         _mapper = mapper;
     }
 
@@ -58,5 +60,17 @@ public class TablePresenter : BasePresenter<TableRm, Table>, ITablePresenter
         }
 
         return returnList;
+    }
+
+    public IEnumerable<TableRm> GetFreeTablesByAreaSlotAndCurrentDate(Guid areaSlotId,
+        DateTime dateTime)
+    {
+        var areaSlot = _areaSlotService.GetByIdAsNoTracking(areaSlotId);
+        var allTakenTables = _tableService
+            .GetAllAssignedTablesByAreaSlotAndCurrentDateAsNoTracking(areaSlotId, dateTime).ToList();
+        var allTables = _tableService.GetAllAsNoTracking().Where(x => x.AreaId == areaSlot.AreaId);
+        var allFreeTables = allTables.Where(x => allTakenTables.All(y => x.Id != y.Id)).OrderBy(x => x.TableNumber);
+        var returnMap = _mapper.Map<IEnumerable<Table>, List<TableRm>>(allFreeTables);
+        return returnMap;
     }
 }

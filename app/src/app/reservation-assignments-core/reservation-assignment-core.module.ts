@@ -5,8 +5,9 @@ import { NgxsModule } from '@ngxs/store';
 import { CoreModule } from '../core/core.module';
 import { ReservationAssignmentState } from './state/reservation-assignment.state';
 import { ReservationAssignmentFacade } from './state/reservation-assignment.facade';
-import { ReservationAssignmentsService } from './services/reservation-assignments.service';
+import { ReservationAssignmentsOverviewService } from './services/reservation-assignments-overview.service';
 import { CanActivateReservationAssignments } from './guards/can-activate-reservation-assignments.service';
+import { ReservationAssignmentsService } from './services/reservation-assignments.service';
 
 @NgModule({
   declarations: [],
@@ -18,6 +19,7 @@ import { CanActivateReservationAssignments } from './guards/can-activate-reserva
   ],
   providers: [
     ReservationAssignmentFacade,
+    ReservationAssignmentsOverviewService,
     ReservationAssignmentsService,
     CanActivateReservationAssignments,
   ],

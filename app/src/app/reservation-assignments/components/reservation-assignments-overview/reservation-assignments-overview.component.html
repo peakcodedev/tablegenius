@@ -5,5 +5,43 @@
   <ng-container *ngIf="(areaFacade.byId$(selectedArea) | async) && areaSlots.length > 0">
     <p-dropdown *ngIf="facade.selectedArea | async" (onChange)="onAreaSlotSelect($event)" (onClear)="facade.setSelectedAreaSlot(undefined)" [options]="areaSlots"  [(ngModel)]="selectedAreaSlot"  optionLabel="name" optionValue="value" [showClear]="true" placeholder="Zeitbereich auswählen"></p-dropdown>
   </ng-container>
+  <app-button *ngIf="(facade.selectedArea | async) && (facade.selectedDate | async) && (facade.selectedAreaSlot | async)" [disabled]="facade.loading | async" label="Aktualisieren" icon="refresh" buttonStyle="outlined" (clicked)="loadData()"></app-button>
 </div>
-<div class="content"></div>
+<div class="content" *ngIf="(facade.selectedArea | async) && (facade.selectedDate | async) && (facade.selectedAreaSlot | async)">
+  <div class="reservations">
+    <div class="reservation-list-item" *ngFor="let assignment of facade.assignments | async">
+      <div class="info-grid">
+        <div class="info">
+          <h3>{{assignment.reservation.name}}</h3>
+          <p><b>Zeitpunkt:</b> {{assignment.bookingDate | date:"short":"UTC"}}</p>
+          <ng-container *ngIf="assignment.reservation.comments">
+            <h4>Kommentare</h4>
+            <span>{{assignment.reservation.comments}}</span>
+          </ng-container>
+        </div>
+        <div class="action">
+          <i class="pi pi-times" style="font-size: 1.5rem" (click)="deleteResourceAssignment(assignment.id)"></i>
+        </div>
+      </div>
+      <div class="tables">
+        <h4>Tische</h4>
+        <div class="table-list">
+          <div class="table-list-item"  *ngFor="let tableAssignment of assignment.tableReservationAssignments">
+            <span><b>Nr. {{tableAssignment.table.tableNumber}}</b> | Anzahl: {{ tableAssignment.table.capacity }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reservation-list-item-empty" *ngIf="(facade.assignments | async).length === 0">
+      <h3>Keine Zuweisungen für diesen Zeitraum vorhanden.</h3>
+    </div>
+  </div>
+  <div class="free-tables">
+    <h3>Freie Tische</h3>
+    <div class="table-list">
+      <div class="table-list-item"  *ngFor="let table of facade.freeTables | async">
+        <span><b>Nr. {{table.tableNumber}}</b> | Anzahl: {{ table.capacity }}</span>
+      </div>
+    </div>
+  </div>
+</div>

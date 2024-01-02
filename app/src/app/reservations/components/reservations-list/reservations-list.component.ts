@@ -61,7 +61,8 @@ export class ReservationsListComponent implements OnInit, OnDestroy {
           ...reservation,
           bookingDateString: this.datePipe.transform(
             new Date(reservation.bookingDate),
-            'short'
+            'short',
+            'UTC'
           ),
         }))
       )

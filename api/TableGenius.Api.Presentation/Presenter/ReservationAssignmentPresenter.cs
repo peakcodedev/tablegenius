@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using TableGenius.Api.Entities.Reservations;
@@ -42,5 +43,14 @@ public class ReservationAssignmentPresenter : BasePresenter<ReservationAssignmen
         var db = _mapper.Map<ReservationAssignmentRm, ReservationAssignment>(entity);
         var elem = _reservationAssignmentService.Update(db);
         return _mapper.Map<ReservationAssignment, ReservationAssignmentRm>(elem);
+    }
+
+    public IEnumerable<ReservationAssignmentInfoRm> GetReservationAssignmentsByAreaSlotAndCurrentDate(Guid areaSlotId,
+        DateTime dateTime)
+    {
+        var all = _reservationAssignmentService.GetReservationAssignmentsByAreaSlotAndCurrentDate(areaSlotId, dateTime)
+            .ToList();
+        var returnMap = _mapper.Map<IEnumerable<ReservationAssignment>, List<ReservationAssignmentInfoRm>>(all);
+        return returnMap;
     }
 }

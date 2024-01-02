@@ -47,7 +47,7 @@ export class ReservationAssignmentsOverviewComponent
         tap((value: string) => {
           this.selectedAreaSlot = value;
           if (value) {
-            this.facade.loadAssignments();
+            this.loadData();
           }
         })
       )
@@ -69,9 +69,16 @@ export class ReservationAssignmentsOverviewComponent
     this.facade.setSelectedAreaSlot(event.value);
   }
 
+  loadData(): void {
+    this.facade.loadAssignments();
+    this.facade.loadFreeTables();
+  }
+
+  deleteResourceAssignment(id: string): void {
+    this.facade.deleteReservationAssignment(id);
+  }
+
   ngOnDestroy(): void {
-    this.facade.setSelectedDate(undefined);
-    this.facade.setSelectedArea(undefined);
-    this.facade.setSelectedAreaSlot(undefined);
+    this.facade.clearState();
   }
 }

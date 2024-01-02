@@ -71,6 +71,7 @@ registerLocaleData(locale);
         audience: 'https://tablegenius-api.peakcode.dev',
       },
       useRefreshTokens: true,
+      useRefreshTokensFallback: true,
       cacheLocation: 'localstorage',
       issuer: 'table-genius.eu.auth0.com',
       httpInterceptor: {

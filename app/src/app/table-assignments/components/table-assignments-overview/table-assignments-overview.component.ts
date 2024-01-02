@@ -107,7 +107,7 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
     const model: IReservationAssignmentModel = {
       reservationId: this.selectedReservation.id,
       areaSlotId: this.selectedAreaSlot,
-      bookingDate: this.selectedReservation.bookingDate,
+      bookingDate: new Date(this.selectedReservation.bookingDate),
       tableReservationAssignments: assignments,
     };
     this.facade.addReservationAssignment(model);

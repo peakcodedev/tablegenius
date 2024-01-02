@@ -40,12 +40,23 @@ export class EditAreaSlotComponent implements OnInit {
       .pipe(
         take(1),
         tap(areaSlot => {
+          if (!areaSlot) {
+            this.navigateToList();
+          }
+          const start = areaSlot?.start?.substring(
+            0,
+            areaSlot?.start.lastIndexOf(':')
+          );
+          const end = areaSlot?.end?.substring(
+            0,
+            areaSlot?.end.lastIndexOf(':')
+          );
           this.form = new FormGroup({
             name: new FormControl(areaSlot.name, Validators.required),
             type: new FormControl(areaSlot.type, Validators.required),
             length: new FormControl(areaSlot.length, []),
-            start: new FormControl(areaSlot.start, []),
-            end: new FormControl(areaSlot.end, []),
+            start: new FormControl(start, []),
+            end: new FormControl(end, []),
             areaId: new FormControl(areaSlot.areaId, Validators.required),
           });
         })

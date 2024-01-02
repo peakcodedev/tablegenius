@@ -23,5 +23,5 @@
 </form>
 <div class="actions actions__margin-top">
     <app-button label="Abbrechen" icon="plus" buttonStyle="outlined" (clicked)="navigateToList()"></app-button>
-    <app-button label="Reservation speichern" [disabled]="form.invalid" icon="plus" buttonStyle="outlined" (clicked)="reservationFacade.updateReservation(this.reservationId)"></app-button>
+    <app-button label="Reservation speichern" [disabled]="form?.invalid" icon="plus" buttonStyle="outlined" (clicked)="reservationFacade.updateReservation(this.reservationId)"></app-button>
 </div>

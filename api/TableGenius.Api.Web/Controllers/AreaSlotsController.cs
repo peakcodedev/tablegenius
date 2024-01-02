@@ -10,12 +10,15 @@ namespace TableGenius.Api.Web.Controllers;
 public class AreaSlotsController : DefaultController
 {
     private readonly IAreaSlotPresenter _areaSlotPresenter;
+    private readonly IReservationAssignmentPresenter _reservationAssignmentPresenter;
     private readonly ITablePresenter _tablePresenter;
 
-    public AreaSlotsController(IAreaSlotPresenter areaSlotPresenter, ITablePresenter tablePresenter)
+    public AreaSlotsController(IAreaSlotPresenter areaSlotPresenter, ITablePresenter tablePresenter,
+        IReservationAssignmentPresenter reservationAssignmentPresenter)
     {
         _areaSlotPresenter = areaSlotPresenter;
         _tablePresenter = tablePresenter;
+        _reservationAssignmentPresenter = reservationAssignmentPresenter;
     }
 
     [HttpGet]
@@ -31,6 +34,24 @@ public class AreaSlotsController : DefaultController
     {
         var res = _tablePresenter.GetAllAssignedTablesByAreaSlotAndCurrentDate(id, model.DateTime.AddDays(1));
         return Json(new DataJsonResult<TableWithStatusRm>(200, "area slots successfully returned", res));
+    }
+
+    [HttpPost("{id}/freeTables")]
+    public JsonResult GetFreeTables([FromBody] DateFilterModel model,
+        [FromRoute] Guid id)
+    {
+        var res = _tablePresenter.GetFreeTablesByAreaSlotAndCurrentDate(id, model.DateTime);
+        return Json(new DataJsonResult<TableRm>(200, "area slots successfully returned", res));
+    }
+
+    [HttpPost("{id}/reservations")]
+    public JsonResult GetReservationsByAreaSlotAndDate([FromBody] DateFilterModel model,
+        [FromRoute] Guid id)
+    {
+        var res = _reservationAssignmentPresenter.GetReservationAssignmentsByAreaSlotAndCurrentDate(id,
+            model.DateTime);
+        return Json(
+            new DataJsonResult<ReservationAssignmentInfoRm>(200, "reservation assignments successfully returned", res));
     }
 
 

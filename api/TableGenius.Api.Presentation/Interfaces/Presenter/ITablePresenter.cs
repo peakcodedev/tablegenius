@@ -10,4 +10,5 @@ public interface ITablePresenter : IPresenter<TableRm>
     IEnumerable<TableRm> GetList();
     TableRm Update(TableRm entity);
     IEnumerable<TableWithStatusRm> GetAllAssignedTablesByAreaSlotAndCurrentDate(Guid areaSlotId, DateTime dateTime);
+    IEnumerable<TableRm> GetFreeTablesByAreaSlotAndCurrentDate(Guid areaSlotId, DateTime dateTime);
 }

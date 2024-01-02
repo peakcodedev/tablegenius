@@ -14,6 +14,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { AreasCoreModule } from '../areas-core/areas-core.module';
 import { AreaSlotsCoreModule } from '../area-slots-core/area-slots-core.module';
 import { ReservationAssignmentCoreModule } from '../reservation-assignments-core/reservation-assignment-core.module';
+import { DragDropModule } from 'primeng/dragdrop';
 
 @NgModule({
   declarations: [ReservationAssignmentsOverviewComponent],
@@ -32,6 +33,7 @@ import { ReservationAssignmentCoreModule } from '../reservation-assignments-core
     AreaSlotsCoreModule,
     CalendarModule,
     ReservationAssignmentCoreModule,
+    DragDropModule,
   ],
   providers: [DatePipe],
 })

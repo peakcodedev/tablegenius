@@ -4,22 +4,26 @@ import { Select } from '@ngxs/store';
 import { map, Observable } from 'rxjs';
 import { ReservationAssignmentState } from './reservation-assignment.state';
 import {
+  ClearState,
+  DeleteReservationAssignment,
   LoadAssignments,
+  LoadFreeTables,
   SetSelectedArea,
   SetSelectedAreaSlot,
   SetSelectedDate,
 } from './reservation-assignment.actions';
 import { AppState } from '../../core/app-state';
-import { IReservation } from '../../domain/reservation';
+import { IReservationAssignment } from '../../domain/reservation-assignment';
+import { ITable } from '../../domain/table';
 
 @Injectable()
 export class ReservationAssignmentFacade {
   @Select(ReservationAssignmentState.assignments)
-  assignments: Observable<IReservation[]>;
-  //@Select(ReservationAssignmentState.loading)
-  //loading: Observable<boolean>;
-  //@Select(ReservationAssignmentState.errorMessage)
-  //errorMessage: Observable<string>;
+  assignments: Observable<IReservationAssignment[]>;
+  @Select(ReservationAssignmentState.freeTables)
+  freeTables: Observable<ITable[]>;
+  @Select(ReservationAssignmentState.loading)
+  loading: Observable<boolean>;
   @Select(ReservationAssignmentState.selectedDate)
   selectedDate: Observable<Date>;
   @Select(ReservationAssignmentState.selectedArea)
@@ -37,6 +41,8 @@ export class ReservationAssignmentFacade {
 
   @Dispatch()
   loadAssignments = () => new LoadAssignments();
+  @Dispatch()
+  loadFreeTables = () => new LoadFreeTables();
   loadAssignments$ = () => this.appState.dispatch(new LoadAssignments());
   @Dispatch()
   setSelectedDate = (date: Date) => new SetSelectedDate(date);
@@ -45,4 +51,9 @@ export class ReservationAssignmentFacade {
   @Dispatch()
   setSelectedAreaSlot = (areaSlotId: string) =>
     new SetSelectedAreaSlot(areaSlotId);
+  @Dispatch()
+  clearState = () => new ClearState();
+  @Dispatch()
+  deleteReservationAssignment = (id: string) =>
+    new DeleteReservationAssignment(id);
 }
