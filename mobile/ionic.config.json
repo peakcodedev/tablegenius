@@ -1,0 +1,7 @@
+{
+  "name": "tablegenius-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
