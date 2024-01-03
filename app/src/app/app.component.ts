@@ -11,7 +11,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.error$.subscribe(error => {
-      //this.authService.getAccessTokenWithPopup().subscribe();
+      if (error.message !== 'Login required') {
+        this.authService.getAccessTokenWithPopup().subscribe();
+      }
     });
   }
 }
