@@ -12,8 +12,10 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
         var configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", true, true).AddJsonFile("appsettings.development.json", true, true)
+            .AddJsonFile($"appsettings.{env}.json", true, true)
             .AddEnvironmentVariables().Build();
         Console.WriteLine(configuration);
         Log.Logger = new LoggerConfiguration()

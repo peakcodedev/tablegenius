@@ -1,8 +1,8 @@
 #!/bin/bash
 docker login -u $1 -p $2
-actual_version="1.3.3"
+actual_version="1.0.0"
 echo $actual_version
-docker build --platform linux/amd64 -f Dockerfile -t ursforrerch/api_TableGenius:$actual_version .
-docker push ursforrerch/api_TableGenius:$actual_version
-docker tag ursforrerch/api_TableGenius:$actual_version ursforrerch/api_TableGenius:latest
-docker push ursforrerch/api_TableGenius:latest
+docker build --platform linux/amd64 -f Dockerfile -t ursforrerch/tg-api:$actual_version .
+docker push ursforrerch/tg-api:$actual_version
+docker tag ursforrerch/tg-api:$actual_version ursforrerch/tg-api:latest
+docker push ursforrerch/tg-api:latest

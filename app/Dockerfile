@@ -7,5 +7,5 @@ RUN yarn build:prod
 
 FROM nginx:stable-alpine-slim
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/dist/browser /usr/share/nginx/html
 RUN chown nginx.nginx /usr/share/nginx/html/ -R

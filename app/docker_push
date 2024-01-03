@@ -1,0 +1,9 @@
+#!/bin/bash
+docker login -u $1 -p $2
+prop="version"
+actual_version="$(node -pe "require('./package.json')['$prop']")"
+echo $actual_version
+docker build --platform linux/amd64 -t ursforrerch/tg-app:$actual_version .
+docker push ursforrerch/tg-app:$actual_version
+docker tag ursforrerch/tg-app:$actual_version ursforrerch/tg-app:latest
+docker push ursforrerch/tg-app:latest
