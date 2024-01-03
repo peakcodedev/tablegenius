@@ -1,0 +1,25 @@
+import { Injectable } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
+import { Observable } from 'rxjs';
+import { AreaSlotFacade } from '../state/area-slot.facade';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class CanActivateAreaSlots {
+  constructor(private readonly areaSlotFacade: AreaSlotFacade) {}
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    return this.areaSlotFacade.loadAreaSlots$();
+  }
+}

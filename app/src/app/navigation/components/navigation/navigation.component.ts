@@ -2,12 +2,13 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { DOCUMENT } from '@angular/common';
 import { CoreFacade } from '../../../core/state/core.facade';
-import { catchError, filter, of, tap } from 'rxjs';
+import { catchError, combineLatestWith, filter, of, tap } from 'rxjs';
 import {
   AppState,
   AuthService,
   RedirectLoginOptions,
 } from '@auth0/auth0-angular';
+import { AuthenticationService } from '../../../core/services/authentication.service';
 
 @Component({
   selector: 'app-navigation',
@@ -18,7 +19,8 @@ export class NavigationComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) public document: Document,
     readonly coreFacade: CoreFacade,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly authenticationService: AuthenticationService
   ) {}
   items: MenuItem[] = this.getLoggedOutItems();
   visible: boolean = true;
@@ -26,10 +28,14 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
     this.authService.isAuthenticated$
       .pipe(
-        filter(isAuthenticated => Boolean(isAuthenticated)),
-        tap(isAuthenticated => {
+        combineLatestWith(this.authenticationService.isAdmin()),
+        combineLatestWith(this.authenticationService.isSuperAdmin()),
+        filter(([[isAuthenticated, _isAdmin], _isSuperAdmin]) =>
+          Boolean(isAuthenticated)
+        ),
+        tap(([[isAuthenticated, isAdmin], isSuperAdmin]) => {
           if (isAuthenticated) {
-            this.items = this.getLoggedInItems(true, true);
+            this.items = this.getLoggedInItems(isAdmin, isSuperAdmin);
           } else {
             this.items = this.getLoggedOutItems();
           }

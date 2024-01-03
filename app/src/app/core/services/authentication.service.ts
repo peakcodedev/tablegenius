@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, take } from 'rxjs';
 import { AuthService } from '@auth0/auth0-angular';
-
-//import jwt_decode from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -11,12 +10,9 @@ export class AuthenticationService {
   constructor(private readonly authService: AuthService) {}
 
   private getDecodedAccessToken(): Observable<any> {
-    return (
-      this.authService
-        .getAccessTokenSilently()
-        // @ts-ignore
-        .pipe(map(token => jwt_decode(token)))
-    );
+    return this.authService
+      .getAccessTokenSilently()
+      .pipe(map(token => jwtDecode(token)));
   }
 
   private getPermissions(): Observable<string[]> {
@@ -28,13 +24,14 @@ export class AuthenticationService {
     );
   }
 
-  isAdmin(): Observable<boolean> {
+  isSuperAdmin(): Observable<boolean> {
     return this.getPermissions().pipe(
-      map(permissions => permissions.includes('admin'))
+      map(permissions => permissions.includes('superadmin')),
+      take(1)
     );
   }
 
-  isAdminTakeOne(): Observable<boolean> {
+  isAdmin(): Observable<boolean> {
     return this.getPermissions().pipe(
       map(permissions => permissions.includes('admin')),
       take(1)

@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.error$.subscribe(error => {
-      this.authService.getAccessTokenWithPopup().subscribe();
+      //this.authService.getAccessTokenWithPopup().subscribe();
     });
   }
 }

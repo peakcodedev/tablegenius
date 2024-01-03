@@ -172,6 +172,9 @@ namespace TableGenius.Api.Repo.Database.Migrations
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("IsSuperAdmin")
+                        .HasColumnType("boolean");
+
                     b.Property<Guid>("LocationId")
                         .HasColumnType("uuid");
 
