@@ -13,11 +13,6 @@ public class Program
     public static void Main(string[] args)
     {
         var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-        var configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", true, true).AddJsonFile("appsettings.development.json", true, true)
-            .AddJsonFile($"appsettings.{env}.json", true, true)
-            .AddEnvironmentVariables().Build();
-        Console.WriteLine(configuration);
         Log.Logger = new LoggerConfiguration()
             .Enrich.WithProperty("Application", "TableGenius.API")
             .Enrich.WithProperty("Environment", "")
@@ -26,29 +21,41 @@ public class Program
             .WriteTo.Console()
             .CreateLogger();
 
-        CreateHostBuilder(args).ConfigureWebHostDefaults(webBuilder =>
-        {
-            // Add the following line:
-            webBuilder.UseSentry(o =>
-            {
-                o.Dsn = "https://5fd0c1e8b9601f7e20843705beb4f154@o4506015135694848.ingest.sentry.io/4506015136546816";
-                // When configuring for the first time, to see what the SDK is doing:
-                o.Debug = true;
-                // Set TracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
-                // We recommend adjusting this value in production.
-                o.TracesSampleRate = 1.0;
-                o.EnableTracing = true;
-                o.AttachStacktrace = true;
-                o.MaxBreadcrumbs = 50;
-            });
-        }).Build().Run();
+        CreateWebHostBuilder(args, env).Build().Run();
     }
 
-    public static IHostBuilder CreateHostBuilder(string[] args)
+
+    public static IHostBuilder CreateWebHostBuilder(string[] args, string envString)
     {
-        return Host.CreateDefaultBuilder(args)
+        var builder = new HostBuilder();
+        builder
+            .UseContentRoot(Directory.GetCurrentDirectory())
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .UseSerilog()
-            .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+            .ConfigureAppConfiguration((hostContext, config) =>
+            {
+                var env = hostContext.HostingEnvironment;
+                config.SetBasePath(env.ContentRootPath)
+                    .AddJsonFile("appsettings.json", true, true)
+                    .AddJsonFile($"appsettings.{envString}.json", true, true)
+                    .AddEnvironmentVariables();
+            })
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseSentry(o =>
+                {
+                    o.Dsn =
+                        "https://5fd0c1e8b9601f7e20843705beb4f154@o4506015135694848.ingest.sentry.io/4506015136546816";
+                    o.Debug = true;
+                    o.TracesSampleRate = 1.0;
+                    o.EnableTracing = true;
+                    o.AttachStacktrace = true;
+                    o.MaxBreadcrumbs = 50;
+                });
+                webBuilder
+                    .ConfigureKestrel(serverOptions => { serverOptions.AddServerHeader = false; })
+                    .UseStartup<Startup>().CaptureStartupErrors(true);
+            });
+        return builder;
     }
 }
