@@ -3,6 +3,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   AddLocation,
   DeleteLocation,
+  LoadLocationAssignments,
   LoadLocations,
   ResetErrorMessage,
   UpdateLocation,
@@ -19,9 +20,11 @@ import {
 } from '@ngxs/store/operators';
 import { Navigate } from '@ngxs/router-plugin';
 import { ILocation } from '../../domain/location';
+import { LocationAssignmentService } from '../services/location-assignment.service';
 
 const defaults: LocationStateModel = {
   data: [],
+  assignments: [],
   errorMessage: '',
   loading: false,
   editLocationForm: {
@@ -56,6 +59,16 @@ export class LocationState {
     return state.data;
   }
 
+  @Selector() static assignments(state: LocationStateModel) {
+    return state.assignments;
+  }
+
+  @Selector() static assignmentsList(state: LocationStateModel) {
+    return state.assignments.map(assignment => {
+      return { ...assignment };
+    });
+  }
+
   @Selector() static locationsList(state: LocationStateModel) {
     return state.data.map(location => {
       return { ...location };
@@ -66,7 +79,10 @@ export class LocationState {
     return (id: string) => state.data.find(e => e.id === id);
   }
 
-  constructor(private readonly locationService: LocationService) {}
+  constructor(
+    private readonly locationService: LocationService,
+    private readonly locationAssignmentService: LocationAssignmentService
+  ) {}
 
   @Action(ResetErrorMessage)
   resetErrorMessage(
@@ -86,14 +102,34 @@ export class LocationState {
     patchState({ loading: true });
     return this.locationService.getLocations().pipe(
       tap(response => {
-        patchState({ data: response.data, loading: false });
+        patchState({ data: response.data, loading: false, assignments: [] });
         dispatch(new ResetErrorMessage());
       }),
       catchError(error => {
-        patchState({ errorMessage: error, loading: false });
+        patchState({ errorMessage: error, loading: false, assignments: [] });
         return of([]);
       })
     );
+  }
+
+  @Action(LoadLocationAssignments)
+  loadLocationAssignments(
+    { patchState, dispatch }: StateContext<LocationStateModel>,
+    action: LoadLocationAssignments
+  ) {
+    patchState({ loading: true });
+    return this.locationAssignmentService
+      .getLocationAssignments(action.locationId)
+      .pipe(
+        tap(response => {
+          patchState({ assignments: response.data, loading: false });
+          dispatch(new ResetErrorMessage());
+        }),
+        catchError(error => {
+          patchState({ errorMessage: error, loading: false, data: [] });
+          return of([]);
+        })
+      );
   }
 
   @Action(AddLocation)

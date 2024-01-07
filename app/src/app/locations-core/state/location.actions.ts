@@ -3,6 +3,11 @@ export class LoadLocations {
   constructor() {}
 }
 
+export class LoadLocationAssignments {
+  static readonly type = '[Location] Load location assignments';
+  constructor(public locationId: string) {}
+}
+
 export class ResetErrorMessage {
   static readonly type = '[Location] Reset error message';
   constructor() {}

@@ -7,6 +7,7 @@ import { LocationState } from './state/location.state';
 import { LocationFacade } from './state/location.facade';
 import { LocationService } from './services/location.service';
 import { CanActivateLocations } from './guards/can-activate-locations.service';
+import { LocationAssignmentService } from './services/location-assignment.service';
 
 @NgModule({
   declarations: [],
@@ -16,7 +17,12 @@ import { CanActivateLocations } from './guards/can-activate-locations.service';
     NgxsFormPluginModule,
     CoreModule,
   ],
-  providers: [LocationFacade, LocationService, CanActivateLocations],
+  providers: [
+    LocationFacade,
+    LocationService,
+    CanActivateLocations,
+    LocationAssignmentService,
+  ],
   exports: [],
 })
 export class LocationCoreModule {}
