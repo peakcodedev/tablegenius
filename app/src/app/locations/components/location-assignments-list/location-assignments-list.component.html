@@ -1,0 +1,8 @@
+<app-header [title]="'Benutzer vom Restaurant'"></app-header>
+<app-datatable [loading]="locationFacade.loading | async" [filterFields]="['mail']" [hasActions]="true" initialSortField="mail" [cols]="cols" [data]="locationFacade.assignmentsList | async" [actions]="tableActions" [hasConfirmDialogs]="true">
+    <ng-container actions>
+        <app-button label="Neuer Benutzer hinzufügen" icon="plus" buttonStyle="outlined" (clicked)="navigateToAddForm()"></app-button>
+        <app-button label="Aktualisieren" icon="refresh" buttonStyle="outlined" (clicked)="locationFacade.loadLocationAssignments(locationId)"></app-button>
+        <app-button label="Zur Liste" icon="list" buttonStyle="outlined" (clicked)="navigateToList()"></app-button>
+    </ng-container>
+</app-datatable>

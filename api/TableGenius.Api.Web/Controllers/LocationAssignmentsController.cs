@@ -24,6 +24,7 @@ public class LocationAssignmentsController : DefaultController
 
 
     [HttpPost]
+    //[Authorize("superadmin")]
     public JsonResult Add(LocationAssignmentRm location)
     {
         var res = _locationAssignmentPresenter.Add(location);
@@ -32,11 +33,11 @@ public class LocationAssignmentsController : DefaultController
             : new InfoJsonResult(500, "Error on adding location assignment"));
     }
 
-    //[Authorize("admin")]
+    //[Authorize("superadmin")]
     [HttpDelete("{id}")]
     public JsonResult Delete(Guid id)
     {
-        var success = _locationAssignmentPresenter.DeleteById(id);
+        var success = _locationAssignmentPresenter.DeleteById(id, true);
         return Json(success
             ? new InfoJsonResult(200, "successfully deleted location assignment")
             : new InfoJsonResult(500, "Error on deleting location assignment"));

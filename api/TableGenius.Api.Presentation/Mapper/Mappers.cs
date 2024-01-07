@@ -12,6 +12,9 @@ public class Mappers : Profile
         CreateMap<Location, LocationRm>();
         CreateMap<LocationRm, Location>();
 
+        CreateMap<LocationAssignment, LocationAssignmentRm>();
+        CreateMap<LocationAssignmentRm, LocationAssignment>();
+
         CreateMap<Area, AreaRm>();
         CreateMap<AreaRm, Area>();
 

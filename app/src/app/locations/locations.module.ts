@@ -13,12 +13,16 @@ import { CoreModule } from '../core/core.module';
 import { DropdownModule } from 'primeng/dropdown';
 import { LocationCoreModule } from '../locations-core/location-core.module';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { LocationAssignmentsListComponent } from './components/location-assignments-list/location-assignments-list.component';
+import { AddLocationAssignmentComponent } from './components/add-location-assignment/add-location-assignment.component';
 
 @NgModule({
   declarations: [
     LocationsListComponent,
     AddLocationComponent,
     EditLocationComponent,
+    LocationAssignmentsListComponent,
+    AddLocationAssignmentComponent,
   ],
   imports: [
     CommonModule,

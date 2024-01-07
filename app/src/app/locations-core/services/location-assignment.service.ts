@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EndpointBuilder } from '../../core/endpoints/endpoint-builder';
 import { IApiResponse } from '../../domain/api-response';
-import { ILocationModel } from '../../models/location-model';
 import { ILocationAssignment } from '../../domain/location-assignment';
+import { ILocationAssignmentModel } from '../../models/location-assignment-model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,25 +19,15 @@ export class LocationAssignmentService {
     locationId: string
   ): Observable<IApiResponse<ILocationAssignment[]>> {
     return this.httpClient.get<IApiResponse<ILocationAssignment[]>>(
-      LocationAssignmentService.endpoint
+      LocationAssignmentService.singleEndpoint(locationId)
     );
   }
 
   createLocationAssignment(
-    model: ILocationModel
+    model: ILocationAssignmentModel
   ): Observable<IApiResponse<ILocationAssignment>> {
     return this.httpClient.post<IApiResponse<ILocationAssignment>>(
       LocationAssignmentService.endpoint,
-      model
-    );
-  }
-
-  updateLocationAssignment(
-    locationAssignmentId: string,
-    model: ILocationModel
-  ): Observable<IApiResponse<ILocationAssignment>> {
-    return this.httpClient.patch<IApiResponse<ILocationAssignment>>(
-      LocationAssignmentService.singleEndpoint(locationAssignmentId),
       model
     );
   }

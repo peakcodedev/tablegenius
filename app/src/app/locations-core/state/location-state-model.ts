@@ -8,4 +8,5 @@ export class LocationStateModel {
   public errorMessage: string;
   public editLocationForm: any;
   public addLocationForm: any;
+  public addLocationAssignmentForm: any;
 }

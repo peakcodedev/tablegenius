@@ -18,6 +18,11 @@ export class AddLocation {
   constructor() {}
 }
 
+export class AddLocationAssignment {
+  static readonly type = '[Location] Add location assignment';
+  constructor() {}
+}
+
 export class UpdateLocation {
   static readonly type = '[Location] Update location';
   constructor(public locationId: string) {}
@@ -26,4 +31,9 @@ export class UpdateLocation {
 export class DeleteLocation {
   static readonly type = '[Location] Delete location';
   constructor(public locationId: string) {}
+}
+
+export class DeleteLocationAssignment {
+  static readonly type = '[Location] Delete location assignment';
+  constructor(public locationAssignmentId: string) {}
 }

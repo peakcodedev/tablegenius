@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   AddLocation,
+  AddLocationAssignment,
   DeleteLocation,
+  DeleteLocationAssignment,
   LoadLocationAssignments,
   LoadLocations,
   ResetErrorMessage,
@@ -21,6 +23,7 @@ import {
 import { Navigate } from '@ngxs/router-plugin';
 import { ILocation } from '../../domain/location';
 import { LocationAssignmentService } from '../services/location-assignment.service';
+import { ILocationAssignment } from '../../domain/location-assignment';
 
 const defaults: LocationStateModel = {
   data: [],
@@ -34,6 +37,12 @@ const defaults: LocationStateModel = {
     errors: {},
   },
   addLocationForm: {
+    model: undefined,
+    dirty: false,
+    status: '',
+    errors: {},
+  },
+  addLocationAssignmentForm: {
     model: undefined,
     dirty: false,
     status: '',
@@ -158,6 +167,37 @@ export class LocationState {
     );
   }
 
+  @Action(AddLocationAssignment)
+  addLocationAssignment(
+    context: StateContext<LocationStateModel>,
+    _: AddLocationAssignment
+  ) {
+    context.patchState({ loading: true });
+    let formValues = context.getState().addLocationAssignmentForm.model;
+    return this.locationAssignmentService
+      .createLocationAssignment(formValues)
+      .pipe(
+        tap(res => {
+          context.setState(
+            patch<LocationStateModel>({
+              assignments: insertItem<ILocationAssignment>(res.data),
+            })
+          );
+          context.dispatch([
+            new ResetForm({ path: 'locations.addLocationAssignmentForm' }),
+            new Navigate(['/locations']),
+          ]);
+        }),
+        catchError(error => {
+          context.patchState({ errorMessage: error, loading: false });
+          return of([]);
+        }),
+        finalize(() => {
+          context.patchState({ loading: false });
+        })
+      );
+  }
+
   @Action(UpdateLocation)
   updateLocation(
     context: StateContext<LocationStateModel>,
@@ -216,5 +256,34 @@ export class LocationState {
         context.patchState({ loading: false });
       })
     );
+  }
+
+  @Action(DeleteLocationAssignment)
+  deleteLocationAssignment(
+    context: StateContext<LocationStateModel>,
+    action: DeleteLocationAssignment
+  ) {
+    context.patchState({ loading: true });
+    return this.locationAssignmentService
+      .deleteLocationAssignment(action.locationAssignmentId)
+      .pipe(
+        tap(_ => {
+          context.setState(
+            patch<LocationStateModel>({
+              assignments: removeItem<ILocationAssignment>(
+                locationAssignment =>
+                  locationAssignment.id === action.locationAssignmentId
+              ),
+            })
+          );
+        }),
+        catchError(error => {
+          context.patchState({ errorMessage: error, loading: false });
+          return of([]);
+        }),
+        finalize(() => {
+          context.patchState({ loading: false });
+        })
+      );
   }
 }

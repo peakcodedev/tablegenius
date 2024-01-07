@@ -28,6 +28,12 @@ export class LocationsListComponent implements OnInit {
       style: 'text',
       onClick: (id: string) => this.displayDeleteConfirmDialog(id),
     },
+    {
+      label: 'Benutzer bearbeiten',
+      icon: 'users',
+      style: 'text',
+      onClick: (id: string) => this.navigateToLocationAssignments(id),
+    },
   ];
 
   constructor(
@@ -46,6 +52,10 @@ export class LocationsListComponent implements OnInit {
 
   navigateToEditForm(id: string) {
     this.router.navigate(['locations/' + id + '/edit']);
+  }
+
+  navigateToLocationAssignments(id: string) {
+    this.router.navigate(['locations/' + id + '/assignments']);
   }
 
   private displayDeleteConfirmDialog(id: string) {
