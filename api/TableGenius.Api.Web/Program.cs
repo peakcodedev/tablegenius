@@ -12,7 +12,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT").ToLower();
         Log.Logger = new LoggerConfiguration()
             .Enrich.WithProperty("Application", "TableGenius.API")
             .Enrich.WithProperty("Environment", "")

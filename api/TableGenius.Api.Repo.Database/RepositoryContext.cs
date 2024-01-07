@@ -1,21 +1,17 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using TableGenius.Api.Repo.Database.Configurations;
 using TableGenius.Api.Repo.Database.Providers;
-using TableGenius.Api.Settings;
 
 namespace TableGenius.Api.Repo.Database;
 
 public class RepositoryContext : DbContext
 {
-    private readonly IOptions<DatabaseOptions> _databaseOptions;
     public TenantProvider TenantProvider;
 
-    public RepositoryContext(IOptions<DatabaseOptions> options, TenantProvider tenantProvider)
+    public RepositoryContext(DbContextOptions<RepositoryContext> options, TenantProvider tenantProvider) : base(options)
     {
         ContextId = Guid.NewGuid();
-        _databaseOptions = options;
         TenantProvider = tenantProvider;
         AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
     }
@@ -33,11 +29,5 @@ public class RepositoryContext : DbContext
         modelBuilder.ApplyConfiguration(new ReservationAssignmentConfiguration(this));
         modelBuilder.ApplyConfiguration(new TableReservationAssignmentConfiguration(this));
         base.OnModelCreating(modelBuilder);
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseNpgsql(_databaseOptions.Value.Database,
-            x => x.MigrationsAssembly("TableGenius.Api.Repo.Database"));
     }
 }

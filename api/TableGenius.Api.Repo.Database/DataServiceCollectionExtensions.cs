@@ -11,7 +11,9 @@ public static class DataServiceCollectionExtensions
     public static void AddDatabase(this IServiceCollection services, string connectionString)
     {
         services.AddTransient<TenantProvider>();
-        services.AddDbContext<RepositoryContext>();
+        services.AddDbContext<RepositoryContext>(
+            opt => opt.UseNpgsql(connectionString,
+                x => x.MigrationsAssembly("TableGenius.Api.Repo.Database")));
         services.AddDbContextFactory<RepositoryContext>(
             opt => opt.UseNpgsql(connectionString,
                 x => x.MigrationsAssembly("TableGenius.Api.Repo.Database")), ServiceLifetime.Transient);
