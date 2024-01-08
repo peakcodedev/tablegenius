@@ -9,8 +9,8 @@ services:
     ports:
       - "8181:8080"
     environment:
-      - ASPNETCORE_ENVIRONMENT=development
-      - DOTNET_ENVIRONMENT=development
+      - ASPNETCORE_ENVIRONMENT=production
+      - ConnectionStrings__Database=Host=tableGenius.db;Database=tableGenius;Username=ufo;Password=ufo
     build:
       context: .
       dockerfile: Dockerfile

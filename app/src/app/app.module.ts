@@ -75,7 +75,11 @@ registerLocaleData(locale);
       cacheLocation: 'localstorage',
       issuer: 'table-genius.eu.auth0.com',
       httpInterceptor: {
-        allowedList: ['http://localhost:8181/*'],
+        allowedList: [
+          'http://localhost:8181/*',
+          'https://tablegenius-api.peakcode.dev/*',
+          'https://tablegenius-api-testing.peakcode.dev/*',
+        ],
       },
     }),
   ],
