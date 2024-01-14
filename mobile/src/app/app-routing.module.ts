@@ -30,6 +30,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'table-assignments',
+        loadChildren: () =>
+          import('./table-assignments/table-assignments.module').then(
+            m => m.TableAssignmentsModule
+          ),
+      },
+      {
         path: 'overview',
         loadChildren: () =>
           import(
