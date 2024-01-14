@@ -5,6 +5,7 @@ import {
   RedirectLoginOptions,
 } from '@auth0/auth0-angular';
 import { Router } from '@angular/router';
+import { CoreFacade } from '../../../../core/state/core.facade';
 
 @Component({
   selector: 'login',
@@ -13,7 +14,8 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
   constructor(
     public readonly authService: AuthService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly coreFacade: CoreFacade
   ) {}
 
   getLoginOptions(): RedirectLoginOptions<AppState> {
@@ -27,6 +29,7 @@ export class LoginPage implements OnInit {
       if (isLoggedIn) {
         this.router.navigate(['intro']);
       } else {
+        this.coreFacade.setTenantId('');
         this.authService.loginWithRedirect(this.getLoginOptions());
       }
     });

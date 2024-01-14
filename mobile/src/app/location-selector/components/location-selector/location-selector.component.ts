@@ -24,7 +24,7 @@ export class LocationSelectorComponent implements OnInit {
   ngOnInit(): void {
     this.facade.loadLocationsOfUser();
     this.coreFacade.tenantId.pipe(filter(Boolean)).subscribe(value => {
-      this.router.navigate(['home']);
+      this.router.navigate(['tabs']);
     });
   }
 }

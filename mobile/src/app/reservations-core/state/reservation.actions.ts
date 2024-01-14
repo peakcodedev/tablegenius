@@ -13,6 +13,11 @@ export class SetSelectedDate {
   constructor(public selectedDate: Date) {}
 }
 
+export class SetSearchString {
+  static readonly type = '[Reservation] Set search string';
+  constructor(public searchString: string) {}
+}
+
 export class AddReservation {
   static readonly type = '[Reservation] Add reservation';
   constructor() {}

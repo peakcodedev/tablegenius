@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="secondary" *ngIf="(facade.selectedArea | async) && (facade.selectedDate | async) && (facade.selectedAreaSlot | async)">
+            <ion-button [disabled]="facade.loading | async" (click)="loadData()"><ion-icon slot="icon-only" name="refresh"></ion-icon></ion-button>
+        </ion-buttons>
+        <ion-title>Übersicht</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="filters">
+        <ion-datetime-button datetime="selectedDate"></ion-datetime-button>
+        <ion-popover [keepContentsMounted]="true" animated="false" >
+            <ng-template>
+                <ion-datetime id="selectedDate"
+                              [(ngModel)]="selectedDate"
+                              [showDefaultButtons]="true"
+                              [min]="minDate"
+                              (ionChange)="onDateSelect($event)"
+                              presentation="date">
+
+                </ion-datetime>
+            </ng-template>
+        </ion-popover>
+        <ion-select class="area" aria-label="area" placeholder="Bereich auswählen" interface="popover" (ionChange)="onAreaSelect($event)">
+            <ion-select-option *ngFor="let a of areas | async" [value]="a.value">{{a.name}}</ion-select-option>
+        </ion-select>
+        <ng-container *ngIf="(areaFacade.byId$(selectedArea) | async) && areaSlots.length > 0">
+            <ion-select class="areaslots" *ngIf="facade.selectedArea | async" aria-label="areaslot" placeholder="Zeitbereich auswählen" interface="popover" (ionChange)="onAreaSlotSelect($event)">
+                <ion-select-option *ngFor="let d of areaSlots" [value]="d.value">{{d.name}}</ion-select-option>
+            </ion-select>
+        </ng-container>
+        <ng-container *ngIf="(facade.selectedArea | async) && (facade.selectedDate | async) && (facade.selectedAreaSlot | async)">
+            <ion-chip [color]="selectedView === 'overview' ? 'primary' : 'secondary'" (click)="changeView('overview')">Zuweisungen</ion-chip>
+            <ion-chip [color]="selectedView === 'tables' ? 'primary' : 'secondary'" (click)="changeView('tables')">Freie Tische</ion-chip>
+        </ng-container>
+    </div>
+    <ng-container *ngIf="(facade.selectedArea | async) && (facade.selectedDate | async) && (facade.selectedAreaSlot | async)">
+        <ng-container *ngIf="selectedView === 'overview'">
+            <div class="reservations">
+                <div class="reservation-list-item" *ngFor="let assignment of facade.assignments | async">
+                    <div class="info-grid">
+                        <div class="info">
+                            <h4>{{assignment.reservation.name}}</h4>
+                            <p class="date"><b>Zeitpunkt:</b> {{assignment.bookingDate | date:"short":"UTC"}}</p>
+                        </div>
+                        <div class="action">
+                            <i class="pi pi-times" style="font-size: 1.5rem" (click)="deleteResourceAssignment(assignment.id)"></i>
+                        </div>
+                    </div>
+                    <div class="tables">
+                        <div class="table-list">
+                            <div class="table-list-item"  *ngFor="let tableAssignment of assignment.tableReservationAssignments">
+                                <span><b>Nr. {{tableAssignment.table.tableNumber}}</b> | Anzahl: {{ tableAssignment.table.capacity }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reservation-list-item-empty" *ngIf="(facade.assignments | async).length === 0">
+                    <h3>Keine Zuweisungen für diesen Zeitraum vorhanden.</h3>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="selectedView === 'tables'">
+            <div class="table-list-big">
+                <div class="table-list-item"  *ngFor="let table of facade.freeTables | async">
+                    <span><b>Nr. {{table.tableNumber}}</b> | Anzahl: {{ table.capacity }}</span>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+</ion-content>

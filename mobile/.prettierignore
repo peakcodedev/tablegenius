@@ -1,0 +1,7 @@
+build
+coverage
+ios
+node_modules
+android
+.nx
+www

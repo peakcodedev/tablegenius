@@ -5,6 +5,7 @@ import {
   RedirectLoginOptions,
 } from '@auth0/auth0-angular';
 import { Router } from '@angular/router';
+import { Browser } from '@capacitor/browser';
 
 @Component({
   selector: 'login',
@@ -16,18 +17,22 @@ export class LoginPage implements OnInit {
     private readonly router: Router
   ) {}
 
-  getLoginOptions(): RedirectLoginOptions<AppState> {
-    return {
-      appState: { target: '/intro' },
-    };
-  }
-
   ngOnInit(): void {
     this.authService.isAuthenticated$.subscribe(isLoggedIn => {
+      console.error(isLoggedIn);
       if (isLoggedIn) {
         this.router.navigate(['intro']);
       } else {
-        this.authService.loginWithRedirect(this.getLoginOptions());
+        this.authService
+          .loginWithRedirect({
+            async openUrl(url: string) {
+              await Browser.open({ url, windowName: '_self' });
+            },
+            appState: {
+              target: '/intro',
+            },
+          })
+          .subscribe();
       }
     });
   }

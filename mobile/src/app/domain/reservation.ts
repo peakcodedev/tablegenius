@@ -5,4 +5,5 @@ export interface IReservation {
   comments: string;
   count: number;
   phoneNumber: string;
+  bookingDateString?: string;
 }

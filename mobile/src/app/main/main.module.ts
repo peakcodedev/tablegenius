@@ -2,16 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { HomePage } from './pages/home/home.page';
-
-import { MainRoutingModule } from './main-routing.module';
+import { TabsContainerPage } from './pages/tabs-container/tabs-container-page.component';
 import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { LoginPage } from './pages/login/login.page';
+import { HomePage } from './pages/home/home.page';
+import { LocationCoreModule } from '../locations-core/location-core.module';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, MainRoutingModule],
+  imports: [CommonModule, FormsModule, IonicModule, LocationCoreModule],
   declarations: [
+    TabsContainerPage,
+    LoginPage,
     HomePage,
     LoginButtonComponent,
     LogoutButtonComponent,

@@ -10,6 +10,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "strictPropertyInitialization": false,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -18,11 +19,9 @@
     "importHelpers": true,
     "target": "es2022",
     "module": "es2020",
-    "lib": [
-      "es2018", 
-      "dom"
-    ],
-    "useDefineForClassFields": false
+    "lib": ["es2018", "dom"],
+    "useDefineForClassFields": false,
+    "strictNullChecks": false,
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

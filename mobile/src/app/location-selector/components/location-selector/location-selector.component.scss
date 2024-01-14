@@ -31,14 +31,18 @@
   color: #092635;
   margin-bottom: 1rem;
   display: grid;
-  grid-template-columns: 10rem 1fr 1fr 1fr;
+  grid-template-columns: 10rem 1fr;
   padding: 1rem;
+  padding-bottom: 1.5rem;
   border-radius: 5px;
   grid-template-rows: auto;
   grid-template-areas:
-    "location-logo location-name location-name location-name"
-    "location-logo location-address location-address location-address"
-    "location-logo location-address location-address location-address";
+    "location-logo location-name"
+    "location-logo location-address"
+    "location-logo location-address";
+}
+
+.location-item-hover {
   &:hover {
     background-color: #5C8374;
   }
@@ -59,7 +63,6 @@
 
 .location-name {
   grid-area: location-name;
-  font-family: "Roboto Bold";
   font-size: 20pt;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;

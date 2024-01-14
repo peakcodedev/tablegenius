@@ -8,7 +8,6 @@ import {
 import { UserLocationsService } from '../services/user-locations.service';
 import { catchError, of, tap } from 'rxjs';
 import { LocationSelectionStateModel } from './location-selection-state-model';
-import { ToastrService } from 'ngx-toastr';
 import { SetTenantId } from '../../core/state/core.actions';
 
 const defaults: LocationSelectionStateModel = {
@@ -35,10 +34,7 @@ export class LocationSelectionState {
     return state.locations;
   }
 
-  constructor(
-    private readonly userLocationsService: UserLocationsService,
-    private readonly toastrService: ToastrService
-  ) {}
+  constructor(private readonly userLocationsService: UserLocationsService) {}
 
   @Action(ResetErrorMessage)
   resetErrorMessage(
@@ -74,8 +70,5 @@ export class LocationSelectionState {
     action: SetLocation
   ) {
     context.dispatch(new SetTenantId(action.locationId));
-    this.toastrService.success(
-      'Du hast erfolgreich das Restaurant ausgewählt.'
-    );
   }
 }

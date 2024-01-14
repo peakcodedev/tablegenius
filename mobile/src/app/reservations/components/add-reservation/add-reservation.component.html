@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="secondary">
+            <ion-button (click)="navigateToList()"><ion-icon slot="icon-only" name="back"></ion-icon></ion-button>
+        </ion-buttons>
+        <ion-title>Neue Reservation hinzufügen</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="form">
+    <form [formGroup]="form" ngxsForm="reservations.addReservationForm" (ngSubmit)="reservationFacade.addReservation()" [ngxsFormClearOnDestroy]="true">
+        <ion-item>
+            <ion-input type="text" formControlName="name" required label="Name" labelPlacement="stacked" placeholder="Familie Meier"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input type="number" formControlName="count" required label="Anzahl Personen" labelPlacement="stacked" placeholder="4"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="datetime-local" formControlName="bookingDate" required label="Zeitpunkt" labelPlacement="stacked" placeholder="0123456789"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="tel" formControlName="phoneNumber" required label="Telefonnummer" labelPlacement="stacked" placeholder="0123456789"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-textarea rows="10" label="Kommentare" labelPlacement="stacked" formControlName="comments" placeholder="z.B. Welches Menü?"></ion-textarea>
+        </ion-item>
+    </form>
+</ion-content>
+<ion-footer *ngIf="form">
+    <ion-button (click)="reservationFacade.addReservation()" [disabled]="form.invalid" class="add-button" expand="block" fill="outline">
+        <ion-icon slot="start" name="add"></ion-icon>
+        Neue Reservation speichern
+    </ion-button>
+</ion-footer>

@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="secondary">
+            <ion-button (click)="refreshData()"><ion-icon slot="icon-only" name="refresh"></ion-icon></ion-button>
+        </ion-buttons>
+        <ion-title>Reservationen</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar placeholder="Suche" show-clear-button="focus" [debounce]="500" (ionInput)="setSearchString($event)"></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor="let reservation of data$ | async">
+            <ion-label>
+                <h2>{{ reservation.name }}</h2>
+                <p><b>Anzahl:</b> {{ reservation.count }} | <b>Zeitpunt:</b> {{ reservation.bookingDateString}} | {{reservation.phoneNumber}}</p>
+                <span> </span>
+            </ion-label>
+            <ion-button class="delete-button" item-right (click)="navigateToEditForm(reservation.id)">Bearbeiten</ion-button>
+            <ion-button id="delete-button-alert" class="delete-button" item-right>Löschen</ion-button>
+            <ion-alert
+                    trigger="delete-button-alert"
+                    header="Löschen"
+                    [buttons]="alertButtons"
+                    (didDismiss)="test($event)"
+            ></ion-alert>
+        </ion-item>
+    </ion-list>
+</ion-content>
+<ion-footer>
+    <ion-button (click)="navigateToAddForm()" class="add-button" expand="block" fill="outline"><ion-icon slot="start" name="add"></ion-icon>Reservation hinzufügen</ion-button>
+</ion-footer>

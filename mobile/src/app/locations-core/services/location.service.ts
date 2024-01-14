@@ -19,6 +19,12 @@ export class LocationService {
     );
   }
 
+  getLocation(locationId: string): Observable<IApiResponse<ILocation>> {
+    return this.httpClient.get<IApiResponse<ILocation>>(
+      LocationService.singleEndpoint(locationId)
+    );
+  }
+
   createLocation(model: ILocationModel): Observable<IApiResponse<ILocation>> {
     return this.httpClient.post<IApiResponse<ILocation>>(
       LocationService.endpoint,

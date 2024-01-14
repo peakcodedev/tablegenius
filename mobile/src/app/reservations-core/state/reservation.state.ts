@@ -5,6 +5,7 @@ import {
   DeleteReservation,
   LoadReservations,
   ResetErrorMessage,
+  SetSearchString,
   SetSelectedDate,
   UpdateReservation,
 } from './reservation.actions';
@@ -20,13 +21,14 @@ import {
 } from '@ngxs/store/operators';
 import { Navigate } from '@ngxs/router-plugin';
 import { IReservation } from '../../domain/reservation';
-import { ToastrService } from 'ngx-toastr';
+//import { ToastrService } from 'ngx-toastr';
 
 const defaults: ReservationStateModel = {
   data: [],
   errorMessage: '',
-  selectedDate: null,
+  selectedDate: null as any,
   loading: false,
+  searchString: undefined,
   editReservationForm: {
     model: undefined,
     dirty: false,
@@ -51,6 +53,10 @@ export class ReservationState {
     return state.errorMessage;
   }
 
+  @Selector() static searchString(state: ReservationStateModel) {
+    return state.searchString;
+  }
+
   @Selector() static selectedDate(state: ReservationStateModel) {
     return state.selectedDate;
   }
@@ -63,20 +69,11 @@ export class ReservationState {
     return state.data;
   }
 
-  @Selector() static reservationsList(state: ReservationStateModel) {
-    return state.data.map(reservation => {
-      return { ...reservation };
-    });
-  }
-
   @Selector() static reservation(state: ReservationStateModel) {
     return (id: string) => state.data.find(e => e.id === id);
   }
 
-  constructor(
-    private readonly reservationService: ReservationService,
-    private readonly toastrService: ToastrService
-  ) {}
+  constructor(private readonly reservationService: ReservationService) {}
 
   @Action(ResetErrorMessage)
   resetErrorMessage(
@@ -95,6 +92,16 @@ export class ReservationState {
   ) {
     patchState({
       selectedDate: action.selectedDate,
+    });
+  }
+
+  @Action(SetSearchString)
+  setSearchString(
+    { patchState }: StateContext<ReservationStateModel>,
+    action: SetSearchString
+  ) {
+    patchState({
+      searchString: action.searchString,
     });
   }
 
@@ -132,11 +139,8 @@ export class ReservationState {
         );
         context.dispatch([
           new ResetForm({ path: 'reservations.addReservationForm' }),
-          new Navigate(['/reservations']),
+          new Navigate(['/tabs/reservations']),
         ]);
-        this.toastrService.success(
-          'Die Reservation wurde erfolgreich hinzugefügt.'
-        );
       }),
       catchError(error => {
         context.patchState({ errorMessage: error, loading: false });
@@ -162,18 +166,15 @@ export class ReservationState {
           context.setState(
             patch<ReservationStateModel>({
               data: updateItem<IReservation>(
-                location => location.id === action.reservationId,
+                reservation => reservation.id === action.reservationId,
                 res.data
               ),
             })
           );
           context.dispatch([
             new ResetForm({ path: 'reservations.editReservationForm' }),
-            new Navigate(['/reservations']),
+            new Navigate(['/tabs/reservations']),
           ]);
-          this.toastrService.success(
-            'Die Reservation wurde erfolgreich aktualisiert.'
-          );
         }),
         catchError(error => {
           context.patchState({ errorMessage: error, loading: false });
@@ -199,9 +200,6 @@ export class ReservationState {
               location => location.id === action.reservationId
             ),
           })
-        );
-        this.toastrService.success(
-          'Die Reservation wurde erfolgreich gelöscht.'
         );
       }),
       catchError(error => {

@@ -7,6 +7,7 @@ import {
   AddReservation,
   DeleteReservation,
   LoadReservations,
+  SetSearchString,
   SetSelectedDate,
   UpdateReservation,
 } from './reservation.actions';
@@ -17,12 +18,12 @@ import { IReservation } from '../../domain/reservation';
 export class ReservationFacade {
   @Select(ReservationState.reservations)
   reservations: Observable<IReservation[]>;
-  @Select(ReservationState.reservationsList)
-  reservationsList: Observable<IReservation[]>;
   @Select(ReservationState.loading)
   loading: Observable<boolean>;
   @Select(ReservationState.errorMessage)
   errorMessage: Observable<string>;
+  @Select(ReservationState.searchString)
+  searchString: Observable<string>;
   @Select(ReservationState.selectedDate)
   selectedDate: Observable<Date>;
 
@@ -49,6 +50,8 @@ export class ReservationFacade {
   updateReservation = (reservationId: string) =>
     new UpdateReservation(reservationId);
 
+  @Dispatch()
+  setSearchString = (searchString: string) => new SetSearchString(searchString);
   @Dispatch()
   setSelectedDate = (date: Date) => new SetSelectedDate(date);
 }
