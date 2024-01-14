@@ -1,0 +1,10 @@
+<ng-container *ngIf="reservation">
+    <h4>Details zur Reservation</h4>
+    <p><b>Name: </b> {{reservation.name}}</p>
+    <p><b>Telefonnummer: </b> {{reservation.phoneNumber}}</p>
+    <p><b>Anzahl Personen: </b> {{reservation.count}}</p>
+    <ng-container *ngIf="reservation.comments">
+        <h5>Kommentare</h5>
+        <p class="comments">{{reservation.comments}}</p>
+    </ng-container>
+</ng-container>

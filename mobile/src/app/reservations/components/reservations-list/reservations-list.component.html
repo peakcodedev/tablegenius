@@ -3,6 +3,27 @@
         <ion-buttons slot="secondary">
             <ion-button (click)="refreshData()"><ion-icon slot="icon-only" name="refresh"></ion-icon></ion-button>
         </ion-buttons>
+        <ion-buttons slot="primary">
+            <ion-button id="click-trigger"><ion-icon slot="icon-only" name="filter-outline"></ion-icon></ion-button>
+            <ion-popover trigger="click-trigger" triggerAction="click" [keepContentsMounted]="true" animated="false" >
+                <ng-template>
+                    <ion-button *ngIf="selectedDate" class="filter-button" (click)="clearSelectedDate()">Filter entfernen</ion-button>
+                    <ion-datetime-button class="datetime-button" datetime="selectedDate"></ion-datetime-button>
+                    <ion-popover [keepContentsMounted]="true" animated="false" >
+                        <ng-template>
+                            <ion-datetime id="selectedDate"
+                                          [(ngModel)]="selectedDate"
+                                          [showDefaultButtons]="true"
+                                          [min]="minDate"
+                                          (ionChange)="onDateSelect($event)"
+                                          presentation="date">
+
+                            </ion-datetime>
+                        </ng-template>
+                    </ion-popover>
+                </ng-template>
+            </ion-popover>
+        </ion-buttons>
         <ion-title>Reservationen</ion-title>
     </ion-toolbar>
     <ion-toolbar>

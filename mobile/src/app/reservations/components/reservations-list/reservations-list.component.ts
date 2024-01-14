@@ -9,9 +9,12 @@ import {
   startWith,
   Subject,
   takeUntil,
+  tap,
 } from 'rxjs';
 import { IReservation } from '../../../domain/reservation';
 import { DatePipe } from '@angular/common';
+import { PopoverController } from '@ionic/angular';
+import { ReservationAssignmentDetailComponent } from '../../../reservation-assignments/components/reservation-assignment-detail/reservation-assignment-detail.component';
 
 @Component({
   selector: 'reservations-list',
@@ -21,6 +24,8 @@ import { DatePipe } from '@angular/common';
 export class ReservationsListComponent implements OnInit, OnDestroy {
   data$: Observable<IReservation[]>;
   destroy = new Subject<void>();
+  minDate = new Date().toISOString();
+  selectedDate: string = undefined;
   public alertButtons = [
     {
       text: 'Abbrechen',
@@ -50,6 +55,7 @@ export class ReservationsListComponent implements OnInit, OnDestroy {
     ]).pipe(
       takeUntil(this.destroy),
       map(([selectedDate, reservations, searchString]) => {
+        console.error(selectedDate);
         if (selectedDate) {
           return reservations.filter(
             reservation =>
@@ -83,6 +89,15 @@ export class ReservationsListComponent implements OnInit, OnDestroy {
       .subscribe(_ => {
         this.refreshData();
       });
+    this.reservationFacade.selectedDate
+      .pipe(
+        takeUntil(this.destroy),
+        tap(value => {
+          console.error(value);
+          this.selectedDate = value?.toISOString();
+        })
+      )
+      .subscribe();
   }
 
   refreshData() {
@@ -105,8 +120,12 @@ export class ReservationsListComponent implements OnInit, OnDestroy {
     this.router.navigate(['tabs/reservations/' + id + '/edit']);
   }
 
-  onDateSelect(date: Date): void {
-    this.reservationFacade.setSelectedDate(date);
+  onDateSelect(event: CustomEvent): void {
+    this.reservationFacade.setSelectedDate(new Date(event.detail.value));
+  }
+
+  clearSelectedDate() {
+    this.reservationFacade.setSelectedDate(null);
   }
 
   ngOnDestroy(): void {

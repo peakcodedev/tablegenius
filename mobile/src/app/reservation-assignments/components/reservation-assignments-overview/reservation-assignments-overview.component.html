@@ -37,7 +37,7 @@
     <ng-container *ngIf="(facade.selectedArea | async) && (facade.selectedDate | async) && (facade.selectedAreaSlot | async)">
         <ng-container *ngIf="selectedView === 'overview'">
             <div class="reservations">
-                <div class="reservation-list-item" *ngFor="let assignment of facade.assignments | async">
+                <div class="reservation-list-item" *ngFor="let assignment of facade.assignments | async" (click)="openDetailViewReservation(assignment.reservation)">
                     <div class="info-grid">
                         <div class="info">
                             <h4>{{assignment.reservation.name}}</h4>
@@ -62,7 +62,7 @@
         </ng-container>
         <ng-container *ngIf="selectedView === 'tables'">
             <div class="table-list-big">
-                <div class="table-list-item"  *ngFor="let table of facade.freeTables | async">
+                <div class="table-list-item" *ngFor="let table of facade.freeTables | async" (click)="openDetailViewTable(table)">
                     <span><b>Nr. {{table.tableNumber}}</b> | Anzahl: {{ table.capacity }}</span>
                 </div>
             </div>

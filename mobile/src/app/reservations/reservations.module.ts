@@ -4,7 +4,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { reservationsRouting } from './reservations-routing.module';
 import { ReservationsListComponent } from './components/reservations-list/reservations-list.component';
 import { AddReservationComponent } from './components/add-reservation/add-reservation.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { EditReservationComponent } from './components/edit-reservation/edit-reservation.component';
 import { CoreModule } from '../core/core.module';
@@ -26,6 +26,7 @@ import { IonicModule } from '@ionic/angular';
     ReservationCoreModule,
     CommonModule,
     IonicModule,
+    FormsModule,
   ],
   providers: [DatePipe],
 })

@@ -9,12 +9,14 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { LoginPage } from './pages/login/login.page';
 import { HomePage } from './pages/home/home.page';
 import { LocationCoreModule } from '../locations-core/location-core.module';
+import { LogoutPage } from './pages/logout/logout.page';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, LocationCoreModule],
   declarations: [
     TabsContainerPage,
     LoginPage,
+    LogoutPage,
     HomePage,
     LoginButtonComponent,
     LogoutButtonComponent,

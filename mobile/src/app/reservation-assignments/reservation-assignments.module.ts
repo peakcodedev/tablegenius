@@ -10,9 +10,15 @@ import { AreasCoreModule } from '../areas-core/areas-core.module';
 import { AreaSlotsCoreModule } from '../area-slots-core/area-slots-core.module';
 import { ReservationAssignmentCoreModule } from '../reservation-assignments-core/reservation-assignment-core.module';
 import { IonicModule } from '@ionic/angular';
+import { ReservationAssignmentDetailComponent } from './components/reservation-assignment-detail/reservation-assignment-detail.component';
+import { TableDetailComponent } from './components/table-detail/table-detail.component';
 
 @NgModule({
-  declarations: [ReservationAssignmentsOverviewComponent],
+  declarations: [
+    ReservationAssignmentsOverviewComponent,
+    ReservationAssignmentDetailComponent,
+    TableDetailComponent,
+  ],
   imports: [
     CommonModule,
     reservationAssignmentsRouting,

@@ -1,0 +1,9 @@
+<ng-container *ngIf="table">
+    <h4>Details zum Tisch</h4>
+    <p><b>Tischnummer: </b> {{table.tableNumber}}</p>
+    <p><b>Grösse: </b> {{table.capacity}}</p>
+    <ng-container *ngIf="table.description">
+        <h5>Beschreibung</h5>
+        <p class="comments">{{table.description}}</p>
+    </ng-container>
+</ng-container>

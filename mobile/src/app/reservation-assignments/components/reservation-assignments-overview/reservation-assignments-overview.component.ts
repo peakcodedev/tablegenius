@@ -4,6 +4,11 @@ import { AreasHelper } from '../../../areas-core/helpers/areas.helper';
 import { AreaFacade } from '../../../areas-core/state/area.facade';
 import { AreaSlotsHelper } from '../../../area-slots-core/helpers/area-slots.helper';
 import { ReservationAssignmentFacade } from '../../../reservation-assignments-core/state/reservation-assignment.facade';
+import { IReservation } from '../../../domain/reservation';
+import { ReservationAssignmentDetailComponent } from '../reservation-assignment-detail/reservation-assignment-detail.component';
+import { PopoverController } from '@ionic/angular';
+import { ITable } from '../../../domain/table';
+import { TableDetailComponent } from '../table-detail/table-detail.component';
 
 @Component({
   selector: 'reservation-assignments-overview',
@@ -26,7 +31,8 @@ export class ReservationAssignmentsOverviewComponent
     private readonly areasHelper: AreasHelper,
     readonly facade: ReservationAssignmentFacade,
     readonly areaFacade: AreaFacade,
-    private readonly areaSlotsHelper: AreaSlotsHelper
+    private readonly areaSlotsHelper: AreaSlotsHelper,
+    private readonly popoverController: PopoverController
   ) {}
 
   ngOnInit(): void {
@@ -62,7 +68,6 @@ export class ReservationAssignmentsOverviewComponent
   }
 
   onDateSelect(event: CustomEvent): void {
-    console.error(event.detail.value);
     this.facade.setSelectedDate(event.detail.value);
     this.loadData();
   }
@@ -86,6 +91,32 @@ export class ReservationAssignmentsOverviewComponent
 
   deleteResourceAssignment(id: string): void {
     this.facade.deleteReservationAssignment(id);
+  }
+
+  async openDetailViewReservation(reservation: IReservation) {
+    const popover = await this.popoverController.create({
+      component: ReservationAssignmentDetailComponent,
+      componentProps: {
+        reservation: reservation,
+      },
+      cssClass: 'big-popover',
+      translucent: true,
+    });
+
+    return await popover.present();
+  }
+
+  async openDetailViewTable(table: ITable) {
+    const popover = await this.popoverController.create({
+      component: TableDetailComponent,
+      componentProps: {
+        table: table,
+      },
+      cssClass: 'big-popover',
+      translucent: true,
+    });
+
+    return await popover.present();
   }
 
   ngOnDestroy(): void {
