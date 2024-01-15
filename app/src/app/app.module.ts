@@ -52,8 +52,12 @@ registerLocaleData(locale);
     NgxsModule.forRoot([], {
       developmentMode: !environment.production,
     }),
-    NgxsLoggerPluginModule.forRoot(),
-    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot({
+      disabled: environment.production,
+    }),
+    NgxsReduxDevtoolsPluginModule.forRoot({
+      disabled: environment.production,
+    }),
     NgxsFormPluginModule.forRoot(),
     NgxsRouterPluginModule.forRoot(),
     NgxsStoragePluginModule.forRoot({
