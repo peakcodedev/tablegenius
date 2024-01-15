@@ -1,5 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { combineLatestWith, filter, map, Observable, tap } from 'rxjs';
+import {
+  combineLatest,
+  combineLatestWith,
+  filter,
+  map,
+  Observable,
+  startWith,
+  Subject,
+  takeUntil,
+  tap,
+} from 'rxjs';
 import { AreasHelper } from '../../../areas-core/helpers/areas.helper';
 import { TableAssignmentFacade } from '../../state/table-assignment.facade';
 import { IReservation } from '../../../domain/reservation';
@@ -15,18 +25,19 @@ import { ITableReservationAssignmentModel } from '../../../models/table-reservat
   styleUrls: ['./table-assignments-overview.component.scss'],
 })
 export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
-  minDate = new Date();
+  minDate = new Date().toISOString();
   areas: Observable<any[]>;
   areaSlots: any[];
   selectedArea = '';
   selectedAreaSlot = '';
-  selectedDate: Date = null;
+  selectedDate: string = null;
   reservations$: Observable<IReservation[]>;
   tables$: Observable<ITableWithStatus[]>;
   selectedTables: ITableWithStatus[] = [];
   selectedReservation: IReservation;
   draggedTable: ITableWithStatus;
   draggedReservation: IReservation;
+  destroy = new Subject<void>();
 
   constructor(
     private readonly areasHelper: AreasHelper,
@@ -37,6 +48,7 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.facade.loadReservations();
+    this.facade.setSelectedDate(new Date());
     this.areas = this.areasHelper.availableAreas();
     this.areaSlots = this.areaSlotsHelper.availableAreaSlots(undefined);
     this.facade.selectedArea
@@ -48,7 +60,11 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
       )
       .subscribe();
     this.facade.selectedDate
-      .pipe(tap(value => (this.selectedDate = value)))
+      .pipe(
+        tap(value => {
+          this.selectedDate = value?.toISOString();
+        })
+      )
       .subscribe();
     this.facade.selectedAreaSlot
       .pipe(
@@ -58,19 +74,27 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe();
-    this.reservations$ = this.facade.selectedDate.pipe(
-      combineLatestWith(this.facade.reservations),
+
+    this.reservations$ = combineLatest([
+      this.facade.selectedDate.pipe(startWith(undefined)),
+      this.facade.reservations.pipe(startWith([])),
+    ]).pipe(
+      takeUntil(this.destroy),
       filter(([selectedDate, _reservations]) => Boolean(selectedDate)),
       map(([selectedDate, reservations]) =>
         reservations.filter(
           reservation =>
-            new Date(reservation.bookingDate).setHours(0, 0, 0, 0) ===
-            selectedDate.setHours(0, 0, 0, 0)
+            new Date(reservation.bookingDate)?.setHours(0, 0, 0, 0) ===
+            selectedDate?.setHours(0, 0, 0, 0)
         )
       )
     );
-    this.tables$ = this.facade.selectedArea.pipe(
-      combineLatestWith(this.facade.tables),
+
+    this.tables$ = combineLatest([
+      this.facade.selectedArea.pipe(startWith(undefined)),
+      this.facade.tables.pipe(startWith([])),
+    ]).pipe(
+      takeUntil(this.destroy),
       filter(([selectedArea, _tables]) => Boolean(selectedArea)),
       map(([selectedArea, tables]) =>
         tables.filter(table => table.areaId === selectedArea)
@@ -80,7 +104,7 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
   }
 
   onDateSelect(event: CustomEvent): void {
-    this.facade.setSelectedDate(event.detail.value);
+    this.facade.setSelectedDate(new Date(event.detail.value));
     this.onDiscard();
   }
 
@@ -161,9 +185,9 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.facade.setSelectedDate(undefined);
-    this.facade.setSelectedArea(undefined);
-    this.facade.setSelectedAreaSlot(undefined);
+    this.facade.clearState();
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   tableIsSelected(table: ITableWithStatus): boolean {

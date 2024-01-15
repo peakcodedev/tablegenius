@@ -15,6 +15,11 @@ export class ResetErrorMessage {
   constructor() {}
 }
 
+export class ClearState {
+  static readonly type = '[Table Assignment] Clear state';
+  constructor() {}
+}
+
 export class SetSelectedDate {
   static readonly type = '[Table Assignment] Set selected date';
   constructor(public selectedDate: Date) {}

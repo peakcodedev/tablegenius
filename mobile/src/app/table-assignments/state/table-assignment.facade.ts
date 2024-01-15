@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { TableAssignmentState } from './table-assignment.state';
 import {
   AddReservationAssignment,
+  ClearState,
   LoadReservations,
   LoadTables,
   SetSelectedArea,
@@ -33,6 +34,8 @@ export class TableAssignmentFacade {
 
   @Dispatch()
   loadReservations = () => new LoadReservations();
+  @Dispatch()
+  clearState = () => new ClearState();
   @Dispatch()
   loadTables = (areaSlotId: string) => new LoadTables(areaSlotId);
   loadReservations$ = () => this.appState.dispatch(new LoadReservations());

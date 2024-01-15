@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   AddReservationAssignment,
+  ClearState,
   LoadReservations,
   LoadTables,
   ResetErrorMessage,
@@ -87,6 +88,14 @@ export class TableAssignmentState {
     patchState({
       selectedAreaSlot: action.areaSlotId,
     });
+  }
+
+  @Action(ClearState)
+  clearState(
+    { patchState }: StateContext<TableAssignmentStateModel>,
+    _: SetSelectedAreaSlot
+  ) {
+    patchState(defaults);
   }
 
   @Action(LoadReservations)
