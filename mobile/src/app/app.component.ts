@@ -24,6 +24,7 @@ export class AppComponent {
     App.addListener('appUrlOpen', ({ url }) => {
       // Must run inside an NgZone for Angular to pick up the changes
       // https://capacitorjs.com/docs/guides/angular
+      console.error(url);
       this.ngZone.run(() => {
         if (url?.startsWith(callbackUri)) {
           // If the URL is an authentication callback URL..

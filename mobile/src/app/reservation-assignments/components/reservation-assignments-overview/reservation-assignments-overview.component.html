@@ -8,10 +8,10 @@
 </ion-header>
 <ion-content>
     <div class="filters">
-        <ion-datetime-button datetime="selectedDate"></ion-datetime-button>
+        <ion-datetime-button datetime="selectedDateOverview"></ion-datetime-button>
         <ion-popover [keepContentsMounted]="true" animated="false" >
             <ng-template>
-                <ion-datetime id="selectedDate"
+                <ion-datetime id="selectedDateOverview"
                               [(ngModel)]="selectedDate"
                               [showDefaultButtons]="true"
                               [min]="minDate"

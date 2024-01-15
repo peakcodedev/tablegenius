@@ -8,10 +8,10 @@
             <ion-popover trigger="click-trigger" triggerAction="click" [keepContentsMounted]="true" animated="false" >
                 <ng-template>
                     <ion-button *ngIf="selectedDate" class="filter-button" (click)="clearSelectedDate()">Filter entfernen</ion-button>
-                    <ion-datetime-button class="datetime-button" datetime="selectedDate"></ion-datetime-button>
+                    <ion-datetime-button class="datetime-button" datetime="selectedDateList"></ion-datetime-button>
                     <ion-popover [keepContentsMounted]="true" animated="false" >
                         <ng-template>
-                            <ion-datetime id="selectedDate"
+                            <ion-datetime id="selectedDateList"
                                           [(ngModel)]="selectedDate"
                                           [showDefaultButtons]="true"
                                           [min]="minDate"
@@ -38,7 +38,7 @@
                 <p><b>Anzahl:</b> {{ reservation.count }} | <b>Zeitpunt:</b> {{ reservation.bookingDateString}} | {{reservation.phoneNumber}}</p>
                 <span> </span>
             </ion-label>
-            <ion-button class="delete-button" item-right (click)="navigateToEditForm(reservation.id)">Bearbeiten</ion-button>
+            <ion-button class="delete-button" (click)="navigateToEditForm(reservation.id)">Bearbeiten</ion-button>
             <ion-button id="delete-button-alert" class="delete-button" item-right>Löschen</ion-button>
             <ion-alert
                     trigger="delete-button-alert"

@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="secondary" *ngIf="(facade.selectedArea | async) && (facade.selectedDate | async) && (facade.selectedAreaSlot | async)">
-            <ion-button [disabled]="facade.loading | async" (click)="loadData()"><ion-icon slot="icon-only" name="refresh"></ion-icon></ion-button>
+            <ion-button (click)="loadData()"><ion-icon slot="icon-only" name="refresh"></ion-icon></ion-button>
         </ion-buttons>
         <ion-title>Übersicht</ion-title>
     </ion-toolbar>
@@ -44,19 +44,19 @@
             <div class="droparea">
                 <h3>Zuweisung</h3>
                 <h4>Tisch(e)</h4>
-                <div class="droparea-tables" pDroppable (onDrop)="onDrop('table')">Tisch(e) hierhin ziehen</div>
+                <div class="droparea-tables">Tisch(e) hierhin ziehen</div>
                 <div class="table-list-item" *ngFor="let table of selectedTables">
                     <span><b>Nr. {{table.tableNumber}}</b> | Anzahl: {{ table.capacity }}</span>
                 </div>
                 <h4>Reservation</h4>
-                <div *ngIf="!selectedReservation" class="droparea-reservations" pDroppable (onDrop)="onDrop('reservation')">Reservation hierhin ziehen</div>
+                <div *ngIf="!selectedReservation" class="droparea-reservations">Reservation hierhin ziehen</div>
                 <div class="reservation-list-item droparea-item" *ngIf="selectedReservation">
                     <h4>{{ selectedReservation.name }}</h4>
                     <span>Anzahl: {{ selectedReservation.count }} | Zeitpunkt: {{selectedReservation.bookingDate | date: "short":"UTC"}} | {{ selectedReservation.phoneNumber }}</span>
                 </div>
                 <div class="buttons">
-                    <app-button label="Zuweisung speichern" [disabled]="!isAssigmentValid()" icon="plus" buttonStyle="outlined" (clicked)="onSave()"></app-button>
-                    <app-button label="Entwurf löschen" icon="plus" buttonStyle="outlined" (clicked)="onDiscard()"></app-button>
+                    <ion-button (click)="onSave()" fill="outline"><ion-icon slot="start" name="add"></ion-icon>Zuweisung speichern</ion-button>
+                    <ion-button (click)="onDiscard()" fill="outline"><ion-icon slot="start" name="add"></ion-icon>Enwurf löschen</ion-button>
                 </div>
             </div>
             <div class="reservations">

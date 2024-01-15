@@ -15,7 +15,6 @@ import { ReservationService } from '../../reservations-core/services/reservation
 import { TableService } from '../../tables-core/services/table.service';
 import { ReservationStateModel } from '../../reservations-core/state/reservation-state-model';
 import { ReservationAssignmentService } from '../services/reservation-assignment.service';
-import { ToastrService } from 'ngx-toastr';
 import { AreaSlotService } from '../../area-slots-core/services/area-slot.service';
 import { IDateFilterModel } from '../../models/date-filter-model';
 
@@ -56,9 +55,7 @@ export class TableAssignmentState {
 
   constructor(
     private readonly reservationService: ReservationService,
-    private readonly tableService: TableService,
     private readonly reservationAssignmentService: ReservationAssignmentService,
-    private readonly toastrService: ToastrService,
     private readonly areaSlotService: AreaSlotService
   ) {}
 
@@ -140,9 +137,9 @@ export class TableAssignmentState {
         tap(res => {
           context.dispatch(new LoadReservations());
           context.dispatch(new LoadTables(action.model.areaSlotId));
-          this.toastrService.success(
+          /*this.toastrService.success(
             'Die Zuweisung wurde erfolgreich hinzugefügt.'
-          );
+          );*/
         }),
         catchError(error => {
           context.patchState({ errorMessage: error, loading: false });

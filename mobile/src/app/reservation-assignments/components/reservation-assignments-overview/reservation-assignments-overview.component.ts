@@ -48,7 +48,13 @@ export class ReservationAssignmentsOverviewComponent
       )
       .subscribe();
     this.facade.selectedDate
-      .pipe(tap(value => (this.selectedDate = value?.toISOString())))
+      .pipe(
+        tap(value => {
+          console.error(value);
+          this.selectedDate = value?.toISOString();
+          console.error(value);
+        })
+      )
       .subscribe();
     this.facade.selectedAreaSlot
       .pipe(
