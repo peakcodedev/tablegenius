@@ -31,12 +31,13 @@
   }
   h4 {
     margin-bottom: 0.5rem;
+    margin-top: 0;
   }
 }
 
 .droparea-tables, .droparea-reservations {
   background-color: #EEF5FF;
-  min-height: 5rem;
+  min-height: 3rem;
   margin-bottom: 1.5rem;
   display: flex;
   justify-content: center;
@@ -88,5 +89,12 @@
 .dragged {
   background-color: #1B4242;
   color: white;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 

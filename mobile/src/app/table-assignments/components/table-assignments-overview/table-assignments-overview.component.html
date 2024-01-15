@@ -7,7 +7,7 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <p class="ion-padding-start">Wähle ein Datum aus, um Zuweisungen vornehmen zu können.</p>
+    <p class="ion-padding-start"><b>Wähle ein Datum aus, um Zuweisungen vornehmen zu können.</b></p>
     <div class="filters">
         <ion-datetime-button datetime="selectedDateTableAssignment"></ion-datetime-button>
         <ion-popover [keepContentsMounted]="true" animated="false" >
@@ -53,8 +53,8 @@
                     <span>Anzahl: {{ selectedReservation.count }} | Zeitpunkt: {{selectedReservation.bookingDate | date: "short":"UTC"}} | {{ selectedReservation.phoneNumber }}</span>
                 </div>
                 <div class="buttons">
-                    <ion-button (click)="onSave()" fill="outline"><ion-icon slot="start" name="add"></ion-icon>Zuweisung speichern</ion-button>
-                    <ion-button (click)="onDiscard()" fill="outline"><ion-icon slot="start" name="add"></ion-icon>Enwurf löschen</ion-button>
+                    <ion-button class="button" (click)="onSave()" fill="outline"><ion-icon slot="start" name="add"></ion-icon>Zuweisung speichern</ion-button>
+                    <ion-button class="button" (click)="onDiscard()" fill="outline"><ion-icon slot="start" name="add"></ion-icon>Enwurf löschen</ion-button>
                 </div>
             </div>
             <div class="reservations">
