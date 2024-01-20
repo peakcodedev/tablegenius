@@ -10,14 +10,12 @@ import { EditReservationComponent } from './components/edit-reservation/edit-res
 import { CoreModule } from '../core/core.module';
 import { ReservationCoreModule } from '../reservations-core/reservation-core.module';
 import { IonicModule } from '@ionic/angular';
-import { DeleteReservationConfirmationComponent } from './components/delete-reservation-confirmation/delete-reservation-confirmation.component';
 
 @NgModule({
   declarations: [
     ReservationsListComponent,
     AddReservationComponent,
     EditReservationComponent,
-    DeleteReservationConfirmationComponent,
   ],
   imports: [
     CommonModule,

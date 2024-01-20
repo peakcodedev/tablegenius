@@ -13,9 +13,7 @@ import {
 } from 'rxjs';
 import { IReservation } from '../../../domain/reservation';
 import { DatePipe } from '@angular/common';
-import { PopoverController } from '@ionic/angular';
-import { ReservationAssignmentDetailComponent } from '../../../reservation-assignments/components/reservation-assignment-detail/reservation-assignment-detail.component';
-import { DeleteReservationConfirmationComponent } from '../delete-reservation-confirmation/delete-reservation-confirmation.component';
+import { AlertController, PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'reservations-list',
@@ -45,7 +43,7 @@ export class ReservationsListComponent implements OnInit, OnDestroy {
     readonly reservationFacade: ReservationFacade,
     private readonly router: Router,
     private readonly datePipe: DatePipe,
-    private readonly popoverController: PopoverController
+    private readonly alertController: AlertController
   ) {}
 
   ngOnInit(): void {
@@ -137,15 +135,27 @@ export class ReservationsListComponent implements OnInit, OnDestroy {
   }
 
   async openDeleteReservationConfirmationModal(reservation: IReservation) {
-    const popover = await this.popoverController.create({
-      component: DeleteReservationConfirmationComponent,
-      componentProps: {
-        reservation: reservation,
-      },
-      cssClass: 'full-width-popover',
-      translucent: true,
+    const alert = await this.alertController.create({
+      header: 'Reservation löschen',
+      message:
+        'Möchten Sie die Reservation "' +
+        reservation.name +
+        '" definitiv löschen?',
+      buttons: [
+        {
+          text: 'NEIN',
+          role: 'cancel',
+        },
+        {
+          text: 'JA',
+          role: 'confirm',
+          handler: () => {
+            this.reservationFacade.deleteReservation(reservation.id);
+          },
+        },
+      ],
     });
 
-    return await popover.present();
+    await alert.present();
   }
 }

@@ -39,7 +39,7 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
   draggedTable: ITableWithStatus;
   draggedReservation: IReservation;
   destroy = new Subject<void>();
-  isTableView: boolean = false;
+  isTabletView: boolean = false;
 
   constructor(
     private readonly areasHelper: AreasHelper,
@@ -50,7 +50,7 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.isTableView = this.platform.is('tablet');
+    this.isTabletView = this.platform.is('tablet');
     this.facade.loadReservations();
     this.facade.setSelectedDate(new Date());
     this.areas = this.areasHelper.availableAreas();

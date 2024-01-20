@@ -42,6 +42,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 5px;
+}
+
+.no-reservations {
+  background-color: #EEF5FF;
+  min-height: 3rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 5px;
 }
 
 .reservation-list-item {
@@ -98,5 +110,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.mobile-view {
+  padding: 1rem;
 }
 
