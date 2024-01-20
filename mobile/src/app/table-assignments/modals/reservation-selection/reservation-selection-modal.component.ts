@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
-import { Observable } from 'rxjs';
 import { IReservation } from '../../../domain/reservation';
 
 @Component({
@@ -10,7 +9,7 @@ import { IReservation } from '../../../domain/reservation';
   styleUrls: ['reservation-selection-modal.component.scss'],
 })
 export class ReservationSelectionModalComponent {
-  @Input() reservations$: Observable<IReservation[]>;
+  @Input() reservations: IReservation[];
 
   constructor(private modalCtrl: ModalController) {}
 

@@ -7,11 +7,11 @@
     </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-    <div class="reservation-list-item" *ngFor="let reservation of reservations$ | async" (click)="onReservationSelected(reservation)">
+    <div class="reservation-list-item" *ngFor="let reservation of reservations" (click)="onReservationSelected(reservation)">
         <h4>{{ reservation.name }}</h4>
         <span><b>Anzahl:</b> {{ reservation.count }} | <b>Zeitpunkt:</b> {{ reservation.bookingDate | date: 'short':'UTC'}} | {{ reservation.phoneNumber }}</span>
     </div>
-    <div class="reservation-list-item" *ngIf="(reservations$ | async)?.length === 0">
+    <div class="reservation-list-item" *ngIf="reservations?.length === 0">
         <h4>Keine nicht zugewiesenen Reservationen</h4>
         <span>Erfasse Sie zuerst neue Reservationen.</span>
     </div>

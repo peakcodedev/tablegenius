@@ -9,7 +9,7 @@
 <ion-content class="ion-padding">
     <div class="tables">
         <div class="table-list">
-            <div class="table-list-item" [class.test]="tableIsSelected(table)" *ngFor="let table of tables$ | async" (click)="onTableSelected(table)">
+            <div class="table-list-item" [class.test]="tableIsSelected(table)" *ngFor="let table of tables" (click)="onTableSelected(table)">
                 <span><b>Nr. {{table.tableNumber}}</b> | Anzahl: {{ table.capacity }}</span>
             </div>
         </div>

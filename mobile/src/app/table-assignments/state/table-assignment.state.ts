@@ -13,7 +13,6 @@ import {
 import { catchError, finalize, of, tap } from 'rxjs';
 import { TableAssignmentStateModel } from './table-assignment-state-model';
 import { ReservationService } from '../../reservations-core/services/reservation.service';
-import { TableService } from '../../tables-core/services/table.service';
 import { ReservationStateModel } from '../../reservations-core/state/reservation-state-model';
 import { ReservationAssignmentService } from '../services/reservation-assignment.service';
 import { AreaSlotService } from '../../area-slots-core/services/area-slot.service';
@@ -120,7 +119,7 @@ export class TableAssignmentState {
     action: LoadTables
   ) {
     const model: IDateFilterModel = {
-      dateTime: getState().selectedDate,
+      dateTime: new Date(getState().selectedDate.toDateString()),
     };
     return this.areaSlotService
       .getTablesWithStatus(action.areaSlotId, model)

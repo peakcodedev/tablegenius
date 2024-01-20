@@ -6,6 +6,7 @@ import {
   Observable,
   startWith,
   Subject,
+  take,
   takeUntil,
   tap,
 } from 'rxjs';
@@ -37,8 +38,6 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
   tables$: Observable<ITableWithStatus[]>;
   selectedTables: ITableWithStatus[] = [];
   selectedReservation: IReservation;
-  draggedTable: ITableWithStatus;
-  draggedReservation: IReservation;
   destroy = new Subject<void>();
   isTabletView: boolean = false;
 
@@ -151,45 +150,6 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
     this.facade.loadTables(this.selectedAreaSlot);
   }
 
-  onDragStart(object: any, type: 'table' | 'reservation'): void {
-    switch (type) {
-      case 'reservation':
-        this.draggedReservation = object;
-        break;
-      case 'table':
-        this.draggedTable = object;
-        break;
-      default:
-        console.error('No type supplied');
-    }
-  }
-
-  onDragEnd(type: 'table' | 'reservation'): void {
-    switch (type) {
-      case 'reservation':
-        this.draggedReservation = null;
-        break;
-      case 'table':
-        this.draggedTable = null;
-        break;
-      default:
-        console.error('No type supplied');
-    }
-  }
-
-  onDrop(type: 'table' | 'reservation'): void {
-    switch (type) {
-      case 'reservation':
-        this.selectedReservation = this.draggedReservation;
-        break;
-      case 'table':
-        this.selectedTables.push(this.draggedTable);
-        break;
-      default:
-        console.error('No type supplied');
-    }
-  }
-
   ngOnDestroy(): void {
     this.facade.clearState();
     this.destroy.next();
@@ -212,30 +172,47 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
   }
 
   async openReservationSelectionModal() {
-    const modal = await this.modalController.create({
-      component: ReservationSelectionModalComponent,
-      componentProps: {
-        reservations$: this.reservations$,
-      },
-    });
-    await modal.present();
-    const { data, role } = await modal.onWillDismiss();
-    if (role === 'confirm') {
-      this.selectedReservation = data;
-    }
+    this.reservations$
+      .pipe(
+        filter(list => Boolean(list) && list.length > 0),
+        takeUntil(this.destroy),
+        take(1)
+      )
+      .subscribe(async reservations => {
+        const modal = await this.modalController.create({
+          component: ReservationSelectionModalComponent,
+          componentProps: {
+            reservations: reservations,
+          },
+        });
+        await modal.present();
+        const { data, role } = await modal.onWillDismiss();
+        if (role === 'confirm') {
+          this.selectedReservation = data;
+        }
+      });
   }
 
   async openTableSelectionModal() {
-    const modal = await this.modalController.create({
-      component: TableSelectionModalComponent,
-      componentProps: {
-        tables$: this.tables$,
-      },
-    });
-    await modal.present();
-    const { data, role } = await modal.onWillDismiss();
-    if (role === 'confirm') {
-      this.selectedTables.push(data);
-    }
+    this.tables$
+      .pipe(
+        filter(list => Boolean(list) && list.length > 0),
+        takeUntil(this.destroy),
+        take(1)
+      )
+      .subscribe(async tables => {
+        const modal = await this.modalController.create({
+          component: TableSelectionModalComponent,
+          componentProps: {
+            tables: tables,
+            selectedTables: this.selectedTables,
+          },
+        });
+        await modal.present();
+        const { data, role } = await modal.onWillDismiss();
+        if (role === 'confirm') {
+          this.selectedTables.push(data);
+        }
+      });
   }
 }
