@@ -76,6 +76,7 @@
 .filters {
   display: flex;
   margin-top: 1rem;
+  flex-flow: wrap;
 
   ion-datetime-button, .area {
     width: 10rem;
@@ -83,6 +84,7 @@
 
   .areaslots {
     width: 15rem;
+    margin-left: 1.5rem;
   }
 }
 

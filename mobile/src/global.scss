@@ -50,3 +50,8 @@ ion-toolbar {
 .big-popover {
   --width: 50vw;
 }
+
+.full-width-popover {
+  --width: 80vw;
+  margin-top: -10rem;
+}

@@ -6,7 +6,7 @@ import { AreaSlotsHelper } from '../../../area-slots-core/helpers/area-slots.hel
 import { ReservationAssignmentFacade } from '../../../reservation-assignments-core/state/reservation-assignment.facade';
 import { IReservation } from '../../../domain/reservation';
 import { ReservationAssignmentDetailComponent } from '../reservation-assignment-detail/reservation-assignment-detail.component';
-import { PopoverController } from '@ionic/angular';
+import { Platform, PopoverController } from '@ionic/angular';
 import { ITable } from '../../../domain/table';
 import { TableDetailComponent } from '../table-detail/table-detail.component';
 
@@ -32,7 +32,8 @@ export class ReservationAssignmentsOverviewComponent
     readonly facade: ReservationAssignmentFacade,
     readonly areaFacade: AreaFacade,
     private readonly areaSlotsHelper: AreaSlotsHelper,
-    private readonly popoverController: PopoverController
+    private readonly popoverController: PopoverController,
+    private readonly platform: Platform
   ) {}
 
   ngOnInit(): void {
@@ -105,7 +106,9 @@ export class ReservationAssignmentsOverviewComponent
       componentProps: {
         reservation: reservation,
       },
-      cssClass: 'big-popover',
+      cssClass: this.platform.is('tablet')
+        ? 'big-popover'
+        : 'full-width-popover',
       translucent: true,
     });
 
@@ -118,7 +121,9 @@ export class ReservationAssignmentsOverviewComponent
       componentProps: {
         table: table,
       },
-      cssClass: 'big-popover',
+      cssClass: this.platform.is('tablet')
+        ? 'big-popover'
+        : 'full-width-popover',
       translucent: true,
     });
 

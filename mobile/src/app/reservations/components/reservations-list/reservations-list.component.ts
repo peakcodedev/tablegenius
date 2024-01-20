@@ -15,6 +15,7 @@ import { IReservation } from '../../../domain/reservation';
 import { DatePipe } from '@angular/common';
 import { PopoverController } from '@ionic/angular';
 import { ReservationAssignmentDetailComponent } from '../../../reservation-assignments/components/reservation-assignment-detail/reservation-assignment-detail.component';
+import { DeleteReservationConfirmationComponent } from '../delete-reservation-confirmation/delete-reservation-confirmation.component';
 
 @Component({
   selector: 'reservations-list',
@@ -43,7 +44,8 @@ export class ReservationsListComponent implements OnInit, OnDestroy {
   constructor(
     readonly reservationFacade: ReservationFacade,
     private readonly router: Router,
-    private readonly datePipe: DatePipe
+    private readonly datePipe: DatePipe,
+    private readonly popoverController: PopoverController
   ) {}
 
   ngOnInit(): void {
@@ -132,5 +134,18 @@ export class ReservationsListComponent implements OnInit, OnDestroy {
     this.reservationFacade.setSelectedDate(null);
     this.destroy.next();
     this.destroy.complete();
+  }
+
+  async openDeleteReservationConfirmationModal(reservation: IReservation) {
+    const popover = await this.popoverController.create({
+      component: DeleteReservationConfirmationComponent,
+      componentProps: {
+        reservation: reservation,
+      },
+      cssClass: 'full-width-popover',
+      translucent: true,
+    });
+
+    return await popover.present();
   }
 }

@@ -24,7 +24,8 @@ public class ReservationPresenter : BasePresenter<ReservationRm, Reservation>, I
     {
         var model = _mapper.Map<Reservation>(entity);
         var result = _reservationService.Add(model);
-        return _mapper.Map<ReservationRm>(result);
+        var newEntity = _reservationService.GetByIdAsNoTracking(result.Id);
+        return _mapper.Map<ReservationRm>(newEntity);
     }
 
     public IEnumerable<ReservationRm> GetList()

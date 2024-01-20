@@ -35,17 +35,11 @@
         <ion-item *ngFor="let reservation of data$ | async">
             <ion-label>
                 <h2>{{ reservation.name }}</h2>
-                <p><b>Anzahl:</b> {{ reservation.count }} | <b>Zeitpunt:</b> {{ reservation.bookingDateString}} | {{reservation.phoneNumber}}</p>
+                <p><b>Anzahl:</b> {{ reservation.count }} | {{reservation.phoneNumber}} <br/><b>Zeitpunt:</b> {{ reservation.bookingDateString}}</p>
                 <span> </span>
             </ion-label>
-            <ion-button class="delete-button" (click)="navigateToEditForm(reservation.id)">Bearbeiten</ion-button>
-            <ion-button id="delete-button-alert" class="delete-button" item-right>Löschen</ion-button>
-            <ion-alert
-                    trigger="delete-button-alert"
-                    header="Löschen"
-                    [buttons]="alertButtons"
-                    (didDismiss)="test($event)"
-            ></ion-alert>
+            <ion-button class="delete-button list-button" (click)="navigateToEditForm(reservation.id)"><ion-icon slot="start" name="pencil"></ion-icon></ion-button>
+            <ion-button class="list-button" (click)="openDeleteReservationConfirmationModal(reservation)"><ion-icon slot="start" name="trash"></ion-icon></ion-button>
         </ion-item>
     </ion-list>
 </ion-content>

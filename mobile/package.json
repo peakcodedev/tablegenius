@@ -9,6 +9,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "run-ios": "ionic build && ionic cap run ios -l --external --ssl -- --ssl-cert=server.crt --ssl-key=server.key",
+    "run-ios-local": "ionic build && ionic cap run ios --external",
+    "run-ios-iphone": "ionic build && ionic cap run ios -l --external --target 7FF277F6-3A94-4883-8A8D-23E8CD416594 --ssl -- --ssl-cert=server.crt --ssl-key=server.key",
     "run-android": "ionic build && ionic cap run android -l --external --ssl -- --ssl-cert=server.crt --ssl-key=server.key",
     "test": "ng test",
     "lint": "ng lint"

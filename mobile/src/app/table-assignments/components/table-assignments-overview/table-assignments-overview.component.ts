@@ -18,6 +18,7 @@ import { AreaFacade } from '../../../areas-core/state/area.facade';
 import { AreaSlotsHelper } from '../../../area-slots-core/helpers/area-slots.helper';
 import { IReservationAssignmentModel } from '../../../models/reservation-assignment-model';
 import { ITableReservationAssignmentModel } from '../../../models/table-reservation-assignment-model';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'table-assignments-overview',
@@ -38,15 +39,18 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
   draggedTable: ITableWithStatus;
   draggedReservation: IReservation;
   destroy = new Subject<void>();
+  isTableView: boolean = false;
 
   constructor(
     private readonly areasHelper: AreasHelper,
     readonly facade: TableAssignmentFacade,
     readonly areaFacade: AreaFacade,
-    private readonly areaSlotsHelper: AreaSlotsHelper
+    private readonly areaSlotsHelper: AreaSlotsHelper,
+    private readonly platform: Platform
   ) {}
 
   ngOnInit(): void {
+    this.isTableView = this.platform.is('tablet');
     this.facade.loadReservations();
     this.facade.setSelectedDate(new Date());
     this.areas = this.areasHelper.availableAreas();
