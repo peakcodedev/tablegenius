@@ -1,26 +1,26 @@
 <ion-tabs #tabs (ionTabsDidChange)="setCurrentTab()">
     <ion-tab-bar slot="bottom" [selectedTab]="selectedTab">
-        <ion-tab-button tab="home" href="home" [selected]="selectedTab === 'home'">
-            <ion-icon aria-hidden="true" name="home"></ion-icon>
+        <ion-tab-button tab="home" href="home">
+            <ion-icon aria-hidden="true" [name]="(selectedTab === 'home' || selectedTab === '') ? 'home' : 'home-outline'"></ion-icon>
             <ion-label>Home</ion-label>
         </ion-tab-button>
-        <ion-tab-button tab="table-assignments" href="/table-assignments" [selected]="selectedTab === 'table-assignments'">
-            <ion-icon aria-hidden="true" name="wine-outline"></ion-icon>
+        <ion-tab-button tab="table-assignments" href="/table-assignments">
+            <ion-icon aria-hidden="true" [name]="selectedTab === 'table-assignments' ? 'wine' : 'wine-outline'"></ion-icon>
             <ion-label>Zuweisungen</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="reservations" href="/reservations" [selected]="selectedTab === 'reservations'">
-            <ion-icon aria-hidden="true" name="restaurant-outline"></ion-icon>
+        <ion-tab-button tab="reservations" href="/reservations">
+            <ion-icon aria-hidden="true" [name]="selectedTab === 'reservations' ? 'restaurant' : 'restaurant-outline'"></ion-icon>
             <ion-label>Reservationen</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="overview" href="/overview" [selected]="selectedTab === 'overview'">
-            <ion-icon aria-hidden="true" name="map-outline"></ion-icon>
+        <ion-tab-button tab="overview" href="/overview">
+            <ion-icon aria-hidden="true" [name]="selectedTab === 'overview' ? 'map' : 'map-outline'"></ion-icon>
             <ion-label>Überblick</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="logout" href="/logout" [selected]="selectedTab === 'logout'">
-            <ion-icon aria-hidden="true" name="log-out-outline"></ion-icon>
+        <ion-tab-button tab="logout" href="/logout">
+            <ion-icon aria-hidden="true" [name]="selectedTab === 'logout' ? 'log-out' : 'log-out-outline'"></ion-icon>
             <ion-label>Logout</ion-label>
         </ion-tab-button>
     </ion-tab-bar>

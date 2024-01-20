@@ -106,9 +106,7 @@ export class ReservationAssignmentsOverviewComponent
       componentProps: {
         reservation: reservation,
       },
-      cssClass: this.platform.is('tablet')
-        ? 'big-popover'
-        : 'full-width-popover',
+      cssClass: 'full-width-popover',
       translucent: true,
     });
 
@@ -121,9 +119,7 @@ export class ReservationAssignmentsOverviewComponent
       componentProps: {
         table: table,
       },
-      cssClass: this.platform.is('tablet')
-        ? 'big-popover'
-        : 'full-width-popover',
+      cssClass: 'full-width-popover',
       translucent: true,
     });
 
