@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   combineLatest,
-  combineLatestWith,
   filter,
   map,
   Observable,
@@ -18,7 +17,9 @@ import { AreaFacade } from '../../../areas-core/state/area.facade';
 import { AreaSlotsHelper } from '../../../area-slots-core/helpers/area-slots.helper';
 import { IReservationAssignmentModel } from '../../../models/reservation-assignment-model';
 import { ITableReservationAssignmentModel } from '../../../models/table-reservation-assignment-model';
-import { Platform } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
+import { ReservationSelectionModalComponent } from '../../modals/reservation-selection/reservation-selection-modal.component';
+import { TableSelectionModalComponent } from '../../modals/table-selection/table-selection-modal.component';
 
 @Component({
   selector: 'table-assignments-overview',
@@ -46,7 +47,8 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
     readonly facade: TableAssignmentFacade,
     readonly areaFacade: AreaFacade,
     private readonly areaSlotsHelper: AreaSlotsHelper,
-    private readonly platform: Platform
+    private readonly platform: Platform,
+    private readonly modalController: ModalController
   ) {}
 
   ngOnInit(): void {
@@ -207,5 +209,33 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
       .map(x => x.capacity)
       .reduce((a, b) => a + b);
     return places >= this.selectedReservation?.count;
+  }
+
+  async openReservationSelectionModal() {
+    const modal = await this.modalController.create({
+      component: ReservationSelectionModalComponent,
+      componentProps: {
+        reservations$: this.reservations$,
+      },
+    });
+    await modal.present();
+    const { data, role } = await modal.onWillDismiss();
+    if (role === 'confirm') {
+      this.selectedReservation = data;
+    }
+  }
+
+  async openTableSelectionModal() {
+    const modal = await this.modalController.create({
+      component: TableSelectionModalComponent,
+      componentProps: {
+        tables$: this.tables$,
+      },
+    });
+    await modal.present();
+    const { data, role } = await modal.onWillDismiss();
+    if (role === 'confirm') {
+      this.selectedTables.push(data);
+    }
   }
 }

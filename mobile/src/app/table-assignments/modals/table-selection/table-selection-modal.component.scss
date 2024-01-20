@@ -1,0 +1,18 @@
+.table-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min-content, 130px));
+    column-gap: 0.5rem;
+}
+
+.table-list-item {
+    background-color: #9EC8B9;
+    border-radius: 3px;
+    padding: 0.5rem;
+    font-size: 12px;
+    margin-bottom: 0.5rem;
+}
+
+.test {
+    background-color: #1B4242;
+    color: white;
+}
