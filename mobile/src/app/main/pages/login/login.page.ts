@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AppState,
-  AuthService,
-  RedirectLoginOptions,
-} from '@auth0/auth0-angular';
+import { AuthService } from '@auth0/auth0-angular';
 import { Router } from '@angular/router';
 import { Browser } from '@capacitor/browser';
 

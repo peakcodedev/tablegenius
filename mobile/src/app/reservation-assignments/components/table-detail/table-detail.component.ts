@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IReservation } from '../../../domain/reservation';
+import { Component, Input } from '@angular/core';
 import { ITable } from '../../../domain/table';
 
 @Component({

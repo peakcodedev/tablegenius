@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { mergeMap, tap } from 'rxjs/operators';
 import { Browser } from '@capacitor/browser';

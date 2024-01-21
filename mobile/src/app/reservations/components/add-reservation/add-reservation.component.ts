@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReservationFacade } from '../../../reservations-core/state/reservation.facade';
 
@@ -18,7 +13,6 @@ export class AddReservationComponent implements OnInit {
 
   constructor(
     readonly reservationFacade: ReservationFacade,
-    private readonly formBuilder: FormBuilder,
     private readonly router: Router
   ) {}
 
@@ -33,6 +27,6 @@ export class AddReservationComponent implements OnInit {
   }
 
   navigateToList() {
-    this.router.navigate(['reservations']);
+    this.router.navigate(['tabs/reservations']);
   }
 }

@@ -47,8 +47,8 @@
                     <span>Anzahl: {{ selectedReservation.count }} | Zeitpunkt: {{selectedReservation.bookingDate | date: "short":"UTC"}} | {{ selectedReservation.phoneNumber }}</span>
                 </div>
                 <div class="buttons">
-                    <ion-button class="button" [disabled]="!isAssigmentValid()" (click)="onSave()" fill="outline"><ion-icon slot="start" name="add"></ion-icon>Zuweisung speichern</ion-button>
-                    <ion-button class="button" (click)="onDiscard()" fill="outline"><ion-icon slot="start" name="add"></ion-icon>Enwurf löschen</ion-button>
+                    <ion-button class="button" [disabled]="!isAssigmentValid()" (click)="onSave()" fill="outline"><ion-icon slot="start" name="save"></ion-icon>Zuweisung speichern</ion-button>
+                    <ion-button class="button" (click)="onDiscard()" fill="outline"><ion-icon slot="start" name="trash"></ion-icon>Enwurf löschen</ion-button>
                 </div>
             </ng-template>
 

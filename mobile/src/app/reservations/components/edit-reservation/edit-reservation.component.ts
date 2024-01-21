@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take, tap } from 'rxjs';
 import { ReservationFacade } from '../../../reservations-core/state/reservation.facade';
@@ -20,7 +15,6 @@ export class EditReservationComponent implements OnInit {
 
   constructor(
     readonly reservationFacade: ReservationFacade,
-    private readonly formBuilder: FormBuilder,
     private readonly router: Router,
     private readonly route: ActivatedRoute
   ) {}

@@ -28,6 +28,7 @@ import { TenantInterceptor } from './core/intercepters/tenant-intercepter';
 import * as Sentry from '@sentry/angular-ivy';
 import { registerLocaleData } from '@angular/common';
 import locale from '@angular/common/locales/de-CH';
+
 const redirect_uri = `${config.appId}://table-genius.eu.auth0.com/capacitor/${config.appId}/callback`;
 registerLocaleData(locale);
 

@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IReservation } from '../../../domain/reservation';
-import { ITable } from '../../../domain/table';
 
 @Component({
   selector: 'app-reservation-assignment-detail',

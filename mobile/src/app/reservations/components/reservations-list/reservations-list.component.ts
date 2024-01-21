@@ -13,7 +13,7 @@ import {
 } from 'rxjs';
 import { IReservation } from '../../../domain/reservation';
 import { DatePipe } from '@angular/common';
-import { AlertController, PopoverController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'reservations-list',

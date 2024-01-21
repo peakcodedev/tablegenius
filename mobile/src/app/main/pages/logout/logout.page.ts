@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './logout.page.html',
   styleUrls: ['logout.page.scss'],
 })
-export class LogoutPage {
-  constructor() {}
-}
+export class LogoutPage {}
