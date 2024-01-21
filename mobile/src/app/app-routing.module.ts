@@ -5,10 +5,12 @@ import { TabsContainerPage } from './main/pages/tabs-container/tabs-container-pa
 import { LoginPage } from './main/pages/login/login.page';
 import { LogoutPage } from './main/pages/logout/logout.page';
 import { HomePage } from './main/pages/home/home.page';
+import { LoggedOutPage } from './main/pages/logged-out/logged-out-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginPage },
+  { path: 'logged-out', component: LoggedOutPage },
   {
     path: 'tabs',
     canActivate: [AuthGuard],

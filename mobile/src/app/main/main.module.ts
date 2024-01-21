@@ -10,6 +10,7 @@ import { LoginPage } from './pages/login/login.page';
 import { HomePage } from './pages/home/home.page';
 import { LocationCoreModule } from '../locations-core/location-core.module';
 import { LogoutPage } from './pages/logout/logout.page';
+import { LoggedOutPage } from './pages/logged-out/logged-out-page.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, LocationCoreModule],
@@ -17,6 +18,7 @@ import { LogoutPage } from './pages/logout/logout.page';
     TabsContainerPage,
     LoginPage,
     LogoutPage,
+    LoggedOutPage,
     HomePage,
     LoginButtonComponent,
     LogoutButtonComponent,

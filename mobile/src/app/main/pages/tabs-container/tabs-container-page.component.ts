@@ -10,7 +10,6 @@ export class TabsContainerPage {
   @ViewChild('tabs', { static: true }) tabs: any;
 
   async setCurrentTab() {
-    console.error(this.tabs.getSelected());
     this.selectedTab = this.tabs.getSelected();
   }
 }

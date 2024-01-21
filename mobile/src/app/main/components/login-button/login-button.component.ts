@@ -8,13 +8,16 @@ import { Browser } from '@capacitor/browser';
   styleUrls: ['./login-button.component.scss'],
 })
 export class LoginButtonComponent {
-  constructor(public auth: AuthService) {}
+  constructor(public authService: AuthService) {}
 
   login() {
-    this.auth
+    this.authService
       .loginWithRedirect({
         async openUrl(url: string) {
           await Browser.open({ url, windowName: '_self' });
+        },
+        appState: {
+          target: '/intro',
         },
       })
       .subscribe();

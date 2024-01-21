@@ -15,7 +15,6 @@ export class LoginPage implements OnInit {
 
   ngOnInit(): void {
     this.authService.isAuthenticated$.subscribe(isLoggedIn => {
-      console.error(isLoggedIn);
       if (isLoggedIn) {
         this.router.navigate(['intro']);
       } else {

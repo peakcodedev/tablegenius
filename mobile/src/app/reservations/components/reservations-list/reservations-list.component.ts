@@ -55,7 +55,6 @@ export class ReservationsListComponent implements OnInit, OnDestroy {
     ]).pipe(
       takeUntil(this.destroy),
       map(([selectedDate, reservations, searchString]) => {
-        console.error(selectedDate);
         if (selectedDate) {
           return reservations.filter(
             reservation =>
@@ -93,7 +92,6 @@ export class ReservationsListComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy),
         tap(value => {
-          console.error(value);
           this.selectedDate = value?.toISOString();
         })
       )
@@ -106,10 +104,6 @@ export class ReservationsListComponent implements OnInit, OnDestroy {
 
   setSearchString(event: CustomEvent): void {
     this.reservationFacade.setSearchString(event.detail.value);
-  }
-
-  test(event: any) {
-    console.error(event);
   }
 
   navigateToAddForm() {

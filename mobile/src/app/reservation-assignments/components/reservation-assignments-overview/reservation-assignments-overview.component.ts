@@ -51,9 +51,7 @@ export class ReservationAssignmentsOverviewComponent
     this.facade.selectedDate
       .pipe(
         tap(value => {
-          console.error(value);
           this.selectedDate = value?.toISOString();
-          console.error(value);
         })
       )
       .subscribe();
