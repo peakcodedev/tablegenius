@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { interval, Observable, Subject, takeUntil, tap } from 'rxjs';
 import { AreasHelper } from '../../../areas-core/helpers/areas.helper';
 import { DropdownChangeEvent } from 'primeng/dropdown';
 import { AreaFacade } from '../../../areas-core/state/area.facade';
@@ -14,12 +14,12 @@ import { ReservationAssignmentFacade } from '../../../reservation-assignments-co
 export class ReservationAssignmentsOverviewComponent
   implements OnInit, OnDestroy
 {
-  minDate = new Date();
   areas: Observable<any[]>;
   areaSlots: any[];
   selectedArea = '';
   selectedAreaSlot = '';
   selectedDate: Date = null;
+  destroy = new Subject<void>();
 
   constructor(
     private readonly areasHelper: AreasHelper,
@@ -52,12 +52,16 @@ export class ReservationAssignmentsOverviewComponent
         })
       )
       .subscribe();
+    interval(1000 * 60 * 5)
+      .pipe(takeUntil(this.destroy))
+      .subscribe(_ => {
+        this.loadData();
+      });
   }
 
   onDateSelect(date: Date): void {
     this.facade.setSelectedDate(date);
-    this.facade.setSelectedArea(undefined);
-    this.facade.setSelectedAreaSlot(undefined);
+    this.loadData();
   }
 
   onAreaSelect(event: DropdownChangeEvent): void {
@@ -70,6 +74,9 @@ export class ReservationAssignmentsOverviewComponent
   }
 
   loadData(): void {
+    if (!this.selectedArea || !this.selectedAreaSlot || !this.selectedDate) {
+      return;
+    }
     this.facade.loadAssignments();
     this.facade.loadFreeTables();
   }
@@ -80,5 +87,7 @@ export class ReservationAssignmentsOverviewComponent
 
   ngOnDestroy(): void {
     this.facade.clearState();
+    this.destroy.next();
+    this.destroy.complete();
   }
 }

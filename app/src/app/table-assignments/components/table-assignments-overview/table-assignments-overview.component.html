@@ -1,7 +1,7 @@
 <app-header [title]="'Tische zuweisen'"></app-header>
 <p>Wähle ein Datum aus, um Zuweisungen vornehmen zu können.</p>
 <div class="filters">
-  <p-calendar [(ngModel)]="selectedDate" [showClear]="true" [defaultDate]="facade.selectedDate | async" [minDate]="minDate" dateFormat="dd.mm.yy" (onSelect)="onDateSelect($event)" (onClear)="onDateSelect(null)" [placeholder]="'Datum auswählen'"></p-calendar>
+  <p-calendar [(ngModel)]="selectedDate" [showClear]="true" [defaultDate]="facade.selectedDate | async" dateFormat="dd.mm.yy" (onSelect)="onDateSelect($event)" (onClear)="onDateSelect(null)" [placeholder]="'Datum auswählen'"></p-calendar>
   <p-dropdown *ngIf="facade.selectedDate | async" (onChange)="onAreaSelect($event)" (onClear)="facade.setSelectedArea(undefined)" [options]="areas | async"  [(ngModel)]="selectedArea"  optionLabel="name" optionValue="value" [showClear]="true" placeholder="Bereich auswählen"></p-dropdown>
   <ng-container *ngIf="(areaFacade.byId$(selectedArea) | async) && areaSlots.length > 0">
     <p-dropdown *ngIf="facade.selectedArea | async" (onChange)="onAreaSlotSelect($event)" (onClear)="facade.setSelectedAreaSlot(undefined)" [options]="areaSlots"  [(ngModel)]="selectedAreaSlot"  optionLabel="name" optionValue="value" [showClear]="true" placeholder="Zeitbereich auswählen"></p-dropdown>
@@ -30,8 +30,8 @@
       <span>Anzahl: {{ selectedReservation.count }} | Zeitpunkt: {{selectedReservation.bookingDate | date: "short":"UTC"}} | {{ selectedReservation.phoneNumber }}</span>
     </div>
     <div class="buttons">
-      <app-button label="Zuweisung speichern" [disabled]="!isAssigmentValid()" icon="plus" buttonStyle="outlined" (clicked)="onSave()"></app-button>
-      <app-button label="Entwurf löschen" icon="plus" buttonStyle="outlined" (clicked)="onDiscard()"></app-button>
+      <app-button label="Zuweisung speichern" [flex]="true" [disabled]="!isAssigmentValid()" icon="plus" buttonStyle="outlined" (clicked)="onSave()"></app-button>
+      <app-button label="Entwurf löschen" icon="plus" buttonStyle="outlined" [flex]="true" (clicked)="onDiscard()"></app-button>
     </div>
   </div>
   <div class="reservations">

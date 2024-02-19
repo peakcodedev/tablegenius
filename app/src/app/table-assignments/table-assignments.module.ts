@@ -19,6 +19,7 @@ import { TableAssignmentState } from './state/table-assignment.state';
 import { TablesCoreModule } from '../tables-core/tables-core.module';
 import { DragDropModule } from 'primeng/dragdrop';
 import { AreaSlotsCoreModule } from '../area-slots-core/area-slots-core.module';
+import { ReservationAssignmentCoreModule } from '../reservation-assignments-core/reservation-assignment-core.module';
 
 @NgModule({
   declarations: [TableAssignmentsOverviewComponent],
@@ -40,6 +41,7 @@ import { AreaSlotsCoreModule } from '../area-slots-core/area-slots-core.module';
     AreaSlotsCoreModule,
     CalendarModule,
     DragDropModule,
+    ReservationAssignmentCoreModule,
   ],
   providers: [DatePipe, TableAssignmentFacade],
 })

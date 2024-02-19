@@ -28,7 +28,7 @@ public class ReservationAssignmentsController : DefaultController
     [HttpDelete("{id}")]
     public JsonResult Delete(Guid id)
     {
-        var success = _reservationAssignmentPresenter.DeleteById(id);
+        var success = _reservationAssignmentPresenter.DeleteById(id, true);
         return Json(success
             ? new InfoJsonResult(200, "successfully deleted reservation assignment")
             : new InfoJsonResult(500, "Error on deleting reservation assignment"));

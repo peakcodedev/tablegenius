@@ -20,7 +20,7 @@ const defaults: ReservationAssignmentStateModel = {
   assignments: [],
   selectedArea: '',
   selectedAreaSlot: '',
-  selectedDate: undefined,
+  selectedDate: new Date(),
   freeTables: [],
   loading: false,
 };
@@ -112,7 +112,7 @@ export class ReservationAssignmentState {
     {}: LoadAssignments
   ) {
     const model: IDateFilterModel = {
-      dateTime: getState().selectedDate,
+      dateTime: getState().selectedDate.toString().slice(0, 24),
     };
     return this.reservationAssignmentsOverviewService
       .getReservations(getState().selectedAreaSlot, model)
@@ -137,7 +137,7 @@ export class ReservationAssignmentState {
     {}: LoadAssignments
   ) {
     const model: IDateFilterModel = {
-      dateTime: getState().selectedDate,
+      dateTime: getState().selectedDate.toString().slice(0, 24),
     };
     return this.reservationAssignmentsOverviewService
       .getFreeTables(getState().selectedAreaSlot, model)

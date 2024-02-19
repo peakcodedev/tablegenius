@@ -34,3 +34,8 @@ export class AddReservationAssignment {
   static readonly type = '[Reservation] Add reservation assignment';
   constructor(public model: IReservationAssignmentModel) {}
 }
+
+export class ClearState {
+  static readonly type = '[Table Assignment] Clear state';
+  constructor() {}
+}

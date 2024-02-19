@@ -32,7 +32,7 @@ public class AreaSlotsController : DefaultController
     public JsonResult GetAllAssigendTablesByAreaSlotAndCurrentDate([FromBody] DateFilterModel model,
         [FromRoute] Guid id)
     {
-        var res = _tablePresenter.GetAllAssignedTablesByAreaSlotAndCurrentDate(id, model.DateTime.AddDays(1));
+        var res = _tablePresenter.GetAllAssignedTablesByAreaSlotAndCurrentDate(id, model.DateTime);
         return Json(new DataJsonResult<TableWithStatusRm>(200, "area slots successfully returned", res));
     }
 

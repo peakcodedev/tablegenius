@@ -111,6 +111,7 @@ export class TableAssignmentsOverviewComponent implements OnInit, OnDestroy {
   onDateSelect(event: CustomEvent): void {
     this.facade.setSelectedDate(new Date(event.detail.value));
     this.onDiscard();
+    this.loadData();
   }
 
   onAreaSelect(event: CustomEvent): void {

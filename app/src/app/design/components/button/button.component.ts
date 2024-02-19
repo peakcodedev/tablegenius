@@ -1,15 +1,16 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: "app-button",
-  templateUrl: "./button.component.html",
-  styleUrls: ["./button.component.scss"],
+  selector: 'app-button',
+  templateUrl: './button.component.html',
+  styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
   @Input() disabled = false;
-  @Input() label = "";
-  @Input() icon = "";
-  @Input() buttonStyle: IconStyle | string = "";
+  @Input() label = '';
+  @Input() icon = '';
+  @Input() flex = false;
+  @Input() buttonStyle: IconStyle | string = '';
   @Output() clicked = new EventEmitter();
 
   onClick(): void {
@@ -19,4 +20,4 @@ export class ButtonComponent {
   }
 }
 
-type IconStyle = "outlined" | "text" | "";
+type IconStyle = 'outlined' | 'text' | '';

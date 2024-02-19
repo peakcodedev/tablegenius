@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   AddReservationAssignment,
+  ClearState,
   LoadReservations,
   LoadTables,
   ResetErrorMessage,
@@ -12,19 +13,18 @@ import {
 import { catchError, finalize, of, tap } from 'rxjs';
 import { TableAssignmentStateModel } from './table-assignment-state-model';
 import { ReservationService } from '../../reservations-core/services/reservation.service';
-import { TableService } from '../../tables-core/services/table.service';
 import { ReservationStateModel } from '../../reservations-core/state/reservation-state-model';
-import { ReservationAssignmentService } from '../services/reservation-assignment.service';
 import { ToastrService } from 'ngx-toastr';
 import { AreaSlotService } from '../../area-slots-core/services/area-slot.service';
 import { IDateFilterModel } from '../../models/date-filter-model';
+import { ReservationAssignmentsService } from '../../reservation-assignments-core/services/reservation-assignments.service';
 
 const defaults: TableAssignmentStateModel = {
   assignments: [],
   reservations: [],
   selectedArea: undefined,
   selectedAreaSlot: undefined,
-  selectedDate: undefined,
+  selectedDate: new Date(),
   tables: [],
 };
 
@@ -56,8 +56,7 @@ export class TableAssignmentState {
 
   constructor(
     private readonly reservationService: ReservationService,
-    private readonly tableService: TableService,
-    private readonly reservationAssignmentService: ReservationAssignmentService,
+    private readonly reservationAssignmentService: ReservationAssignmentsService,
     private readonly toastrService: ToastrService,
     private readonly areaSlotService: AreaSlotService
   ) {}
@@ -108,13 +107,21 @@ export class TableAssignmentState {
     );
   }
 
+  @Action(ClearState)
+  clearState(
+    { patchState }: StateContext<TableAssignmentStateModel>,
+    _: SetSelectedAreaSlot
+  ) {
+    patchState(defaults);
+  }
+
   @Action(LoadTables)
   loadTables(
     { patchState, dispatch, getState }: StateContext<TableAssignmentStateModel>,
     action: LoadTables
   ) {
     const model: IDateFilterModel = {
-      dateTime: getState().selectedDate,
+      dateTime: getState().selectedDate.toString().slice(0, 24),
     };
     return this.areaSlotService
       .getTablesWithStatus(action.areaSlotId, model)
