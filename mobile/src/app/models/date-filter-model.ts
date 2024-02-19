@@ -1,3 +1,3 @@
 export interface IDateFilterModel {
-  dateTime: Date;
+  dateTime: string;
 }

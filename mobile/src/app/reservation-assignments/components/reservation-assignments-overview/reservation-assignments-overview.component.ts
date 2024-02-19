@@ -6,7 +6,7 @@ import { AreaSlotsHelper } from '../../../area-slots-core/helpers/area-slots.hel
 import { ReservationAssignmentFacade } from '../../../reservation-assignments-core/state/reservation-assignment.facade';
 import { IReservation } from '../../../domain/reservation';
 import { ReservationAssignmentDetailComponent } from '../reservation-assignment-detail/reservation-assignment-detail.component';
-import { Platform, PopoverController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular';
 import { ITable } from '../../../domain/table';
 import { TableDetailComponent } from '../table-detail/table-detail.component';
 
@@ -18,7 +18,6 @@ import { TableDetailComponent } from '../table-detail/table-detail.component';
 export class ReservationAssignmentsOverviewComponent
   implements OnInit, OnDestroy
 {
-  minDate = new Date().toISOString();
   areas: Observable<any[]>;
   areaSlots: any[];
   selectedArea = '';
@@ -32,8 +31,7 @@ export class ReservationAssignmentsOverviewComponent
     readonly facade: ReservationAssignmentFacade,
     readonly areaFacade: AreaFacade,
     private readonly areaSlotsHelper: AreaSlotsHelper,
-    private readonly popoverController: PopoverController,
-    private readonly platform: Platform
+    private readonly popoverController: PopoverController
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +49,9 @@ export class ReservationAssignmentsOverviewComponent
     this.facade.selectedDate
       .pipe(
         tap(value => {
-          this.selectedDate = value?.toISOString();
+          if (value instanceof Date) {
+            this.selectedDate = value?.toISOString();
+          }
         })
       )
       .subscribe();

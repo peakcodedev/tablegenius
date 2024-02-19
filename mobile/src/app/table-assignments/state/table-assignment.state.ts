@@ -119,7 +119,7 @@ export class TableAssignmentState {
     action: LoadTables
   ) {
     const model: IDateFilterModel = {
-      dateTime: new Date(getState().selectedDate.toDateString()),
+      dateTime: getState().selectedDate.toString().slice(0, 24),
     };
     return this.areaSlotService
       .getTablesWithStatus(action.areaSlotId, model)
@@ -145,9 +145,6 @@ export class TableAssignmentState {
         tap(res => {
           context.dispatch(new LoadReservations());
           context.dispatch(new LoadTables(action.model.areaSlotId));
-          /*this.toastrService.success(
-            'Die Zuweisung wurde erfolgreich hinzugefügt.'
-          );*/
         }),
         catchError(error => {
           context.patchState({ errorMessage: error, loading: false });
